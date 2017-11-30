@@ -109,7 +109,7 @@ install_asdf_language() {
 # pull down dotfiles and setup dotbot for VC
 fancy_echo "Almost done..."
 if [ ! -d "$HOME/dotfiles" ]; then
-  git clone https://github.com/jssee/dotfiles.git
+  git clone git@github.com:jssee/dotfiles.git
   cd dotfiles
   sh install
 fi
