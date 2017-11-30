@@ -2,7 +2,7 @@
 
 - link:
     ~/.asdfrc:
-        path: asdf
+        path: asdf/asdfrc
         create: true
     ~/.gitconfig:
         path: git/gitconfig
