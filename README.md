@@ -3,7 +3,7 @@
 These are not intended for use by anyone but me, that being said feel free to
 take them and make them your own.
 
-![A screenshot of the terminal after setup](https://imgur.com/a/hA3FR)
+![A screenshot of the terminal after setup](https://i.imgur.com/eJUESS5.png)
 
 ## ✨ Init
 
