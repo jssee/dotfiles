@@ -11,8 +11,7 @@ Simply kickoff the ol' init script, browse the `init` folder to see what it
 does. Innit nice?:
 
 ```
-curl --silent
-https://raw.githubusercontent.com/jssee/dotfiles/master/init/init | sh
+curl --silent https://raw.githubusercontent.com/jssee/dotfiles/master/init/init | sh
 ```
 
 after the script does its thing, you should be left with a `.dotfiles` folder in
