@@ -1,0 +1,33 @@
+[user]
+  name = jssee
+  email = jesse@mojotech.com
+
+[alias]
+  # branch
+  b  = branch
+  bc = checkout -b
+  bx = branch -d
+  bX = branch -D
+
+  # checkout  
+  co  = checkout
+
+  # fetch
+  f   = fetch
+  p   = pull
+  fo  = fetch origin
+
+  # status
+  s  = status
+
+[core]
+  # Use custom `.gitignore` and `.gitattributes`
+  excludesfile = ~/.gitignore_global
+  attributesfile = ~/.gitattributes
+
+# URL shorthands
+# gh:user/repo
+[url "git@github.com:"]
+  insteadOf = "gh:"
+  pushInsteadOf = "gh:"
+  pushInsteadOf = "git://github.com/"

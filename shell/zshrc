@@ -1,0 +1,16 @@
+export PATH="/usr/local/bin:$PATH"
+
+# brew doc recommended
+export PATH="$HOME/.bin:$PATH"
+
+# asdf config
+source $HOME/.asdf/asdf.sh
+
+source $HOME/.dotfiles/shell/alias.sh
+source $HOME/.dotfiles/shell/utils.sh
+source $HOME/.dotfiles/shell/prompt.sh # Pure by Sindre Sorhus
+
+
+# source plugins
+source $HOME/.dotfiles/shell/plugins/z.sh
+source $HOME/.dotfiles/shell/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

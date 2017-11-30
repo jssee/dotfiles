@@ -1,0 +1,13 @@
+cask_args appdir: '/Applications'
+
+tap 'homebrew/services'
+
+brew 'git'
+
+brew 'hub'
+
+brew 'tig'
+
+brew 'yarn'
+
+cask 'sublime-text'

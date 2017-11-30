@@ -1,11 +1,24 @@
 - clean: ['~']
 
 - link:
-    ~/.gitconfig: gitconfig
+    ~/.asdfrc:
+        path: asdf
+        create: true
+    ~/.gitconfig:
+        path: git/gitconfig
+        create: true 
+    ~/.gitignore_global:
+        path: git/gitignore_global
+        create: true
     ~/.ssh/config:
         path: ssh/config
         create: true
-    ~/.vimrc: vimrc
-    ~/.zshrc: zshrc
-
-
+    ~/tigrc:
+        path: git/tigrc
+        create: true
+    ~/.vimrc: 
+        path: vim/vimrc
+        create: true
+    ~/.zshrc: 
+        path: shell/zshrc
+        create: true
