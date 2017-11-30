@@ -8,8 +8,12 @@ take them and make them your own.
 ## ✨ Init
 
 Simply kickoff the ol' init script, browse the `init` folder to see what it
-sets. Innit nice?: `curl --silent
-https://raw.githubusercontent.com/jssee/dotfiles/master/init/init | sh`
+does. Innit nice?:
+
+```
+curl --silent
+https://raw.githubusercontent.com/jssee/dotfiles/master/init/init | sh
+```
 
 after the script does its thing, you should be left with a `.dotfiles` folder in
 your home directory and youre pretty much done. For the most part, I'm utilizing
