@@ -968,5 +968,3 @@ prompt_pure_setup() {
 
 prompt_pure_setup "$@"
 
-autoload -U promptinit; promptinit
-prompt pure
