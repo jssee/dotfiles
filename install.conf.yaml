@@ -6,19 +6,16 @@
         create: true
     ~/.gitconfig:
         path: git/gitconfig
-        create: true 
+        create: true
     ~/.gitignore_global:
         path: git/gitignore_global
-        create: true
-    ~/.ssh/config:
-        path: ssh/config
         create: true
     ~/tigrc:
         path: git/tigrc
         create: true
-    ~/.vimrc: 
+    ~/.vimrc:
         path: vim/vimrc
         create: true
-    ~/.zshrc: 
+    ~/.zshrc:
         path: shell/zshrc
         create: true

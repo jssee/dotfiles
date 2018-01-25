@@ -10,4 +10,6 @@ brew 'tig'
 
 brew 'yarn'
 
+brew 'mas'
+
 cask 'sublime-text'
