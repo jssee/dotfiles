@@ -2,6 +2,9 @@ set nocompatible
 set encoding=utf-8 nobomb
 filetype off
 
+" keep swp files in this directory
+set directory^=$HOME/.vim/tmp//
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -30,9 +33,18 @@ Plugin 'vim-airline/vim-airline'
 " ctrlP
 Plugin 'ctrlpvim/ctrlp.vim'
 
+" emmet
+Plugin 'mattn/emmet-vim'
+
+" git gutter
+Plugin 'airblade/vim-gitgutter'
+
 " all plugins must be added before the following line
 call vundle#end()
 filetype plugin indent on
+
+" remap emmet trigger
+let g:user_emmet_leader_key='<C-A>'
 
 " enable ruler and line numbers
 set ruler
@@ -40,9 +52,9 @@ set number
 
 " enable solarized theme
 syntax enable
-" let g:solarized_termtrans=1
+let g:solarized_termtrans=1
+let g:solarized_termcolors=256
 set background=dark
-" colorscheme solarized
 
 " soft tabs ftw
 set tabstop=2
@@ -70,24 +82,14 @@ set incsearch
 " show the filename in the window titlebar
 set title
 
-" don’t reset cursor to start of line when moving around
-set nostartofline
-
 " show the (partial) command as it’s being typed
 set showcmd
 
 " don’t reset cursor to start of line when moving around
 set nostartofline
 
-" don’t add empty newlines at the end of files
-set noeol
-
-" start scrolling three lines before the horizontal window border
-set scrolloff=3
-
-" disable cursorline in insert mode
-set cul
-autocmd InsertEnter,InsertLeave * set nocul!
+" start scrolling five lines before the horizontal window border
+set scrolloff=5
 
 " nicer netrw
 let g:netrw_banner=0
@@ -97,6 +99,12 @@ let g:netrw_list_hide='.*\.swp$,\~$,\.orig$'
 " remap ctrl-c to esc
 inoremap <C-c> <Esc><Esc>
 
+" window switching with arrow keys
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
+
 " strip trailing spaces
 fun! <SID>StripTrailingWhitespaces()
   let l = line(".")
@@ -105,6 +113,3 @@ fun! <SID>StripTrailingWhitespaces()
   call cursor(l, c)
 endfun
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
-
-" insert HTML template in new HTML files
-:autocmd BufNewFile *.html 0r ~/.vim/templates/html.tpl
