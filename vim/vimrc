@@ -21,6 +21,9 @@ Plugin 'othree/yajs.vim'
 " Stylus Syntax
 Plugin 'wavded/vim-stylus'
 
+" jsx syntax
+Plugin 'mxw/vim-jsx'
+
 " html5 syntax
 Plugin 'othree/html5.vim'
 
