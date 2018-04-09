@@ -3,7 +3,7 @@ set encoding=utf-8 nobomb
 filetype off
 
 " map leader to space
-:let mapleader = "\<Space>"
+let mapleader = "\<Space>"
 
 " keep swp files in this directory
 set directory^=$HOME/.vim/tmp//
@@ -18,8 +18,14 @@ Plugin 'VundleVim/Vundle.vim'
 " es6 syntax
 Plugin 'othree/yajs.vim'
 
+" vue syntax
+Plugin 'posva/vim-vue'
+
 " Stylus Syntax
 Plugin 'wavded/vim-stylus'
+
+" pug syntax
+Plugin 'digitaltoad/vim-pug'
 
 " jsx syntax
 Plugin 'mxw/vim-jsx'
@@ -48,6 +54,12 @@ Plugin 'airblade/vim-gitgutter'
 " Prettier
 Plugin 'prettier/vim-prettier'
 
+" Nerdtree
+Plugin 'scrooloose/nerdtree'
+
+" snazzy theme
+Plugin 'meister/vim-snazzyfied'
+
 " all plugins must be added before the following line
 call vundle#end()
 filetype plugin indent on
@@ -60,13 +72,17 @@ set ruler
 set number
 
 " make ctrlp faster
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+
+" clear ctrlp cache
+map <leader>C :CtrlPClearCache<cr>
 
 " enable solarized theme
 syntax enable
 let g:solarized_termtrans=1
 let g:solarized_termcolors=256
 set background=dark
+" colorscheme snazzyfied
 
 " soft tabs ftw
 set tabstop=2
@@ -112,12 +128,6 @@ let g:netrw_list_hide='.*\.swp$,\~$,\.orig$'
 " remap ctrl-c to esc
 inoremap <C-c> <Esc><Esc>
 
-" window switching with arrow keys
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
-
 " strip trailing spaces
 fun! <SID>StripTrailingWhitespaces()
   let l = line(".")
@@ -126,3 +136,10 @@ fun! <SID>StripTrailingWhitespaces()
   call cursor(l, c)
 endfun
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+
+" cycle buffers using tab and shift+tab
+:nnoremap <Tab> :bnext<CR>
+:nnoremap <S-Tab> :bprevious<CR>
+
+" Allow mouse scrolling
+set mouse=a
