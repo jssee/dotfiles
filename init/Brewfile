@@ -1,6 +1,12 @@
 cask_args appdir: '/Applications'
 
 tap 'homebrew/services'
+tap 'caskroom/cask'
+tap 'caskroom/versions'
+tap 'homebrew/bundle'
+tap 'homebrew/science'
+
+
 
 brew 'git'
 
@@ -12,4 +18,16 @@ brew 'yarn'
 
 brew 'mas'
 
-cask 'sublime-text'
+
+
+brew 'coreutils'
+
+cask '1password'
+
+cask 'dropbox'
+
+cask 'imageoptim'
+
+cask 'transmission'
+
+cask 'spectacle'
