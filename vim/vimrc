@@ -57,9 +57,6 @@ Plugin 'prettier/vim-prettier'
 " Nerdtree
 Plugin 'scrooloose/nerdtree'
 
-" snazzy theme
-Plugin 'meister/vim-snazzyfied'
-
 " all plugins must be added before the following line
 call vundle#end()
 filetype plugin indent on
@@ -77,12 +74,6 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-stand
 " clear ctrlp cache
 map <leader>C :CtrlPClearCache<cr>
 
-" enable solarized theme
-syntax enable
-let g:solarized_termtrans=1
-let g:solarized_termcolors=256
-set background=dark
-" colorscheme snazzyfied
 
 " soft tabs ftw
 set tabstop=2
@@ -128,18 +119,33 @@ let g:netrw_list_hide='.*\.swp$,\~$,\.orig$'
 " remap ctrl-c to esc
 inoremap <C-c> <Esc><Esc>
 
-" strip trailing spaces
-fun! <SID>StripTrailingWhitespaces()
-  let l = line(".")
-  let c = col(".")
-  %s/\s\+$//e
-  call cursor(l, c)
-endfun
-autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
-
 " cycle buffers using tab and shift+tab
 :nnoremap <Tab> :bnext<CR>
 :nnoremap <S-Tab> :bprevious<CR>
 
 " Allow mouse scrolling
 set mouse=a
+
+" New files in current dir
+:set autochdir
+
+" theme 
+hi javaRepeat ctermfg = green
+hi javaType ctermfg = green
+hi javaStorageClass ctermfg = green cterm=bold
+hi javaDocTags ctermfg = green
+hi Conditional ctermfg = green
+hi LineNr ctermfg = white 
+hi Comment ctermfg = red
+hi Statement ctermfg = blue
+hi Function ctermfg = blue
+hi Identifier ctermfg = blue
+hi Exception ctermfg = green
+hi Special ctermfg = green
+hi String ctermfg = yellow
+hi MatchParen ctermbg=none cterm=underline ctermfg=magenta
+
+syntax enable
+set background=dark
+
+set t_Co=256
