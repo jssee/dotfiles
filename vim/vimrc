@@ -48,9 +48,6 @@ Plugin 'ctrlpvim/ctrlp.vim'
 " emmet
 Plugin 'mattn/emmet-vim'
 
-" git gutter
-Plugin 'airblade/vim-gitgutter'
-
 " Prettier
 Plugin 'prettier/vim-prettier'
 
@@ -74,6 +71,8 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-stand
 " clear ctrlp cache
 map <leader>C :CtrlPClearCache<cr>
 
+set termguicolors
+set background=dark
 
 " soft tabs ftw
 set tabstop=2
@@ -88,6 +87,9 @@ let g:airline_powerline_fonts=1
 let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline_skip_empty_sections=1
 let g:airline#extensions#tabline#enabled = 1
+
+" vim prettier config
+let g:prettier#config#bracket_spacing = 'true'
 
 " wrap text
 set tw=100
@@ -130,20 +132,25 @@ set mouse=a
 :set autochdir
 
 " theme 
-hi javaRepeat ctermfg = green
-hi javaType ctermfg = green
-hi javaStorageClass ctermfg = green cterm=bold
-hi javaDocTags ctermfg = green
 hi Conditional ctermfg = green
-hi LineNr ctermfg = white 
+hi LineNr ctermfg = magenta
+hi Tag ctermfg = white
+hi htmlTag ctermfg = blue
+hi htmlTagName ctermfg = white
 hi Comment ctermfg = red
 hi Statement ctermfg = blue
 hi Function ctermfg = blue
-hi Identifier ctermfg = blue
+hi Identifier ctermfg = red
 hi Exception ctermfg = green
 hi Special ctermfg = green
-hi String ctermfg = yellow
+hi String ctermfg = green
 hi MatchParen ctermbg=none cterm=underline ctermfg=magenta
+hi javascriptExport ctermfg = cyan
+hi javascriptImport ctermfg = yellow
+hi javascriptFuncKeyword ctermfg = blue
+hi javascriptClassKeyword ctermfg = red
+
+hi cssProp ctermfg = blue
 
 syntax enable
 set background=dark
