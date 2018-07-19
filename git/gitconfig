@@ -29,6 +29,10 @@
 
   # rebase
   rom = rebase origin/master
+  i   = rebase -i origin/master
+  s1  = !sh -c \"git stash save -u | grep 'No local changes to save' && git $* || (git $* && git stash pop) \"
+  s2  = !sh -c \"git stash save -u | grep 'No local changes to save' && git $* || (git $*) \"
+  u   = !sh -c \"git s2 fetch origin master && git rebase origin/master && git stash pop \"
 
   # misc
   leaderboard = shortlog --summary --numbered
