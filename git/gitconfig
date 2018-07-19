@@ -27,6 +27,9 @@
   # status
   s  = status
 
+  # rebase
+  rom = rebase origin/master
+
   # misc
   leaderboard = shortlog --summary --numbered
 
