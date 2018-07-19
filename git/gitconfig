@@ -30,6 +30,10 @@
   # misc
   leaderboard = shortlog --summary --numbered
 
+  # hub
+  o = pull-request
+  oo = pull-request -o 
+
 [core]
   # Use custom `.gitignore` and `.gitattributes`
   excludesfile = ~/.gitignore_global
