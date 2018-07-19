@@ -1,52 +1,117 @@
 set nocompatible
+
 set encoding=utf-8 nobomb
-filetype off
 
-" map leader to space
-let mapleader = "\<Space>"
+set mouse=a
 
-" keep swp files in this directory
+set ruler
+
+set number
+
+set tw=100
+
+set formatoptions+=t
+
+set title
+
+set incsearch
+
+set scrolloff=5
+
+set nostartofline
+
+set showcmd
+
+set hidden
+
+" Backspace shenanigans 
+set backspace=indent,eol,start
+set modelines=0 
+
+" Search
+set incsearch
+set ignorecase
+set smartcase
+
+" No swap files
+set nobackup
+set noswapfile
 set directory^=$HOME/.vim/tmp//
 
-" set the runtime path to include Vundle and initialize
+" Tabs to spaces
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set autoindent
+set copyindent
+filetype indent on    " Enable filetype-specific indenting
+filetype plugin on    " Enable filetype-specific plugins
+
+" Remap semicolon to colon
+:nmap ; :
+
+" Remap ctrl-c to esc
+inoremap <C-c> <Esc><Esc>
+
+" Cylce buffers with tab
+:nnoremap <Tab> :bnext<CR>
+:nnoremap <S-Tab> :bprevious<CR>
+
+" Open new files in current directory 
+:set autochdir
+
+
+" Map leader to space
+let mapleader = "\<Space>"
+
+" Syntax colors
+filetype on
+set termguicolors
+set background=dark
+set t_Co=256
+syntax enable
+
+"
+" ** Plugins **
+"
+
+" Set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle
 Plugin 'VundleVim/Vundle.vim'
 
-" es6 syntax
+" ES6 syntax
 Plugin 'othree/yajs.vim'
-
-" vue syntax
-Plugin 'posva/vim-vue'
 
 " Stylus Syntax
 Plugin 'wavded/vim-stylus'
 
-" pug syntax
+" Pug syntax
 Plugin 'digitaltoad/vim-pug'
 
-" jsx syntax
+" JSX syntax
 Plugin 'mxw/vim-jsx'
 
-" html5 syntax
+" HTML5 syntax
 Plugin 'othree/html5.vim'
 
-" css3 syntax
+" CSS syntax
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'alexlafroscia/postcss-syntax.vim'
 
-" automatic closing of quotes, parenthesis, brackets, etc.
+" Automatic closing of quotes, parenthesis, brackets, etc.
 Plugin 'Raimondi/delimitMate'
 
-" tab line
+" Airline 
 Plugin 'vim-airline/vim-airline'
 
 " ctrlP
 Plugin 'ctrlpvim/ctrlp.vim'
 
-" emmet
+" Emmet
 Plugin 'mattn/emmet-vim'
 
 " Prettier
@@ -55,33 +120,24 @@ Plugin 'prettier/vim-prettier'
 " Nerdtree
 Plugin 'scrooloose/nerdtree'
 
-" all plugins must be added before the following line
+" All plugins must be added before the following line
 call vundle#end()
 filetype plugin indent on
 
-" remap emmet trigger
+"
+" ** Plugin Settings **
+"
+
+" Remap emmet trigger
 let g:user_emmet_leader_key='<C-A>'
 
-" enable ruler and line numbers
-set ruler
-set number
-
-" make ctrlp faster
+" ctrlP config
+let g:ctrlp_map = '<leader>t'
+map <leader>C :CtrlPClearCache<cr>
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 
-" clear ctrlp cache
-map <leader>C :CtrlPClearCache<cr>
-
-set termguicolors
-set background=dark
-
-" soft tabs ftw
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set expandtab
-
-" airline config
+" Airline config
 set noshowmode
 set laststatus=2
 let g:airline_powerline_fonts=1
@@ -89,71 +145,24 @@ let g:airline#parts#ffenc#skip_expected_string='utf-8[unix]'
 let g:airline_skip_empty_sections=1
 let g:airline#extensions#tabline#enabled = 1
 
-" vim prettier config
+" Prettier config
 let g:prettier#config#bracket_spacing = 'true'
 
-" wrap text
-set tw=100
-set formatoptions+=t
-
-" ignore case of searches
-set ignorecase
-
-" highlight dynamically as pattern is typed
-set incsearch
-
-" show the filename in the window titlebar
-set title
-
-" show the (partial) command as it’s being typed
-set showcmd
-
-" don’t reset cursor to start of line when moving around
-set nostartofline
-
-" start scrolling five lines before the horizontal window border
-set scrolloff=5
-
-" nicer netrw
-let g:netrw_banner=0
-let g:netrw_liststyle=3
-let g:netrw_list_hide='.*\.swp$,\~$,\.orig$'
-
-" remap ctrl-c to esc
-inoremap <C-c> <Esc><Esc>
-
-" cycle buffers using tab and shift+tab
-:nnoremap <Tab> :bnext<CR>
-:nnoremap <S-Tab> :bprevious<CR>
-
-" Allow mouse scrolling
-set mouse=a
-
-" New files in current dir
-:set autochdir
-
 " theme 
-hi Conditional ctermfg = green
-hi LineNr ctermfg = magenta
-hi Tag ctermfg = white
-hi htmlTag ctermfg = blue
-hi htmlTagName ctermfg = white
-hi Comment ctermfg = red
-hi Statement ctermfg = blue
-hi Function ctermfg = blue
-hi Identifier ctermfg = red
-hi Exception ctermfg = green
-hi Special ctermfg = green
-hi String ctermfg = green
-hi MatchParen ctermbg=none cterm=underline ctermfg=magenta
-hi javascriptExport ctermfg = cyan
-hi javascriptImport ctermfg = yellow
-hi javascriptFuncKeyword ctermfg = blue
-hi javascriptClassKeyword ctermfg = red
-
-hi cssProp ctermfg = blue
-
-syntax enable
-set background=dark
-
-set t_Co=256
+" hi Conditional ctermfg = green
+" hi LineNr ctermfg = magenta
+" hi Tag ctermfg = white
+" hi htmlTag ctermfg = blue
+" hi htmlTagName ctermfg = white
+" hi Comment ctermfg = red
+" hi Statement ctermfg = blue
+" hi Function ctermfg = red
+" hi Identifier ctermfg = red
+" hi Exception ctermfg = green
+" hi Special ctermfg = green
+" hi String ctermfg = green
+" hi MatchParen ctermbg=none cterm=underline ctermfg=magenta
+" hi javascriptExport ctermfg = cyan
+" hi javascriptImport ctermfg = yellow
+" hi javascriptFuncKeyword ctermfg = red
+" hi javascriptClassKeyword ctermfg = red
