@@ -2,6 +2,14 @@
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias ss="cd ~/Sites"
+
+alias c="clear"
+alias v="vim ."
+alias oo="open ."
+
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
 # remove those damn DS_Store files
 alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
