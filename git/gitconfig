@@ -41,6 +41,27 @@
   o = pull-request
   oo = pull-request -o 
 
+  #-------------- display logs-------------
+  #define format...
+  mylogbase = log --pretty=format:'%Cred%h %Cgreen%<(10,trunc)%cd %C(auto)%d%Creset%s %C(bold blue)%an' --abbrev-commit
+  #...and use it!
+	mylog = !git mylogbase --date=relative
+	mylogshort = !git mylogbase --date=short
+  #...with a graph (DAG!)
+  graph = !git mylog --graph
+  #last changes
+  changes = !git mylog --name-status
+  #users stats
+  statdev = shortlog -sn
+
+  ###=>Standup logs ;)
+  #-For the user you want
+	standup4 = !sh -c \"git mylogbase --since='3 days' --date=short --author='$1'\"
+  #-For me
+	standup = !git standup4 `git config user.name`
+  #-Try to solve problem of Monday!
+  standupbase = !"git mylogbase --reverse --branches --date=short --since='$(if [[ "Mon" == "$(date +%a)" ]]; then echo "3 days"; else echo "yesterday"; fi)' "
+
 [core]
   # Use custom `.gitignore` and `.gitattributes`
   excludesfile = ~/.gitignore_global
