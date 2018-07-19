@@ -148,21 +148,3 @@ let g:airline#extensions#tabline#enabled = 1
 " Prettier config
 let g:prettier#config#bracket_spacing = 'true'
 
-" theme 
-" hi Conditional ctermfg = green
-" hi LineNr ctermfg = magenta
-" hi Tag ctermfg = white
-" hi htmlTag ctermfg = blue
-" hi htmlTagName ctermfg = white
-" hi Comment ctermfg = red
-" hi Statement ctermfg = blue
-" hi Function ctermfg = red
-" hi Identifier ctermfg = red
-" hi Exception ctermfg = green
-" hi Special ctermfg = green
-" hi String ctermfg = green
-" hi MatchParen ctermbg=none cterm=underline ctermfg=magenta
-" hi javascriptExport ctermfg = cyan
-" hi javascriptImport ctermfg = yellow
-" hi javascriptFuncKeyword ctermfg = red
-" hi javascriptClassKeyword ctermfg = red
