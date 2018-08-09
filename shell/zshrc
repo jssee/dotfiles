@@ -20,3 +20,5 @@ autoload -Uz compinit && compinit
 
 # hub alias
 eval "$(hub alias -s)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

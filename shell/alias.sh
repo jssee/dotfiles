@@ -5,7 +5,7 @@ alias ....='cd ../../..'
 alias ss="cd ~/Sites"
 
 alias c="clear"
-alias v="vim ."
+alias v="nvim ."
 alias oo="open ."
 
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"

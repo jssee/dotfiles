@@ -61,16 +61,8 @@ inoremap <C-c> <Esc><Esc>
 " Open new files in current directory 
 :set autochdir
 
-
-" Map leader to space
+"Map leader to space
 let mapleader = "\<Space>"
-
-" Syntax colors
-filetype on
-set termguicolors
-set background=dark
-set t_Co=256
-syntax enable
 
 "
 " ** Plugins **
@@ -120,6 +112,11 @@ Plugin 'prettier/vim-prettier'
 " Nerdtree
 Plugin 'scrooloose/nerdtree'
 
+" EasyMotion
+Plugin 'easymotion/vim-easymotion'
+
+Plugin 'nightsense/stellarized'
+
 " All plugins must be added before the following line
 call vundle#end()
 filetype plugin indent on
@@ -132,7 +129,7 @@ filetype plugin indent on
 let g:user_emmet_leader_key='<C-A>'
 
 " ctrlP config
-let g:ctrlp_map = '<leader>t'
+let g:ctrlp_map = '<leader>o'
 map <leader>C :CtrlPClearCache<cr>
 let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
@@ -147,4 +144,27 @@ let g:airline#extensions#tabline#enabled = 1
 
 " Prettier config
 let g:prettier#config#bracket_spacing = 'true'
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+
+" Easymotion Config
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_smartcase = 1
+nmap s <Plug>(easymotion-overwin-f2)
+
+"-----------------------------THEME--------------------------
+
+" Syntax colors
+colorscheme stellarized
+
+if strftime('%H') >= 7 && strftime('%H') < 19
+  set background=light
+else
+  set background=dark
+endif
+colorscheme stellarized
+
+filetype on
+set termguicolors
+syntax enable
 
