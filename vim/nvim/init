@@ -1,0 +1,91 @@
+call plug#begin('~/.config/plug')
+
+Plug 'nightsense/stellarized'
+Plug 'itchyny/lightline.vim'
+Plug 'mattn/emmet-vim'
+Plug 'easymotion/vim-easymotion'
+
+call plug#end()
+
+
+" Map leader to space
+let mapleader = "\<Space>"
+
+" Plugin Settings
+" let g:ctrlp_map = '<leader>o'
+" let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist)|(\.(swp|ico|git|svn))$'
+" let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+" 
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#auto_complete_start_length = 1
+let g:deoplete#auto_complete_delay = 50
+
+map <leader>e <Plug>(easymotion-prefix)
+
+" Settings
+set nocompatible
+set encoding=utf-8 nobomb
+set mouse=a
+set ruler
+set number
+set tw=100
+set formatoptions+=t
+set title
+set incsearch
+set scrolloff=5
+set nostartofline
+set showcmd
+set hidden
+set noshowmode
+set termguicolors
+syntax enable
+set t_Co=256
+
+" Backspace shenanigans 
+set backspace=indent,eol,start
+set modelines=0 
+
+" Search
+set incsearch
+set ignorecase
+set smartcase
+
+" No swap files
+set nobackup
+set noswapfile
+set directory^=$HOME/.vim/tmp//
+
+" Tabs to spaces
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set autoindent
+set copyindent
+filetype indent on    " Enable filetype-specific indenting
+filetype plugin on    " Enable filetype-specific plugins
+
+" Remap semicolon to colon
+:nmap ; :
+
+" Remap ctrl-c to esc
+inoremap <C-c> <Esc><Esc>
+
+" Cylce buffers with tab
+:nnoremap <Tab> :bnext<CR>
+:nnoremap <S-Tab> :bprevious<CR>
+
+" Open new files in current directory
+:set autochdir
+
+if strftime('%H') >= 7 && strftime('%H') < 16
+  set background=light
+  colorscheme stellarized
+  let g:lightline = { 'colorscheme': 'stellarized_light' }
+else
+  set background=dark
+  colorscheme stellarized
+  let g:lightline = { 'colorscheme': 'stellarized_dark' }
+endif
+

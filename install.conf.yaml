@@ -19,3 +19,6 @@
     ~/.zshrc:
         path: shell/zshrc
         create: true
+    ~/.config/nvim/init.vim:
+        path: vim/nvim/init.vim
+        create: true
