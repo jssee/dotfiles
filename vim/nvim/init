@@ -92,6 +92,11 @@ filetype plugin on    " Enable filetype-specific plugins
 " Remap ctrl-c to esc
 inoremap <C-c> <Esc><Esc>
 
+" Change cursor depending on mode
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+
 " Cylce buffers with tab
 :nnoremap <Tab> :bnext<CR>
 :nnoremap <S-Tab> :bprevious<CR>
