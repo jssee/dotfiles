@@ -7,6 +7,7 @@ source $HOME/dotfiles/shell/alias.sh
 source $HOME/dotfiles/shell/utils.sh
 source $HOME/dotfiles/shell/prompt.sh # Pure by Sindre Sorhus
 
+export EDITOR="/usr/local/bin/nvim"
 
 # source plugins
 source $HOME/dotfiles/shell/plugins/z.sh
@@ -21,4 +22,11 @@ autoload -Uz compinit && compinit
 # hub alias
 eval "$(hub alias -s)"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# fzf vim settings
+# Setting fd as the default source for fzf
+export FZF_DEFAULT_COMMAND='fd --type f'
+
+# To apply the command to CTRL-T as well
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+[ -n "$PS1" ] && sh ~/.config/plug/stellarized/shell/stellarized_dark.sh
