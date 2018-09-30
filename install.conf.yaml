@@ -20,5 +20,5 @@
         path: shell/zshrc
         create: true
     ~/.config/nvim/init.vim:
-        path: vim/nvim/init
+        path: vim/init.vim
         create: true
