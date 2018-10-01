@@ -1,16 +1,20 @@
 call plug#begin('~/.config/plug')
 
+Plug 'SirVer/ultisnips'
 Plug 'ap/vim-buftabline'
 Plug 'cocopon/vaffle.vim'
+Plug 'honza/vim-snippets'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'justinmk/vim-sneak'
+Plug 'maralla/completor.vim', { 'do': 'make js' }
+Plug 'maralla/completor-typescript'
 Plug 'mattn/emmet-vim'
+Plug 'mhinz/vim-signify'
 Plug 'nightsense/stellarized'
-Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot' 
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-commentary'
 Plug 'prettier/vim-prettier', {
@@ -62,11 +66,11 @@ let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 
 " move lines up and down
-nnoremap <C-j> :m .+1<CR>==
-nnoremap <C-k> :m .-2<CR>==
-inoremap <C-j> <Esc>:m .+1<CR>==gi
-inoremap <C-k> <Esc>:m .-2<CR>==gi
-vnoremap <C-j> :m '>+1<CR>gv=gv
+nnoremap <S-j> :m .+1<CR>==
+nnoremap <S-k> :m .-2<CR>==
+inoremap <S-j> <Esc>:m .+1<CR>==gi
+inoremap <S-k> <Esc>:m .-2<CR>==gi
+vnoremap <S-j> :m '>+1<CR>gv=gv
 
 " Syntax colors
 colorscheme stellarized
@@ -85,7 +89,7 @@ nnoremap <Leader>fs :w<CR>
 nnoremap <Leader>ft :Vaffle<CR>
 nnoremap <Leader>pf :Files<CR>
 nnoremap <Leader>qq :qa<CR>
-nnoremap <Leader>se <C-n>
+nnoremap <Leader>ss :Ag<CR>
 nnoremap <Leader>w- :sp<CR>
 nnoremap <Leader>w/ :vsp<CR>
 nnoremap <Leader>wh <C-W>h
@@ -95,3 +99,19 @@ nnoremap <Leader>wl <C-W>l
 
 :nmap ; :
 inoremap jk <Esc>
+
+let g:fzf_colors =
+    \ { 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'border':  ['fg', 'Ignore'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'] }
+
