@@ -9,14 +9,15 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-sneak'
-Plug 'maralla/completor.vim', { 'do': 'make js' }
 Plug 'maralla/completor-typescript'
+Plug 'maralla/completor.vim', { 'do': 'make js' }
 Plug 'mattn/emmet-vim'
 Plug 'mhinz/vim-signify'
 Plug 'nightsense/stellarized'
 Plug 'sheerun/vim-polyglot' 
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-commentary'
+Plug 'w0rp/ale'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
@@ -29,6 +30,7 @@ let mapleader = "\<Space>"
 " Settings
 set autoindent
 set backspace=indent,eol,start
+set clipboard=unnamed
 set copyindent
 set directory^=$HOME/.vim/tmp//
 set encoding=utf-8 nobomb
@@ -81,6 +83,9 @@ set termguicolors
 syntax enable
 
 " Remaps
+imap <Leader>ee <Plug>(emmet-expand-abbr)
+nmap <Leader>jj <Plug>SneakLabel_s
+nmap <Leader>kk <Plug>Sneak_s
 nnoremap <Leader>bb :Buffers<CR>
 nnoremap <Leader>bd :bdelete<CR>
 nnoremap <Leader>bn :bn<CR>
@@ -92,6 +97,7 @@ nnoremap <Leader>qq :qa<CR>
 nnoremap <Leader>ss :Ag<CR>
 nnoremap <Leader>w- :sp<CR>
 nnoremap <Leader>w/ :vsp<CR>
+nnoremap <Leader>wd :close<CR>
 nnoremap <Leader>wh <C-W>h
 nnoremap <Leader>wj <C-W>j
 nnoremap <Leader>wk <C-W>k
@@ -115,3 +121,19 @@ let g:fzf_colors =
       \ 'spinner': ['fg', 'Label'],
       \ 'header':  ['fg', 'Comment'] }
 
+let g:sneak#label = 1
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '•'
+
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+
+let g:prettier#config#bracket_spacing = 'true'
+
+nmap <expr> <Tab> sneak#is_sneaking() ? '<Plug>Sneak_;' : '<Tab>'
+let g:user_emmet_settings = {
+\  'javascript.jsx' : {
+\      'extends' : 'jsx',
+\  },
+\}
