@@ -17,6 +17,7 @@ Plug 'nightsense/stellarized'
 Plug 'sheerun/vim-polyglot' 
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
 Plug 'w0rp/ale'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
