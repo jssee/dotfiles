@@ -6,8 +6,6 @@ tap 'caskroom/versions'
 tap 'homebrew/bundle'
 tap 'homebrew/science'
 
-
-
 brew 'git'
 
 brew 'hub'
@@ -18,15 +16,15 @@ brew 'yarn'
 
 brew 'mas'
 
+brew 'neovim'
 
+brew 'fd'
+
+brew 'fzf'
 
 brew 'coreutils'
 
-cask '1password'
-
 cask 'dropbox'
-
-cask 'imageoptim'
 
 cask 'transmission'
 
