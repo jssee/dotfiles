@@ -12,6 +12,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'maralla/completor-typescript'
 Plug 'maralla/completor.vim', { 'do': 'make js' }
 Plug 'mattn/emmet-vim'
+Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 Plug 'mhinz/vim-signify'
 Plug 'nightsense/stellarized'
 Plug 'sheerun/vim-polyglot' 
@@ -69,36 +70,44 @@ let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 
 " move lines up and down
-nnoremap <S-j> :m .+1<CR>==
-nnoremap <S-k> :m .-2<CR>==
-inoremap <S-j> <Esc>:m .+1<CR>==gi
-inoremap <S-k> <Esc>:m .-2<CR>==gi
-vnoremap <S-j> :m '>+1<CR>gv=gv
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
 
 " Syntax colors
+if strftime('%H') >= 7 && strftime('%H') < 12
+  set background=light
+  let g:lightline = { 'colorscheme': 'stellarized_light'  }
+else
+  set background=dark
+  let g:lightline = { 'colorscheme': 'stellarized_dark'  }
+endif
+
 colorscheme stellarized
 filetype on
-let g:lightline = { 'colorscheme': 'stellarized_dark' }
-set background=dark
 set termguicolors
 syntax enable
+
 
 " Remaps
 imap <Leader>ee <Plug>(emmet-expand-abbr)
 nmap <Leader>jj <Plug>SneakLabel_s
 nmap <Leader>kk <Plug>Sneak_s
 nnoremap <Leader>bb :Buffers<CR>
-nnoremap <Leader>bd :bdelete<CR>
+nnoremap <Leader>bd :Sayonara!<CR>
 nnoremap <Leader>bn :bn<CR>
 nnoremap <Leader>bp :bp<CR>
 nnoremap <Leader>fs :w<CR>
 nnoremap <Leader>ft :Vaffle<CR>
 nnoremap <Leader>pf :Files<CR>
 nnoremap <Leader>qq :qa<CR>
-nnoremap <Leader>ss :Ag<CR>
+nnoremap <Leader>sa :Ag<CR>
+nnoremap <Leader>ss :Ag!<CR>
 nnoremap <Leader>w- :sp<CR>
 nnoremap <Leader>w/ :vsp<CR>
-nnoremap <Leader>wd :close<CR>
+nnoremap <Leader>wd :Sayonara<CR>
 nnoremap <Leader>wh <C-W>h
 nnoremap <Leader>wj <C-W>j
 nnoremap <Leader>wk <C-W>k
@@ -106,6 +115,12 @@ nnoremap <Leader>wl <C-W>l
 
 :nmap ; :
 inoremap jk <Esc>
+
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
 
 let g:fzf_colors =
     \ { 'fg':      ['fg', 'Normal'],
