@@ -14,6 +14,7 @@ Plug 'terryma/vim-multiple-cursors'
 " Lang
 Plug 'HerringtonDarkholme/yats.vim', {'for': ['typescript', 'typescript.tsx']}
 Plug 'mattn/emmet-vim'
+Plug 'ElmCast/elm-vim', {'for': 'elm'}
 Plug 'mxw/vim-jsx', {'for': 'javascript.jsx'}
 Plug 'othree/yajs.vim', {'for': 'javascript'}
 Plug 'w0rp/ale'
