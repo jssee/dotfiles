@@ -31,6 +31,9 @@ Plug 'maralla/completor.vim', { 'do': 'make js' }
 
 " Coloschemes
 Plug 'nightsense/stellarized'
+Plug 'ajmwagar/vim-deus'
+Plug 'morhetz/gruvbox'
+Plug 'sjl/badwolf'
 
 " Other
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }

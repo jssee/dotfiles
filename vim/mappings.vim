@@ -33,4 +33,5 @@ nnoremap <Leader>wh <C-W>h
 nnoremap <Leader>wj <C-W>j
 nnoremap <Leader>wk <C-W>k
 nnoremap <Leader>wl <C-W>l
+xnoremap <Leader>b %
 

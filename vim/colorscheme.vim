@@ -4,9 +4,12 @@ if strftime('%H') >= 7 && strftime('%H') < 12
   let g:lightline = { 'colorscheme': 'stellarized_light'  }
 else
   set background=dark
-  let g:lightline = { 'colorscheme': 'stellarized_dark'  }
+  let g:lightline = { 'colorscheme': 'gruvbox'  }
 endif
 
-colorscheme stellarized
+let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_sign_column = 'bg0'
+
+colorscheme gruvbox
 set termguicolors
 filetype on
