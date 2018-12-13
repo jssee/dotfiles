@@ -22,13 +22,4 @@ autoload -Uz compinit && compinit
 # hub alias
 eval "$(hub alias -s)"
 
-# fzf vim settings
-# Setting fd as the default source for fzf
-export FZF_DEFAULT_COMMAND='fd --type f'
-
-# To apply the command to CTRL-T as well
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-
-[ -n "$PS1" ] && sh ~/.config/plug/stellarized/shell/stellarized_dark.sh
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export VIM_CONFIG_PATH="$HOME/dotfiles/nvim/"
