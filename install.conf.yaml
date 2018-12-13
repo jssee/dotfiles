@@ -13,12 +13,10 @@
     ~/tigrc:
         path: git/tigrc
         create: true
+    ~/.config/nvim: nvim
     ~/.vimrc:
         path: vim/vimrc
         create: true
     ~/.zshrc:
         path: shell/zshrc
-        create: true
-    ~/.config/nvim/init.vim:
-        path: vim/init.vim
         create: true
