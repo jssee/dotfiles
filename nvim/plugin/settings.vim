@@ -51,6 +51,15 @@ set hidden
 " Windows
 set splitright
 
+" Resize splits when the window is resized
+autocmd VimResized * :wincmd =
+
+set autoread
+
+" Nicer vertical splits
+let &fillchars='vert: ,fold:·'
+let &listchars='tab:| ,eol:¬,trail:⣿,extends:→,precedes:←'
+
 " like, chill out
 set visualbell
 set noerrorbells
