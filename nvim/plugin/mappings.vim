@@ -22,6 +22,5 @@ xnoremap <Leader>b %
 
 nnoremap <Leader>ft :Vaffle<CR>
 
-nnoremap <Leader>pf :Leaderf file<CR>
-nnoremap <Leader>bb :Leaderf buffer<CR>
-nnoremap <Leader>rg :Leaderf rg<CR>
+nnoremap <silent> <Leader>ff :call FzyCommand('fd --type f .', ':e ')<CR>
+

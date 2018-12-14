@@ -24,9 +24,10 @@ set scrolloff=10
 set backspace=indent,eol,start
 
 " Syntax settings
+filetype off
 filetype plugin indent on
 set encoding=utf-8 nobomb
-syntax enable
+syntax on
 
 " Tab and indent
 set autoindent
@@ -60,7 +61,7 @@ set nobackup
 set noswapfile
 
 " Misc
-set timeoutlen=1000 ttimeoutlen=10
+set timeoutlen=1000 ttimeoutlen=100
 set autoread
 
 let g:gruvbox_contrast_dark = 'hard'

@@ -4,11 +4,6 @@
 
 ---
 - 
-  category: default
-  local: true
-  name: /
-  opt: false
-- 
   category: lang
   for: 
     - elm
@@ -17,22 +12,13 @@
   opt: true
 - 
   category: lang
-  for: 
-    - typescript
-    - typescript.tsx
   local: false
   name: HerringtonDarkholme/yats.vim
-  opt: true
+  opt: false
 - 
   category: default
   local: false
   name: SirVer/ultisnips
-  opt: false
-- 
-  build: ./install.sh
-  category: default
-  local: false
-  name: Yggdroot/LeaderF
   opt: false
 - 
   category: default

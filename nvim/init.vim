@@ -1,3 +1,32 @@
+" File finder
+function! FzyCommand(choice_command, vim_command) abort
+    let l:callback = {
+                \ 'window_id': win_getid(),
+                \ 'filename': tempname(),
+                \  'vim_command':  a:vim_command
+                \ }
+
+    function! l:callback.on_exit(job_id, data, event) abort
+        bdelete!
+        call win_gotoid(self.window_id)
+        if filereadable(self.filename)
+            try
+                let l:selected_filename = readfile(self.filename)[0]
+                exec self.vim_command . l:selected_filename
+            catch /E684/
+            endtry
+        endif
+        call delete(self.filename)
+    endfunction
+
+    botright 10 new
+    let l:term_command = a:choice_command . ' | fzy > ' .  l:callback.filename
+    silent call termopen(l:term_command, l:callback)
+    setlocal nonumber norelativenumber
+    startinsert
+endfunction
+
+
 " Status line
 let s:min_status_width = 70
 let s:mode_map = {
@@ -49,12 +78,12 @@ func! StatusBranch()
     return ''
   endif
   let branch = fugitive#head()
-  return empty(branch) ? '' : "   \uF020 " . branch
+  return empty(branch) ? '' : "  →  " . branch
 endfunc
 
 func! StatusFilename()
   let name = expand('%:t')
-  let name = name !=# '' ? "\uf022 " . name : '[No Name]'
+  let name = name !=# '' ? " →  " . name : '[No Name]'
   if &ft ==# 'netrw'
     let name = '  netrw'
   endif
@@ -84,16 +113,8 @@ func! StatusLineInfo()
     return ''
   endif
   let msg = printf('%d:%d', line('.'), col('.'))
-  return " \u2b61 " . msg . '  '
+  return "  ⌁  " . msg . '  '
 endfunc
-
-func! StatusTmux()
-  if s:status_ignore()
-    return ''
-  endif
-  return $TMUX !=? '' ? '   @tmux   ' : ''
-endfunc
-
 
 func! s:hi(item, bg, ...)
   let fg = ''
@@ -180,7 +201,6 @@ func! s:create_statusline(mode)
           \ '%#Status' .a:mode. 'Tag#%{StatusTag()}',
           \ '%#Status' .a:mode. 'FType#%{StatusFileType()}',
           \ '%#Status' .a:mode. 'LInfo#%{StatusLineInfo()}',
-          \ '%#Status' .a:mode. 'Tmux#%{StatusTmux()}',
           \ ]
   else
     let parts = ['%{StatusSpace()}', '%#Status' .a:mode. 'FName#%{StatusFilename()}']
