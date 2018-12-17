@@ -3,7 +3,7 @@ function! FzyCommand(choice_command, vim_command) abort
   let l:callback = {
               \ 'window_id': win_getid(),
               \ 'filename': tempname(),
-              \  'vim_command':  a:vim_command
+              \ 'vim_command':  a:vim_command
               \ }
 
   function! l:callback.on_exit(job_id, data, event) abort

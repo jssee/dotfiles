@@ -28,6 +28,11 @@
 - 
   category: default
   local: false
+  name: "honza/vim-snippets"
+  opt: false
+- 
+  category: default
+  local: false
   name: "jiangmiao/auto-pairs"
   opt: false
 - 
