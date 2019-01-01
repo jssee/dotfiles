@@ -83,7 +83,7 @@ endfunc
 
 func! StatusFilename()
   let name = expand('%:t')
-  let name = name !=# '' ? " →  " . name : '[No Name]'
+  let name = name !=# '' ? "→  " . name : '[No Name]'
   if &ft ==# 'netrw'
     let name = '  netrw'
   endif
@@ -107,6 +107,19 @@ func! StatusFileType()
   endif
   return empty(&ft) ? '' : &ft . '   '
 endfunc
+
+function! StatusLinter() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
+
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
+
+    return l:counts.total == 0 ? '  ★ ' : printf(
+    \   '  ⊘: %d  ×: %d',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
 
 func! StatusLineInfo()
   if s:status_ignore()
@@ -177,6 +190,8 @@ func! s:set_highlight()
 
   call s:hi('VertSplit', s:color.status_bg, s:color.status_fg)
   call s:hi('SignColumn', s:color.status_bg)
+  call s:hi('ALEErrorSign', s:color.status_bg, '#C62828', 'cterm=bold')
+  call s:hi('ALEWarningSign', s:color.status_bg, '#F9A825', 'cterm=bold')
 endfunc
 call s:set_highlight()
 
@@ -201,6 +216,7 @@ func! s:create_statusline(mode)
           \ '%#Status' .a:mode. 'Tag#%{StatusTag()}',
           \ '%#Status' .a:mode. 'FType#%{StatusFileType()}',
           \ '%#Status' .a:mode. 'LInfo#%{StatusLineInfo()}',
+          \ '%#Status' .a:mode. 'ALE#%{StatusLinter()}',
           \ ]
   else
     let parts = ['%{StatusSpace()}', '%#Status' .a:mode. 'FName#%{StatusFilename()}']

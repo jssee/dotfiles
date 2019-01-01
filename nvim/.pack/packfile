@@ -107,7 +107,17 @@
 - 
   category: default
   local: false
+  name: "tpope/vim-repeat"
+  opt: false
+- 
+  category: default
+  local: false
   name: "tpope/vim-surround"
+  opt: false
+- 
+  category: default
+  local: false
+  name: w0rp/ale
   opt: false
 - 
   category: default

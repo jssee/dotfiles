@@ -50,6 +50,7 @@ set hidden
 
 " Windows
 set splitright
+set splitbelow
 
 " Resize splits when the window is resized
 autocmd VimResized * :wincmd =
