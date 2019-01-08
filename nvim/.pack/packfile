@@ -92,6 +92,11 @@
 - 
   category: default
   local: false
+  name: "srstevenson/vim-picker"
+  opt: false
+- 
+  category: default
+  local: false
   name: "tpope/vim-commentary"
   opt: false
 - 

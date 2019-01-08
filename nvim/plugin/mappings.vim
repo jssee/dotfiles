@@ -27,5 +27,7 @@ xnoremap <Leader>b %
 
 nnoremap <Leader>ft :Vaffle<CR>
 
-nnoremap <silent> <Leader>pf :call FzyCommand('fd --type f .', ':e ')<CR>
+" nnoremap <silent> <Leader>pf :call FzyCommand('fd --type f  .', ':e ')<CR>
 
+nmap <unique> <leader>pf <Plug>PickerEdit
+nmap <unique> <leader>bb <Plug>PickerBuffer
