@@ -28,11 +28,6 @@
 - 
   category: default
   local: false
-  name: "honza/vim-snippets"
-  opt: false
-- 
-  category: default
-  local: false
   name: "jiangmiao/auto-pairs"
   opt: false
 - 
@@ -53,9 +48,11 @@
   opt: false
 - 
   category: default
+  for: 
+    - html
   local: false
   name: "mattn/emmet-vim"
-  opt: false
+  opt: true
 - 
   category: default
   local: false
@@ -93,6 +90,11 @@
   category: default
   local: false
   name: "srstevenson/vim-picker"
+  opt: false
+-
+  category: default
+  local: false
+  name: "rstacruz/vim-hyperstyle"
   opt: false
 - 
   category: default
