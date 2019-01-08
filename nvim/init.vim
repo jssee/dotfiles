@@ -7,7 +7,7 @@ function! FzyCommand(choice_command, vim_command) abort
               \ }
 
   function! l:callback.on_exit(job_id, data, event) abort
-    bdelete!
+    close!
     call win_gotoid(self.window_id)
     if filereadable(self.filename)
       try
@@ -114,7 +114,7 @@ function! StatusLinter() abort
     let l:all_errors = l:counts.error + l:counts.style_error
     let l:all_non_errors = l:counts.total - l:all_errors
 
-    return l:counts.total == 0 ? '  ★ ' : printf(
+    return l:counts.total == 0 ? '  ★  ' : printf(
     \   '  ⊘: %d  ×: %d',
     \   all_non_errors,
     \   all_errors
