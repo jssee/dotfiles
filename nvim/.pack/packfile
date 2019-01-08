@@ -4,14 +4,7 @@
 
 ---
 - 
-  category: lang
-  for: 
-    - elm
-  local: false
-  name: "ElmCast/elm-vim"
-  opt: true
-- 
-  category: lang
+  category: default
   local: false
   name: HerringtonDarkholme/yats.vim
   opt: false
@@ -59,20 +52,6 @@
   name: "matze/vim-move"
   opt: false
 - 
-  category: lang
-  for: 
-    - javascript.jsx
-  local: false
-  name: "mxw/vim-jsx"
-  opt: true
-- 
-  category: lang
-  for: 
-    - javascript
-  local: false
-  name: othree/yajs.vim
-  opt: true
-- 
   build: yarn install
   category: default
   for: 
@@ -93,6 +72,11 @@
   local: false
   name: "rstacruz/vim-hyperstyle"
   opt: true
+- 
+  category: lang
+  local: false
+  name: "sheerun/vim-polyglot"
+  opt: false
 - 
   category: default
   local: false
