@@ -88,13 +88,15 @@
   opt: true
 - 
   category: default
-  local: false
-  name: "srstevenson/vim-picker"
-  opt: false
--
-  category: default
+  for: 
+    - css
   local: false
   name: "rstacruz/vim-hyperstyle"
+  opt: true
+- 
+  category: default
+  local: false
+  name: "srstevenson/vim-picker"
   opt: false
 - 
   category: default
