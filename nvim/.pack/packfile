@@ -14,6 +14,12 @@
   name: SirVer/ultisnips
   opt: false
 - 
+  build: "git checkout next && bash ./install.sh"
+  category: completion
+  local: false
+  name: "autozimu/LanguageClient-neovim"
+  opt: false
+- 
   category: default
   local: false
   name: cocopon/vaffle.vim
@@ -30,17 +36,6 @@
   opt: false
 - 
   category: default
-  local: false
-  name: "maralla/completor-typescript"
-  opt: false
-- 
-  build: make js
-  category: default
-  local: false
-  name: maralla/completor.vim
-  opt: false
-- 
-  category: default
   for: 
     - html
   local: false
@@ -50,6 +45,38 @@
   category: default
   local: false
   name: "matze/vim-move"
+  opt: false
+- 
+  build: ./install.sh
+  category: default
+  local: false
+  name: "mhartington/nvim-typescript"
+  opt: false
+- 
+  category: completion
+  local: false
+  name: ncm2/ncm2
+  opt: false
+- 
+  category: completion
+  local: false
+  name: "ncm2/ncm2-cssomni"
+  opt: false
+- 
+  category: completion
+  local: false
+  name: "ncm2/ncm2-path"
+  opt: false
+- 
+  build: npm install
+  category: completion
+  local: false
+  name: "ncm2/ncm2-tern"
+  opt: false
+- 
+  category: completion
+  local: false
+  name: "ncm2/ncm2-ultisnips"
   opt: false
 - 
   build: yarn install
@@ -65,6 +92,11 @@
   local: false
   name: "prettier/vim-prettier"
   opt: true
+- 
+  category: completion
+  local: false
+  name: "roxma/nvim-yarp"
+  opt: false
 - 
   category: default
   local: false
