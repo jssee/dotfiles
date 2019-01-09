@@ -67,11 +67,9 @@
   opt: true
 - 
   category: default
-  for: 
-    - css
   local: false
   name: "rstacruz/vim-hyperstyle"
-  opt: true
+  opt: false
 - 
   category: lang
   local: false
