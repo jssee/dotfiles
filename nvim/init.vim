@@ -1,3 +1,7 @@
+" Python source
+let g:python_host_prog = '/usr/local/bin/python2'
+let g:python3_host_prog = '/usr/local/bin/python3'
+
 " File finder
 function! FzyCommand(choice_command, vim_command) abort
   let l:callback = {
