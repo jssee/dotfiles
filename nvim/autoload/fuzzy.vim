@@ -1,5 +1,5 @@
 " General purpose fuzzy finder powered by Fzy
-function! Finder(choice_command, vim_command) abort
+function fuzzy#start(choice_command, vim_command) abort
   let l:callback = {
               \ 'window_id': win_getid(),
               \ 'filename': tempname(),
@@ -7,7 +7,7 @@ function! Finder(choice_command, vim_command) abort
               \ }
 
   function! l:callback.on_exit(job_id, data, event) abort
-    bdelete!
+    close!
     call win_gotoid(self.window_id)
     if filereadable(self.filename)
       try

@@ -52,9 +52,6 @@ set hidden
 set splitright
 set splitbelow
 
-" Resize splits when the window is resized
-autocmd VimResized * :wincmd =
-
 set autoread
 
 " Nicer vertical splits
@@ -70,8 +67,6 @@ set directory^=$HOME/.vim/tmp//
 set nobackup
 set noswapfile
 
-" Completion : ncm2
-autocmd BufEnter * call ncm2#enable_for_buffer()
 set completeopt=noinsert,menuone,noselect
 set shortmess+=c
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")

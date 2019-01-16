@@ -27,6 +27,5 @@ xnoremap <Leader>b %
 
 nnoremap <Leader>ft :Vaffle<CR>
 
-nnoremap <silent> <Leader>pf :call Finder('fd --type f  .', ':e ')<CR>
-
+nnoremap <silent> <Leader>pf :call fuzzy#start('fd --type f  .', ':e ')<CR>
 
