@@ -2,11 +2,11 @@ let mapleader = "\<Space>"
 
 :nmap ; :
 inoremap jk <Esc>
-nnoremap j gj
-nnoremap k gk
+nnoremap <silent> j gj
+nnoremap <silent> k gk
 
-nnoremap <Leader>qq :qa<CR>
-nnoremap <Leader>fs :w<CR>
+nnoremap <silent> <Leader>qq :qa<CR>
+nnoremap <silent> <Leader>fs :w<CR>
 
 " Buffers
 nnoremap <Leader>bn :bn<CR>
@@ -27,7 +27,6 @@ xnoremap <Leader>b %
 
 nnoremap <Leader>ft :Vaffle<CR>
 
-" nnoremap <silent> <Leader>pf :call FzyCommand('fd --type f  .', ':e ')<CR>
+nnoremap <silent> <Leader>pf :call Finder('fd --type f  .', ':e ')<CR>
 
-nmap <unique> <leader>pf <Plug>PickerEdit
-nmap <unique> <leader>bb <Plug>PickerBuffer
+
