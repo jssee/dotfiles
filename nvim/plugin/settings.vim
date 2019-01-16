@@ -18,7 +18,7 @@ set smartcase " ...if all chars are lowercase
 
 " Scroll
 set mouse=a
-set scrolloff=9999
+set scrolloff=10
 
 " Fix Backspace
 set backspace=indent,eol,start
