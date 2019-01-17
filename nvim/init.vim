@@ -1,7 +1,6 @@
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-
 " Delete trailing white space on save, useful for some filetypes ;)
 fun! CleanExtraSpaces()
     let save_cursor = getpos(".")
@@ -24,5 +23,10 @@ if executable('rg')
   set grepformat=%f:%l:%c:%m
 endif
 
-" Completion : ncm2
-autocmd BufEnter * call ncm2#enable_for_buffer()
+augroup filetypedetect
+  autocmd!
+  autocmd BufRead,BufNewFile jrnl*.txt,TODO,*.mdx setfiletype markdown
+  autocmd BufRead,BufNewFile {Gemfile,Brewfile,Rakefile,Vagrantfile,Thorfile,Procfile,Guardfile,config.ru,*.rake} setfiletype ruby
+  autocmd BufRead,BufNewFile .{babel,eslint,stylelint,jshint,prettier}rc,.tern-* setfiletype json
+  autocmd BufRead,BufNewFile .envrc setfiletype bash
+augroup END

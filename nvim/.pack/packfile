@@ -27,7 +27,7 @@
 - 
   category: default
   local: false
-  name: "jiangmiao/auto-pairs"
+  name: cohama/lexima.vim
   opt: false
 - 
   category: default
@@ -56,6 +56,11 @@
   category: completion
   local: false
   name: ncm2/ncm2
+  opt: false
+- 
+  category: completion
+  local: false
+  name: "ncm2/ncm2-bufword"
   opt: false
 - 
   category: completion
