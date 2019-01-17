@@ -6,7 +6,7 @@ nnoremap <silent> j gj
 nnoremap <silent> k gk
 
 nnoremap <silent> <Leader>qq :silent qa<CR>
-nnoremap <silent> <Leader>fs :silent w<CR>
+nnoremap <silent> <Leader>fs :silent w<CR> :echo "✨"<CR>
 
 " Buffers
 nnoremap <silent> <Leader>bn :bn<CR>
@@ -28,4 +28,6 @@ xnoremap <Leader>b %
 nnoremap <silent> <Leader>ft :Vaffle<CR>
 
 nnoremap <silent> <Leader>pf :call fuzzy#start('fd --type f  .', ':e ')<CR>
+
+nnoremap <silent> <Leader>sa :FlyGrep<CR>
 

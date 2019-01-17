@@ -152,3 +152,8 @@
   local: false
   name: "wellle/visual-split.vim"
   opt: false
+- 
+  category: default
+  local: false
+  name: wsdjeg/FlyGrep.vim
+  opt: false

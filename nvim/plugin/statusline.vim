@@ -135,7 +135,7 @@ func! s:hi_filename()
 endfunc
 
 
-let s:status_ignored_types = ['unite', 'finder', 'terminal']
+let s:status_ignored_types = ['unite', 'finder', 'vaffle']
 
 
 func! s:set_highlight()
