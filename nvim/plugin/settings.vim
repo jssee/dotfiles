@@ -62,21 +62,18 @@ let &listchars='tab:| ,eol:¬,trail:⣿,extends:→,precedes:←'
 set visualbell
 set noerrorbells
 
+set whichwrap=b,h,l,s,<,>,[,],~ " Allow <BS>/h/l/<Left>/<Right>/<Space>, ~ to cross line boundaries
+
 " No backup files, live on the edge
 set directory^=$HOME/.vim/tmp//
 set nobackup
 set noswapfile
 
-set completeopt=noinsert,menuone,noselect
-set shortmess+=c
-inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
 " Misc
 set timeoutlen=1000 ttimeoutlen=100
 set autoread
 
+" Colors
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_sign_column = 'bg0'
 

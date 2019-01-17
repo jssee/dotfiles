@@ -5,27 +5,27 @@ inoremap jk <Esc>
 nnoremap <silent> j gj
 nnoremap <silent> k gk
 
-nnoremap <silent> <Leader>qq :qa<CR>
-nnoremap <silent> <Leader>fs :w<CR>
+nnoremap <silent> <Leader>qq :silent qa<CR>
+nnoremap <silent> <Leader>fs :silent w<CR>
 
 " Buffers
-nnoremap <Leader>bn :bn<CR>
-nnoremap <Leader>bd :bd<CR>
-nnoremap <Leader>bp :bp<CR>
+nnoremap <silent> <Leader>bn :bn<CR>
+nnoremap <silent> <Leader>bd :bd<CR>
+nnoremap <silent> <Leader>bp :bp<CR>
 
 " Windows
-nnoremap <Leader>wd :close<CR>
-nnoremap <Leader>w- :sp<CR>
-nnoremap <Leader>w/ :vsp<CR>
-nnoremap <Leader>wh <C-W>h
-nnoremap <Leader>wj <C-W>j
-nnoremap <Leader>wk <C-W>k
-nnoremap <Leader>wl <C-W>l
+nnoremap <silent> <Leader>wd :silent close<CR>
+nnoremap <silent> <Leader>w- :silent sp<CR>
+nnoremap <silent> <Leader>w/ :silent vsp<CR>
+nnoremap <silent> <Leader>wh :silent wincmd h<CR>
+nnoremap <silent> <Leader>wj :silent wincmd j<CR>
+nnoremap <silent> <Leader>wk :silent wincmd k<CR>
+nnoremap <silent> <Leader>wl :silent wincmd l<CR>
 
 " Visual Mode
 xnoremap <Leader>b %
 
-nnoremap <Leader>ft :Vaffle<CR>
+nnoremap <silent> <Leader>ft :Vaffle<CR>
 
 nnoremap <silent> <Leader>pf :call fuzzy#start('fd --type f  .', ':e ')<CR>
 
