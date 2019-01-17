@@ -49,12 +49,12 @@ func! StatusBranch()
     return ''
   endif
   let branch = fugitive#head()
-  return empty(branch) ? '' : "  →  " . branch
+  return empty(branch) ? '' : "   ⋱  " . branch
 endfunc
 
 func! StatusFilename()
   let name = expand('%:t')
-  let name = name !=# '' ? "→  " . name : '[No Name]'
+  let name = name !=# '' ? "⋱  " . name : '[No Name]'
   if &ft ==# 'netrw'
     let name = '  netrw'
   endif
@@ -76,14 +76,13 @@ func! StatusFileType()
   return empty(&ft) ? '' : &ft . '   '
 endfunc
 
-
 function! StatusLinter() abort
     let l:counts = ale#statusline#Count(bufnr(''))
 
     let l:all_errors = l:counts.error + l:counts.style_error
     let l:all_non_errors = l:counts.total - l:all_errors
 
-    return l:counts.total == 0 ? '  ★ ' : printf(
+    return l:counts.total == 0 ? 'OK  ' : printf(
     \   '  ⊘: %d  ×: %d',
     \   all_non_errors,
     \   all_errors
@@ -114,7 +113,7 @@ endfunc
 
 
 let s:color = {
-      \ 'status_bg': 'NONE',
+      \ 'status_bg': '#1d2021',
       \ 'status_fg': '#928374',
       \ 'fname_modified': '#d65d0e',
       \ 'fname_readonly': '#b16286',
@@ -136,7 +135,7 @@ func! s:hi_filename()
 endfunc
 
 
-let s:status_ignored_types = ['unite', 'finder']
+let s:status_ignored_types = ['unite', 'finder', 'terminal']
 
 
 func! s:set_highlight()
@@ -157,10 +156,8 @@ func! s:set_highlight()
 
   call s:hi_filename()
 
-  call s:hi('VertSplit', s:color.status_bg, s:color.status_fg)
-  call s:hi('SignColumn', s:color.status_bg)
-  call s:hi('ALEErrorSign', s:color.status_bg, '#C62828', 'cterm=bold')
-  call s:hi('ALEWarningSign', s:color.status_bg, '#F9A825', 'cterm=bold')
+  call s:hi('ALEErrorSign', s:color.status_bg, '#fabd2f', 'cterm=bold')
+  call s:hi('ALEWarningSign', s:color.status_bg, '#fb4934', 'cterm=bold')
 endfunc
 call s:set_highlight()
 
@@ -179,13 +176,13 @@ func! s:create_statusline(mode)
     let parts = [
           \ '%#Status' .a:mode. 'Mode#%{StatusMode()}',
           \ '%#Status' .a:mode. 'Paste#%{StatusPaste()}',
-          \ '%#Status' .a:mode. 'Branch#%-{StatusBranch()}',
           \ '%#Status' .a:mode. 'FName#%{StatusFilename()}',
+          \ '%#Status' .a:mode. 'Branch#%-{StatusBranch()}',
           \ '%=',
+          \ '%#Status' .a:mode. 'ALE#%{StatusLinter()}',
           \ '%#Status' .a:mode. 'FType#%{StatusFileType()}', 
           \ '%#Status' .a:mode. 'Tag#%{StatusTag()}',
           \ '%#Status' .a:mode. 'LInfo#%{StatusLineInfo()}',
-          \ '%#Status' .a:mode. 'ALE#%{StatusLinter()}',
           \ ]
   else
     let parts = ['%{StatusSpace()}', '%#Status' .a:mode. 'FName#%{StatusFilename()}']
