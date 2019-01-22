@@ -53,6 +53,11 @@
   name: "mhartington/nvim-typescript"
   opt: false
 - 
+  category: default
+  local: false
+  name: "mhinz/vim-startify"
+  opt: false
+- 
   category: completion
   local: false
   name: ncm2/ncm2
@@ -151,6 +156,11 @@
   category: default
   local: false
   name: "wellle/visual-split.vim"
+  opt: false
+- 
+  category: default
+  local: false
+  name: wincent/loupe
   opt: false
 - 
   category: default

@@ -53,6 +53,7 @@ set splitright
 set splitbelow
 
 set autoread
+set autowrite
 
 " Nicer vertical splits
 let &fillchars='vert: ,fold:·'

@@ -2,10 +2,10 @@
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
-alias ss="cd ~/Sites"
+alias wd="cd ~/Sites"
 
 alias c="clear"
-alias v="nvim ."
+alias v="nvim"
 alias oo="open ."
 
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
