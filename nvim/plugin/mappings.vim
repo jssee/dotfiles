@@ -6,7 +6,8 @@ nnoremap <silent> j gj
 nnoremap <silent> k gk
 
 nnoremap <silent> <Leader>qq :silent qa<CR>
-nnoremap <silent> <Leader>fs :silent w<CR> :echo "✨"<CR>
+nnoremap <silent> <Leader>fs :silent w<CR> :echo "saved: " . strftime("%X")<CR>
+
 
 " Buffers
 nnoremap <silent> <Leader>bn :bn<CR>
@@ -25,6 +26,7 @@ nnoremap <silent> <Leader>wl :silent wincmd l<CR>
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR><CR>:cw<CR>
 
+" easy find and replace
 nmap <Leader>fr :%s//g<Left><Left>
 
 " Visual Mode

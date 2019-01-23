@@ -64,14 +64,6 @@ func! StatusFilename()
   return empty . name
 endfunc
 
-func! StatusTag()
-  if s:status_ignore() || !exists('*tagbar#currenttag')
-    return ''
-  endif
-  let tag = tagbar#currenttag('%s', '', '')
-  return empty(tag) ? '' : tag . '  '
-endfunc
-
 func! StatusFileType()
   return empty(&ft) ? '' : &ft . '   '
 endfunc
@@ -180,7 +172,6 @@ func! s:create_statusline(mode)
           \ '%=',
           \ '%#Status' .a:mode. 'ALE#%{StatusLinter()}',
           \ '%#Status' .a:mode. 'FType#%{StatusFileType()}', 
-          \ '%#Status' .a:mode. 'Tag#%{StatusTag()}',
           \ '%#Status' .a:mode. 'LInfo#%{StatusLineInfo()}',
           \ ]
   else
