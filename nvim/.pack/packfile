@@ -14,12 +14,6 @@
   name: SirVer/ultisnips
   opt: false
 - 
-  build: "git checkout next && bash ./install.sh"
-  category: completion
-  local: false
-  name: "autozimu/LanguageClient-neovim"
-  opt: false
-- 
   category: default
   local: false
   name: cocopon/vaffle.vim
@@ -36,21 +30,8 @@
   opt: false
 - 
   category: default
-  for: 
-    - html
-  local: false
-  name: "mattn/emmet-vim"
-  opt: true
-- 
-  category: default
   local: false
   name: "matze/vim-move"
-  opt: false
-- 
-  build: ./install.sh
-  category: default
-  local: false
-  name: "mhartington/nvim-typescript"
   opt: false
 - 
   category: default
@@ -60,33 +41,27 @@
 - 
   category: completion
   local: false
-  name: ncm2/ncm2
+  name: prabirshrestha/async.vim
   opt: false
 - 
   category: completion
   local: false
-  name: "ncm2/ncm2-bufword"
+  name: "prabirshrestha/asyncomplete-tscompletejob.vim"
   opt: false
 - 
   category: completion
   local: false
-  name: "ncm2/ncm2-cssomni"
+  name: "prabirshrestha/asyncomplete-ultisnips.vim"
   opt: false
 - 
   category: completion
   local: false
-  name: "ncm2/ncm2-path"
-  opt: false
-- 
-  build: npm install
-  category: completion
-  local: false
-  name: "ncm2/ncm2-tern"
+  name: prabirshrestha/asyncomplete.vim
   opt: false
 - 
   category: completion
   local: false
-  name: "ncm2/ncm2-ultisnips"
+  name: "prabirshrestha/vim-lsp"
   opt: false
 - 
   build: yarn install
@@ -103,14 +78,14 @@
   name: "prettier/vim-prettier"
   opt: true
 - 
-  category: completion
-  local: false
-  name: "roxma/nvim-yarp"
-  opt: false
-- 
   category: default
   local: false
   name: "rstacruz/vim-hyperstyle"
+  opt: false
+- 
+  category: completion
+  local: false
+  name: runoshun/tscompletejob
   opt: false
 - 
   category: lang
