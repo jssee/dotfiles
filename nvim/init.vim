@@ -23,6 +23,10 @@ if executable('rg')
   set grepformat=%f:%l:%c:%m
 endif
 
+if exists('&inccommand')
+  set inccommand=split " (neovim) specific, live substitutin preview
+endif
+
 augroup filetypedetect
   autocmd!
   autocmd BufRead,BufNewFile jrnl*.txt,TODO,*.mdx setfiletype markdown

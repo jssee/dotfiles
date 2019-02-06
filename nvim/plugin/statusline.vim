@@ -140,10 +140,9 @@ func! s:set_highlight()
   call s:hi('StatusActiveMode', s:color.status_bg, s:color.status_fg)
   hi link StatusActivePaste     StatusActiveMode
   hi link StatusActiveBranch    StatusActiveMode
-  hi link StatusActiveTag       StatusActiveMode
   hi link StatusActiveFType     StatusActiveMode
   hi link StatusActiveLInfo     StatusActiveMode
-  hi link StatusActiveTmux      StatusActiveMode
+  hi link StatusActiveALE       StatusActiveMode
 
   call s:hi_filename()
 

@@ -26,8 +26,8 @@ nnoremap <silent> <Leader>wl :silent wincmd l<CR>
 " use tab and shift tab to indent and de-indent code
 nnoremap <Tab>   >>
 nnoremap <S-Tab> <<
-vnoremap <Tab>   >><Esc>gv
-vnoremap <S-Tab> <<<Esc>gv
+xnoremap <Tab>   >><Esc>gv
+xnoremap <S-Tab> <<<Esc>gv
 
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR><CR>:cw<CR>
