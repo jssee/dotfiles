@@ -16,6 +16,11 @@
 - 
   category: default
   local: false
+  name: TaDaa/vimade
+  opt: false
+- 
+  category: default
+  local: false
   name: cocopon/vaffle.vim
   opt: false
 - 
@@ -41,12 +46,17 @@
 - 
   category: completion
   local: false
+  name: "prabirshrestha/asyncomplete-buffer.vim"
+  opt: false
+- 
+  category: completion
+  local: false
   name: "prabirshrestha/asyncomplete-file.vim"
   opt: false
 - 
   category: completion
   local: false
-  name: "prabirshrestha/asyncomplete-tscompletejob.vim"
+  name: "prabirshrestha/asyncomplete-lsp.vim"
   opt: false
 - 
   category: completion
@@ -57,6 +67,11 @@
   category: completion
   local: false
   name: prabirshrestha/asyncomplete.vim
+  opt: false
+- 
+  category: completion
+  local: false
+  name: "prabirshrestha/vim-lsp"
   opt: false
 - 
   build: yarn install
@@ -76,11 +91,6 @@
   category: default
   local: false
   name: "rstacruz/vim-hyperstyle"
-  opt: false
-- 
-  category: completion
-  local: false
-  name: runoshun/tscompletejob
   opt: false
 - 
   category: lang

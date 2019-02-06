@@ -2,13 +2,14 @@ let g:asyncomplete_remove_duplicates = 1
 let g:asyncomplete_smart_completion = 1
 let g:asyncomplete_auto_popup = 1
 
-let g:lsp_diagnostics_enabled = 0
-let g:lsp_signs_enabled = 0
-
 set completeopt+=preview
+set shortmess+=c
 
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
+" Register completion sources
+"
+" Ultisnips
 if has('python3')
     let g:UltiSnipsExpandTrigger="<tab>"
     call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
@@ -17,9 +18,17 @@ if has('python3')
         \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
         \ }))
 endif
-
-call asyncomplete#register_source(asyncomplete#sources#tscompletejob#get_source_options({
-    \ 'name': 'tscompletejob',
-    \ 'whitelist': ['typescript', 'typescript.tsx'],
-    \ 'completor': function('asyncomplete#sources#tscompletejob#completor'),
+" File / path
+au User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+    \ 'name': 'file',
+    \ 'whitelist': ['*'],
+    \ 'priority': 10,
+    \ 'completor': function('asyncomplete#sources#file#completor')
+    \ }))
+" Buffer words
+call asyncomplete#register_source(asyncomplete#sources#buffer#get_source_options({
+    \ 'name': 'buffer',
+    \ 'whitelist': ['*'],
+    \ 'blacklist': ['go'],
+    \ 'completor': function('asyncomplete#sources#buffer#completor'),
     \ }))
