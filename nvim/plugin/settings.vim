@@ -70,6 +70,12 @@ set directory^=$HOME/.vim/tmp//
 set nobackup
 set noswapfile
 
+" Folding
+set foldmethod=indent
+set foldnestmax=10
+set nofoldenable
+set foldlevel=2
+
 " Misc
 set timeoutlen=1000 ttimeoutlen=100
 set autoread

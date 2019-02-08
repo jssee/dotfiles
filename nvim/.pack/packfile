@@ -140,5 +140,5 @@
 - 
   category: default
   local: false
-  name: wsdjeg/FlyGrep.vim
+  name: wincent/ferret
   opt: false
