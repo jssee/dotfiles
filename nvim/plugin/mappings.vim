@@ -37,6 +37,7 @@ nmap <Leader>fr :%s//g<Left><Left>
 
 " Visual Mode
 xnoremap <Leader>b %
+xnoremap ; :
 
 nnoremap <silent> <Leader>ft :Vaffle<CR>
 nnoremap <silent> <Leader>pf :call fuzzy#start('fd --type f  .', ':e ')<CR>
