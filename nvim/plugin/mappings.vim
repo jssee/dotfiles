@@ -40,4 +40,9 @@ xnoremap <Leader>b %
 
 nnoremap <silent> <Leader>ft :Vaffle<CR>
 nnoremap <silent> <Leader>pf :call fuzzy#start('fd --type f  .', ':e ')<CR>
-nnoremap <silent> <Leader>sa :FlyGrep<CR>
+
+" Ferret mappings
+nmap <Leader>sa <Plug>(FerretAck)
+nmap <Leader>sb :Back 
+nmap <Leader>sc <Plug>(FerretAckWord)
+nmap <Leader>sr <Plug>(FerretAcks)
