@@ -7,7 +7,8 @@ function fuzzy#start(choice_command, vim_command) abort
               \ }
 
   function! l:callback.on_exit(job_id, data, event) abort
-    bdelete!
+    setlocal bufhidden=delete
+    close!
     call win_gotoid(self.window_id)
     if filereadable(self.filename)
       try
