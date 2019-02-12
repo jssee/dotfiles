@@ -14,6 +14,9 @@ if has("autocmd")
   autocmd BufWritePre *.go,*.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
 
+" Tone done popup menu
+exec "hi! Pmenu guibg='#282828' guifg='#928374'"
+
 " Resize splits when the window is resized
 autocmd VimResized * :wincmd =
 
@@ -35,25 +38,25 @@ augroup filetypedetect
   autocmd BufRead,BufNewFile .envrc setfiletype bash
 augroup END
 
-let g:term_win = 0
-let g:term_buf = 0
 
 function! Term_toggle(height)
-    if win_gotoid(g:term_win)
+    let l:term_win = 0
+    let l:term_buf = 0
+
+    if win_gotoid(l:term_win)
         hide
     else
         botright new
         exec "resize " . a:height
         try
-            exec "buffer " . g:term_buf
+            exec "buffer " . l:term_buf
         catch
             call termopen($SHELL, {"detach": 0})
-            let g:term_buf = bufnr("")
+            let l:term_buf = bufnr("")
+            setlocal nonumber norelativenumber
         endtry
         startinsert!
-        let g:term_win = win_getid()
+        let l:term_win = win_getid()
     endif
 endfunction
 
-nnoremap <silent> <Leader>tt :call Term_toggle(10)<cr>
-tnoremap <silent> QQ <C-\><C-n>:call Term_toggle(10)<cr>

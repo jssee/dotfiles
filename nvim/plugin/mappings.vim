@@ -13,6 +13,7 @@ nnoremap <silent> <Leader>fs :silent w<CR> :echo "saved: " . strftime("%X")<CR>
 nnoremap <silent> <Leader>bn :bn<CR>
 nnoremap <silent> <Leader>bd :bd<CR>
 nnoremap <silent> <Leader>bp :bp<CR>
+nnoremap <silent> <Leader>bb :ls<CR>:b<Space>
 
 " Windows
 nnoremap <silent> <Leader>wd :silent close<CR>
@@ -22,6 +23,9 @@ nnoremap <silent> <Leader>wh :silent wincmd h<CR>
 nnoremap <silent> <Leader>wj :silent wincmd j<CR>
 nnoremap <silent> <Leader>wk :silent wincmd k<CR>
 nnoremap <silent> <Leader>wl :silent wincmd l<CR>
+
+" Terminal
+nnoremap <silent> <Leader>tt :call Term_toggle(10)<cr>
 
 " use tab and shift tab to indent and de-indent code
 nnoremap <Tab>   >>
