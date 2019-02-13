@@ -15,7 +15,9 @@ if has("autocmd")
 endif
 
 " Tone done popup menu
-exec "hi! Pmenu guibg='#282828' guifg='#928374'"
+au VimEnter,BufEnter * 
+  \ exec "hi! Pmenu
+    \ guibg='#282828' guifg='#928374'"
 
 " Resize splits when the window is resized
 autocmd VimResized * :wincmd =
