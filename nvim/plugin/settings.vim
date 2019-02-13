@@ -24,10 +24,10 @@ set scrolloff=10
 set backspace=indent,eol,start
 
 " Syntax settings
-filetype off
 filetype plugin indent on
-set encoding=utf-8 nobomb
 syntax on
+set encoding=utf-8 nobomb
+runtime macros/matchit.vim
 
 " Tab and indent
 set autoindent
@@ -71,9 +71,10 @@ set nobackup
 set noswapfile
 
 " Folding
-set foldmethod=indent
 set foldnestmax=10
 set nofoldenable
+set foldlevelstart=999
+set foldmethod=indent
 set foldlevel=2
 
 " Misc

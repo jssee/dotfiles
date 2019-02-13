@@ -37,7 +37,8 @@ xnoremap <S-Tab> <<<Esc>gv
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR><CR>:cw<CR>
 
 " easy find and replace
-nmap <Leader>fr :%s//g<Left><Left>
+nnoremap <Leader>rw :'{,'}s/\<<C-r>=expand("<cword>")<CR>\>/
+nnoremap <Leader>ra :%s/\<<C-r>=expand("<cword>")<CR>\>/
 
 " Visual Mode
 xnoremap <Leader>b %
@@ -51,3 +52,4 @@ nmap <Leader>sa <Plug>(FerretAck)
 nmap <Leader>sb :Back 
 nmap <Leader>sc <Plug>(FerretAckWord)
 nmap <Leader>sr <Plug>(FerretAcks)
+
