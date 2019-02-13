@@ -8,6 +8,9 @@ nnoremap <silent> k gk
 nnoremap <silent> <Leader>qq :silent qa<CR>
 nnoremap <silent> <Leader>fs :silent w<CR> :echo "saved: " . strftime("%X")<CR>
 
+" faster viewport scrolling
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
 
 " Buffers
 nnoremap <silent> <Leader>bn :bn<CR>
