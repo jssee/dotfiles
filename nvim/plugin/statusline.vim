@@ -53,8 +53,8 @@ func! StatusBranch()
 endfunc
 
 func! StatusFilename()
-  let name = expand('%:t')
-  let name = name !=# '' ? "⋱  " . name : '[No Name]'
+  let name = expand('%:p:t')
+  let name = name !=# '' ? "⋱  ". name : '[No Name]'
   if &ft ==# 'netrw'
     let name = '  netrw'
   endif
@@ -125,7 +125,6 @@ func! s:hi_filename()
   endif
 endfunc
 
-
 let s:status_ignored_types = ['unite', 'finder', 'vaffle']
 
 
@@ -146,6 +145,7 @@ func! s:set_highlight()
 
   call s:hi_filename()
 
+  call s:hi('ALEInfoSign', s:color.status_bg, '#83a598', 'cterm=bold')
   call s:hi('ALEErrorSign', s:color.status_bg, '#fabd2f', 'cterm=bold')
   call s:hi('ALEWarningSign', s:color.status_bg, '#fb4934', 'cterm=bold')
 endfunc

@@ -21,11 +21,11 @@ let g:ale_lint_delay = 0
 " working with any colorscheme
 au VimEnter,BufEnter,ColorScheme *
   \ exec "hi! ALEInfoLine
-    \ guifg=".(&background=='light'?'#808000':'#83a598')." 
+    \ guifg=".(&background=='light'?'#808000':'#ALEInfoSign#')." 
     \ guibg=".(&background=='light'?'#ffff00':'#282828') |
   \ exec "hi! ALEWarningLine
-    \ guifg=".(&background=='light'?'#808000':'#fabd2f')."
+    \ guifg=".(&background=='light'?'#808000':'#ALEWarningSign#')."
     \ guibg=".(&background=='light'?'#ffff00':'#282828') |
   \ exec "hi! ALEErrorLine
-    \ guifg=".(&background=='light'?'#ff0000':'#fb4934')."
+    \ guifg=".(&background=='light'?'#ff0000':'#ALEErrorSign#')."
     \ guibg=".(&background=='light'?'#ffcccc':'#282828')
