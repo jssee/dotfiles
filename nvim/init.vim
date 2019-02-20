@@ -1,4 +1,3 @@
-
 " [1] SETTINGS
 " ============
 set nocompatible
@@ -37,6 +36,7 @@ set tabstop=2
 " Display
 set modelines=0
 set noshowmode " Dont show current mode
+set showcmd
 set number
 set ruler
 set title
@@ -63,8 +63,8 @@ set ignorecase " ignore case
 set smartcase " ...if all chars are lowercase
 
 " Popup menu options
-set completeopt+=menuone
-set completeopt+=noinsert
+set wildmenu
+set wildmode=full
 
 " No backup files, live on the edge
 set directory^=$HOME/.vim/tmp//
@@ -131,10 +131,6 @@ nnoremap <silent> <Leader>wh :silent wincmd h<CR>
 nnoremap <silent> <Leader>wj :silent wincmd j<CR>
 nnoremap <silent> <Leader>wk :silent wincmd k<CR>
 nnoremap <silent> <Leader>wl :silent wincmd l<CR>
-
-" Smoother searching, tab through partially complete candidates
-cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>/<C-r>/" : "<C-z>"
-cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>?<C-r>/" : "<S-Tab>"
 
 " Use tab and shift tab to indent and de-indent code
 nnoremap <Tab>   >>
