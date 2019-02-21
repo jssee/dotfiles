@@ -8,7 +8,7 @@
 " Don't use the sign column/gutter for ALE
 let g:ale_set_signs = 0
 
-" Lint when leaving Insert Mode but don't lint when in Insert Mode 
+" Lint when leaving Insert Mode but don't lint when in Insert Mode
 let g:ale_lint_on_insert_leave = 1
 
 " Lint always in Normal Mode
@@ -17,17 +17,17 @@ let g:ale_lint_on_text_changed = 'normal'
 " Set ALE's 200ms delay to zero
 let g:ale_lint_delay = 0
 
-" Set gorgeous colors for marked lines to sane, readable combinations 
+" Set gorgeous colors for marked lines to sane, readable combinations
 " working with any colorscheme
 au VimEnter,BufEnter,ColorScheme *
   \ exec "hi! ALEInfoLine
-    \ guifg=".(&background=='light'?'#808000':'#ALEInfoSign#')." 
+    \ guifg=".(&background=='light'?'#808000':'#458588')."
     \ guibg=".(&background=='light'?'#ffff00':'#282828') |
   \ exec "hi! ALEWarningLine
-    \ guifg=".(&background=='light'?'#808000':'#ALEWarningSign#')."
+    \ guifg=".(&background=='light'?'#808000':'#fabd2f')."
     \ guibg=".(&background=='light'?'#ffff00':'#282828') |
   \ exec "hi! ALEErrorLine
-    \ guifg=".(&background=='light'?'#ff0000':'#ALEErrorSign#')."
+    \ guifg=".(&background=='light'?'#ff0000':'#fb4934')."
     \ guibg=".(&background=='light'?'#ffcccc':'#282828')
 
 let g:ale_linters = {

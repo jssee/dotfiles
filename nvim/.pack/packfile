@@ -19,6 +19,12 @@
   name: SirVer/ultisnips
   opt: false
 - 
+  build: "git checkout next && bash install.sh"
+  category: completion
+  local: false
+  name: "autozimu/LanguageClient-neovim"
+  opt: false
+- 
   category: default
   local: false
   name: cocopon/vaffle.vim
@@ -36,37 +42,22 @@
 - 
   category: completion
   local: false
-  name: prabirshrestha/async.vim
+  name: ncm2/ncm2
   opt: false
 - 
   category: completion
   local: false
-  name: "prabirshrestha/asyncomplete-buffer.vim"
+  name: "ncm2/ncm2-bufword"
   opt: false
 - 
   category: completion
   local: false
-  name: "prabirshrestha/asyncomplete-file.vim"
+  name: "ncm2/ncm2-path"
   opt: false
 - 
   category: completion
   local: false
-  name: "prabirshrestha/asyncomplete-lsp.vim"
-  opt: false
-- 
-  category: completion
-  local: false
-  name: "prabirshrestha/asyncomplete-ultisnips.vim"
-  opt: false
-- 
-  category: completion
-  local: false
-  name: prabirshrestha/asyncomplete.vim
-  opt: false
-- 
-  category: completion
-  local: false
-  name: "prabirshrestha/vim-lsp"
+  name: "ncm2/ncm2-ultisnips"
   opt: false
 - 
   build: yarn install
@@ -82,6 +73,11 @@
   local: false
   name: "prettier/vim-prettier"
   opt: true
+- 
+  category: completion
+  local: false
+  name: "roxma/nvim-yarp"
+  opt: false
 - 
   category: lang
   for: 
