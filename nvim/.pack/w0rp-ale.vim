@@ -29,3 +29,10 @@ au VimEnter,BufEnter,ColorScheme *
   \ exec "hi! ALEErrorLine
     \ guifg=".(&background=='light'?'#ff0000':'#ALEErrorSign#')."
     \ guibg=".(&background=='light'?'#ffcccc':'#282828')
+
+let g:ale_linters = {
+      \  'javascript': ['eslint', 'prettier'],
+      \  'typescript': ['tsserver', 'tslint', 'prettier'],
+      \  'css': ['prettier'],
+      \  'scss': ['prettier'],
+      \ }
