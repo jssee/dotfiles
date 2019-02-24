@@ -76,7 +76,7 @@ let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_sign_column = 'bg0'
 set termguicolors
 set background=dark
-colorscheme gruvbox
+colorscheme stellarized
 
 " Nicer vertical splits
 let &fillchars='vert: ,fold:·'
@@ -175,7 +175,7 @@ augroup Term
 augroup END
 
 "  Quickfix specifics, useful for grepping
-" ==================
+" ========================================
 augroup Qf
 	autocmd!
 	" Automatically open quickfix window
@@ -201,3 +201,13 @@ augroup MyRc
   autocmd BufWritePost *vimrc\|*init.vim source $MYVIMRC
   autocmd BufEnter .vimrc set ft=vim
 augroup END
+
+
+" [4] FUNCTIONS
+" =============
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
