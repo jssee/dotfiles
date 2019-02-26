@@ -1,7 +1,7 @@
 " Feed files and buffers through a fuzzy finder window
 " ====================================================
 if exists('g:loaded_fzy_filesearch')
-    finish
+  finish
 endif
 
 let g:loaded_fzy_filesearch = 1
