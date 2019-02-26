@@ -12,7 +12,8 @@
   category: default
   local: false
   name: "Olical/vim-enmasse"
-  opt: false
+  on: EnMasse
+  opt: true
 - 
   category: default
   local: false
@@ -28,6 +29,11 @@
   category: default
   local: false
   name: cocopon/vaffle.vim
+  opt: false
+- 
+  category: default
+  local: false
+  name: "jssee/vim-closer"
   opt: false
 - 
   category: default

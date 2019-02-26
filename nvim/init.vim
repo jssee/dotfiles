@@ -102,16 +102,23 @@ if exists('&inccommand')
 endif
 
 
-" [2] Mappings
+" [2] MAPPINGS
 " ============
 :nmap ; :
 xnoremap ; :
 
-inoremap jk <Esc>
+" Vim Antipatterns
+inoremap <Esc> <nop>
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
+
+inoremap kj <Esc>
 nnoremap <silent> j gj
 nnoremap <silent> k gk
-nnoremap <silent> <Leader>qq :silent qa!<CR>
-nnoremap <silent> <Leader>fs :silent w<CR> :echo "write @ " . strftime("%X")<CR>
+nnoremap <silent> <Leader>qa :silent qa!<CR>
+nnoremap <silent> <Leader>w :silent w<CR> :echo "write @ " . strftime("%X")<CR>
 
 " faster viewport scrolling
 nnoremap <C-e> 3<C-e>
@@ -145,6 +152,8 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR><CR>:cw<CR>
 nnoremap <Leader>rw :'{,'}s/\<<C-r>=expand("<cword>")<CR>\>/
 " Find and replace in buffer
 nnoremap <Leader>ra :%s/\<<C-r>=expand("<cword>")<CR>\>/
+" Grep w/ Rg
+nnoremap <Leader>rg :Grep<Space>
 
 " Plugin mappings
 nnoremap <silent> <Leader>ft :Vaffle<CR>
