@@ -76,7 +76,7 @@ let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_sign_column = 'bg0'
 set termguicolors
 set background=dark
-colorscheme stellarized
+colorscheme gruvbox
 
 " Nicer vertical splits
 let &fillchars='vert: ,fold:·'
@@ -219,4 +219,4 @@ function! SynStack()
     return
   endif
   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
+endfunction
