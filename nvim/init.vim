@@ -120,7 +120,6 @@ noremap <Down> <nop>
 noremap <Left> <nop>
 noremap <Right> <nop>
 
-
 " faster viewport scrolling
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
@@ -158,8 +157,8 @@ nnoremap <Leader>rg :Grep<Space>
 
 " Plugin mappings
 nnoremap <silent> <Leader>ft :Vaffle<CR>
-nnoremap <silent> <Leader>pf :call FuzzFile()<CR>
-nnoremap <silent> <Leader>bf :call FuzzBuf()<CR>
+nnoremap <silent> <Leader>ff :call FuzzFile()<CR>
+nnoremap <silent> <Leader>fb :call FuzzBuf()<CR>
 nnoremap <silent> <Leader>tt :call fun#toggle_term(10)<cr>
 
 
