@@ -107,6 +107,12 @@ endif
 :nmap ; :
 xnoremap ; :
 
+inoremap kj <Esc>
+nnoremap <silent> j gj
+nnoremap <silent> k gk
+nnoremap <silent> <Leader>w :update<CR> :echo "write @ " . strftime("%X")<CR>
+nnoremap <silent> ZA :silent qa!<CR>
+
 " Vim Antipatterns
 inoremap <Esc> <nop>
 noremap <Up> <nop>
@@ -114,11 +120,6 @@ noremap <Down> <nop>
 noremap <Left> <nop>
 noremap <Right> <nop>
 
-inoremap kj <Esc>
-nnoremap <silent> j gj
-nnoremap <silent> k gk
-nnoremap <silent> <Leader>qa :silent qa!<CR>
-nnoremap <silent> <Leader>w :silent w<CR> :echo "write @ " . strftime("%X")<CR>
 
 " faster viewport scrolling
 nnoremap <C-e> 3<C-e>
