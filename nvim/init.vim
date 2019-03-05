@@ -24,7 +24,7 @@ set timeoutlen=300 ttimeoutlen=100 " Shorten the time to complete map sequences
 set visualbell
 set whichwrap=b,h,l,s,<,>,[,],~       " allow <BS>/h/l/<Left>/<Right>/<Space>, ~ to cross line boundaries
 
-"Tabs and indent behavior
+" Tabs and indent behavior
 set autoindent
 set copyindent
 set expandtab
@@ -71,16 +71,21 @@ set directory^=$HOME/.vim/tmp//
 set nobackup
 set noswapfile
 
-" Colors
-let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_sign_column = 'bg0'
-set termguicolors
-set background=dark
-colorscheme gruvbox
-
 " Nicer vertical splits
 let &fillchars='vert: ,fold:·'
 let &listchars='tab:| ,eol:¬,trail:⣿,extends:→,precedes:←'
+
+" Colors
+set termguicolors
+if filereadable(expand("~/.vimrc_background"))
+  source ~/.vimrc_background
+else
+  " Fallback to Gruvbox is base16 not available
+  set background=dark
+  let g:gruvbox_contrast_dark = 'hard'
+  let g:gruvbox_sign_column = 'bg0'
+  colorscheme gruvbox
+endif
 
 " Opt into some optional vim stuff
 packadd cfilter
@@ -105,6 +110,7 @@ endif
 " [2] MAPPINGS
 " ============
 :nmap ; :
+
 xnoremap ; :
 
 inoremap kj <Esc>
@@ -156,7 +162,6 @@ nnoremap <Leader>ra :%s/\<<C-r>=expand("<cword>")<CR>\>/
 nnoremap <Leader>rg :Grep<Space>
 
 " Plugin mappings
-nnoremap <silent> <Leader>ft :Vaffle<CR>
 nnoremap <silent> <Leader>ff :call FuzzFile()<CR>
 nnoremap <silent> <Leader>fb :call FuzzBuf()<CR>
 nnoremap <silent> <Leader>tt :call fun#toggle_term(10)<cr>
@@ -172,8 +177,6 @@ augroup Groupie
   autocmd BufWritePre * call fun#trim()
   " Resize splits when the window is resized
   autocmd VimResized * :wincmd =
-  " Tone done popup menu
-  autocmd VimEnter,BufEnter * exec "hi! Pmenu guibg='#282828' guifg='#928374'"
   " Tone down cursorline while we're at it
   autocmd BufEnter * highlight CursorLine guibg=#1d2021
 augroup END

@@ -4,6 +4,9 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias wd="cd ~/Sites"
 
+alias ls="lsd"
+alias l="ls -la"
+
 alias c="clear"
 alias v="nvim"
 alias oo="open ."

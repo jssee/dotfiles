@@ -28,7 +28,7 @@
 - 
   category: default
   local: false
-  name: cocopon/vaffle.vim
+  name: "chriskempson/base16-vim"
   opt: false
 - 
   category: default
@@ -104,6 +104,11 @@
 - 
   category: default
   local: false
+  name: "tpope/vim-eunuch"
+  opt: false
+- 
+  category: default
+  local: false
   name: "tpope/vim-fugitive"
   opt: false
 - 
@@ -125,6 +130,11 @@
   category: default
   local: false
   name: "tpope/vim-unimpaired"
+  opt: false
+- 
+  category: default
+  local: false
+  name: "tpope/vim-vinegar"
   opt: false
 - 
   category: default

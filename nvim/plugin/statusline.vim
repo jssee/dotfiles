@@ -70,7 +70,7 @@ endfunc
 
 function! StatusLinter() abort
   let l:counts = ale#statusline#Count(bufnr(''))
-  
+
   let l:all_errors = l:counts.error + l:counts.style_error
   let l:all_non_errors = l:counts.total - l:all_errors
   return l:counts.total == 0 ? '  OK ' : printf(
@@ -104,8 +104,8 @@ endfunc
 
 
 let s:color = {
-      \ 'status_bg': '#1d2021',
-      \ 'status_fg': '#928374',
+      \ 'status_bg': 'NONE',
+      \ 'status_fg': 'Comment',
       \ 'fname_modified': '#d65d0e',
       \ 'fname_readonly': '#b16286',
       \ }
@@ -170,7 +170,7 @@ func! s:create_statusline(mode)
           \ '%#Status' .a:mode. 'Branch#%-{StatusBranch()}',
           \ '%=',
           \ '%#Status' .a:mode. 'ALE#%{StatusLinter()}',
-          \ '%#Status' .a:mode. 'FType#%{StatusFileType()}', 
+          \ '%#Status' .a:mode. 'FType#%{StatusFileType()}',
           \ '%#Status' .a:mode. 'LInfo#%{StatusLineInfo()}',
           \ ]
   else

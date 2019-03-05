@@ -24,10 +24,10 @@ au VimEnter,BufEnter,ColorScheme *
     \ guifg=".(&background=='light'?'#808000':'#458588')."
     \ guibg=".(&background=='light'?'#ffff00':'#282828') |
   \ exec "hi! ALEWarningLine
-    \ guifg=".(&background=='light'?'#808000':'#fabd2f')."
+    \ guifg=".(&background=='light'?'#808000':'Warning')."
     \ guibg=".(&background=='light'?'#ffff00':'#282828') |
   \ exec "hi! ALEErrorLine
-    \ guifg=".(&background=='light'?'#ff0000':'#fb4934')."
+    \ guifg=".(&background=='light'?'#ff0000':'Error')."
     \ guibg=".(&background=='light'?'#ffcccc':'#282828')
 
 let g:ale_linters = {
