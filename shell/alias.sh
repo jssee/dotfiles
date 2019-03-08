@@ -4,7 +4,7 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias wd="cd ~/Sites"
 
-alias ls="lsd"
+alias ls="lsd -a --color=never --date=relative --icon=never"
 alias l="ls -la"
 
 alias c="clear"
