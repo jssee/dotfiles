@@ -1,9 +1,21 @@
-" let g:ale_sign_column_always = 1
-" let g:ale_sign_error = '×'
-" let g:ale_sign_warning = '⊘'
+let g:ale_linters = {
+      \  'javascript': ['eslint', 'prettier'],
+      \  'typescript': ['tsserver', 'tslint', 'prettier'],
+      \  'css': ['prettier'],
+      \  'scss': ['prettier'],
+      \ }
 
-" let g:ale_set_loclist = 0
-" let g:ale_set_quickfix = 1
+let g:ale_fixers = {
+      \ 'javascript': ['prettier'],
+      \ 'typescript': ['prettier'],
+      \ 'css': ['prettier'],
+      \ 'scss': ['prettier'],
+      \ }
+
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+let g:ale_fix_on_save = 1
+let g:ale_completion_enabled = 1
 
 " Don't use the sign column/gutter for ALE
 let g:ale_set_signs = 0
@@ -24,15 +36,9 @@ au VimEnter,BufEnter,ColorScheme *
     \ guifg=".(&background=='light'?'#808000':'#458588')."
     \ guibg=".(&background=='light'?'#ffff00':'#282828') |
   \ exec "hi! ALEWarningLine
-    \ guifg=".(&background=='light'?'#808000':'Warning')."
+    \ guifg=".(&background=='light'?'#808000':'#FFD700')."
     \ guibg=".(&background=='light'?'#ffff00':'#282828') |
   \ exec "hi! ALEErrorLine
-    \ guifg=".(&background=='light'?'#ff0000':'Error')."
+    \ guifg=".(&background=='light'?'#ff0000':'#FF6347')."
     \ guibg=".(&background=='light'?'#ffcccc':'#282828')
 
-let g:ale_linters = {
-      \  'javascript': ['eslint', 'prettier'],
-      \  'typescript': ['tsserver', 'tslint', 'prettier'],
-      \  'css': ['prettier'],
-      \  'scss': ['prettier'],
-      \ }
