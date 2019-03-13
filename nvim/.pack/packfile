@@ -20,12 +20,6 @@
   name: SirVer/ultisnips
   opt: false
 - 
-  build: "git checkout next && bash install.sh"
-  category: completion
-  local: false
-  name: "autozimu/LanguageClient-neovim"
-  opt: false
-- 
   category: default
   local: false
   name: "chriskempson/base16-vim"
@@ -41,48 +35,20 @@
   name: "justinmk/vim-sneak"
   opt: false
 - 
+  build: make js
+  category: default
+  local: false
+  name: maralla/completor.vim
+  opt: false
+- 
   category: default
   local: false
   name: "matze/vim-move"
   opt: false
 - 
-  category: completion
-  local: false
-  name: ncm2/ncm2
-  opt: false
-- 
-  category: completion
-  local: false
-  name: "ncm2/ncm2-bufword"
-  opt: false
-- 
-  category: completion
-  local: false
-  name: "ncm2/ncm2-path"
-  opt: false
-- 
-  category: completion
-  local: false
-  name: "ncm2/ncm2-ultisnips"
-  opt: false
-- 
-  build: yarn install
   category: default
-  for: 
-    - javascript
-    - typescript
-    - typescript.tsx
-    - css
-    - json
-    - graphql
-    - markdown
   local: false
-  name: "prettier/vim-prettier"
-  opt: true
-- 
-  category: completion
-  local: false
-  name: "roxma/nvim-yarp"
+  name: "natebosch/vim-lsc"
   opt: false
 - 
   category: lang
