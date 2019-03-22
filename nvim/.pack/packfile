@@ -29,20 +29,15 @@
   name: "justinmk/vim-sneak"
   opt: false
 - 
-  build: make js
-  category: default
-  local: false
-  name: maralla/completor.vim
-  opt: false
-- 
   category: default
   local: false
   name: "matze/vim-move"
   opt: false
 - 
+  build: "yarn install --frozen-lockfile"
   category: default
   local: false
-  name: "natebosch/vim-lsc"
+  name: neoclide/coc.nvim
   opt: false
 - 
   category: lang
