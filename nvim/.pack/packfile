@@ -89,8 +89,3 @@
   local: false
   name: wellle/targets.vim
   opt: false
-- 
-  category: default
-  local: false
-  name: "wellle/visual-split.vim"
-  opt: false
