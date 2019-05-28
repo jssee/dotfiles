@@ -162,6 +162,7 @@ nnoremap <Leader>rg :Grep<Space>
 nnoremap <silent> <Leader>ff :call FuzzFile()<CR>
 nnoremap <silent> <Leader>fb :call FuzzBuf()<CR>
 nnoremap <silent> <Leader>tt :call fun#toggle_term(10)<cr>
+nnoremap <silent> H :call CocActionAsync('doHover')<cr>
 
 
 " [3] AUTOCMDS
