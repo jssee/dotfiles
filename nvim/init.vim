@@ -93,7 +93,7 @@ runtime macros/matchit.vim
 
 " Setup specific settings
 if executable('rg')
-  set grepprg=rg\ --no-heading\ --vimgrep
+  set grepprg=rg\ --no-heading\ --vimgrep\ --smart-case
   set grepformat=%f:%l:%c:%m
 endif
 
@@ -151,12 +151,9 @@ nnoremap <S-Tab> <<
 xnoremap <Tab>   >><Esc>gV
 xnoremap <S-Tab> <<<Esc>gV
 
-" bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR><CR>:cw<CR>
-
 " Find and replace in 'paragraph'
 nnoremap <Leader>rw :'{,'}s/\<<C-r>=expand("<cword>")<CR>\>/
-" Find and replace in buffer
+" Find and replace cursor word in buffer
 nnoremap <Leader>ra :%s/\<<C-r>=expand("<cword>")<CR>\>/
 " Grep w/ Rg
 nnoremap <Leader>rg :Grep<Space>
@@ -188,14 +185,14 @@ augroup END
 
 "  Quickfix specifics, useful for grepping
 " ========================================
+command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr fun#grep(<q-args>)
+command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr fun#grep(<q-args>)
 augroup Qf
+  " Automatically open quickfix window
 	autocmd!
-	" Automatically open quickfix window
 	autocmd QuickFixCmdPost cgetexpr cwindow
 	autocmd QuickFixCmdPost lgetexpr lwindow
 augroup END
-command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr system(&grepprg . ' <args>')
-command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr system(&grepprg . ' <args>')
 
 " Correct syntax for incorrect filetypes
 " ======================================

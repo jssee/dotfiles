@@ -33,6 +33,11 @@ function! fun#toggle_term(height)
   endif
 endfunction
 
+function! fun#grep(args)
+  let args = split(a:args, ' ')
+  return system(join([&grepprg, shellescape(args[0]), get(args, 1, '')], ' '))
+endfunction
+
 " Fuzzy find project files and buffers
 " ====================================
 function! fun#fuzzy_cmd(choice_command, vim_command) abort
