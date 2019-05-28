@@ -4,11 +4,11 @@ export PATH=$PATH:~/.cargo/bin
 # brew doc recommended
 export PATH="$HOME/.bin:$PATH"
 
+export EDITOR="/usr/local/bin/nvim"
+
 source $HOME/dotfiles/shell/alias.sh
 source $HOME/dotfiles/shell/utils.sh
 source $HOME/dotfiles/shell/prompt.sh # Pure by Sindre Sorhus
-
-export EDITOR="/usr/local/bin/nvim"
 
 # source plugins
 source $HOME/dotfiles/shell/plugins/z.sh
@@ -16,9 +16,6 @@ source $HOME/dotfiles/shell/plugins/zsh-syntax-highlighting/zsh-syntax-highlight
 
 # asdf
 autoload -Uz compinit && compinit
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
 
 # hub alias
 eval "$(hub alias -s)"
@@ -31,3 +28,9 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && \
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         eval "$("$BASE16_SHELL/profile_helper.sh")"
+
+export NNN_USE_EDITOR=1
+
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash
