@@ -1,13 +1,13 @@
 let g:ale_linters = {
       \  'javascript': ['eslint', 'prettier'],
-      \  'typescript': ['tsserver', 'tslint', 'prettier'],
+      \  'typescript': [ 'tsserver', 'tslint', 'eslint', 'prettier'],
       \  'css': ['prettier'],
       \  'scss': ['prettier'],
       \ }
 
 let g:ale_fixers = {
-      \ 'javascript': ['prettier'],
-      \ 'typescript': ['prettier'],
+      \ 'javascript': ['eslint', 'prettier'],
+      \ 'typescript': ['tslint', 'eslint', 'prettier'],
       \ 'css': ['prettier'],
       \ 'scss': ['prettier'],
       \ }
