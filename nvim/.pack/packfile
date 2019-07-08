@@ -34,11 +34,6 @@
   name: "justinmk/vim-sneak"
   opt: false
 - 
-  category: default
-  local: false
-  name: "matze/vim-move"
-  opt: false
-- 
   build: "yarn install --frozen-lockfile"
   category: default
   local: false
