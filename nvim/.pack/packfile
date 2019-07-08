@@ -4,11 +4,6 @@
 
 ---
 - 
-  category: lang
-  local: false
-  name: HerringtonDarkholme/yats.vim
-  opt: false
-- 
   category: default
   local: false
   name: SirVer/ultisnips
