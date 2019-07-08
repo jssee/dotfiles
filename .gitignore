@@ -13,3 +13,4 @@ nvim/plugin/_pack.vim
 nvim/pack/*
 !nvim/pack/.gitkeep
 doc/tags
+nvim/colorscheme.vim
