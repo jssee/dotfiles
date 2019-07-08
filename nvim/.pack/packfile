@@ -77,10 +77,5 @@
 - 
   category: default
   local: false
-  name: w0rp/ale
-  opt: false
-- 
-  category: default
-  local: false
   name: wellle/targets.vim
   opt: false

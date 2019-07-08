@@ -1,4 +1,5 @@
 {
-  "diagnostic.enable": false
+  "coc.preferences.formatOnSaveFiletypes": ["css", "javascript", "typescript", "typescriptreact", "javascriptreact"],
+  "eslint.autoFixOnSave": true
 }
 

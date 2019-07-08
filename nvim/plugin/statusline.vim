@@ -169,7 +169,6 @@ func! s:create_statusline(mode)
           \ '%#Status' .a:mode. 'FName#%{StatusFilename()}',
           \ '%#Status' .a:mode. 'Branch#%-{StatusBranch()}',
           \ '%=',
-          \ '%#Status' .a:mode. 'ALE#%{StatusLinter()}',
           \ '%#Status' .a:mode. 'FType#%{StatusFileType()}',
           \ '%#Status' .a:mode. 'LInfo#%{StatusLineInfo()}',
           \ ]
