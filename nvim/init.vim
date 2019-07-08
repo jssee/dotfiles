@@ -34,6 +34,7 @@ set softtabstop=2
 set tabstop=2
 
 " Display
+set cursorline
 set modelines=0
 set noshowmode " Dont show current mode
 set showcmd
@@ -41,6 +42,7 @@ set number
 set ruler
 set title
 set tw=100
+set updatetime=300
 
 " Clean up messaging
 set shortmess+=o
@@ -77,14 +79,8 @@ let &listchars='tab:| ,eol:¬,trail:⣿,extends:→,precedes:←'
 
 " Colors
 set termguicolors
-if filereadable(expand("~/.vimrc_background"))
-  source ~/.vimrc_background
-else
-  " Fallback to Gruvbox is base16 not available
-  set background=dark
-  let g:gruvbox_contrast_dark = 'hard'
-  let g:gruvbox_sign_column = 'bg0'
-  colorscheme gruvbox
+if filereadable(expand("~/.config/nvim/colorscheme.vim"))
+  source ~/.config/nvim/colorscheme.vim
 endif
 
 " Opt into some optional vim stuff
@@ -93,7 +89,7 @@ runtime macros/matchit.vim
 
 " Setup specific settings
 if executable('rg')
-  set grepprg=rg\ --no-heading\ --vimgrep\ --smart-case
+  set grepprg=rg\ --vimgrep\ --smart-case
   set grepformat=%f:%l:%c:%m
 endif
 
@@ -110,7 +106,6 @@ endif
 " [2] MAPPINGS
 " ============
 :nmap ; :
-
 xnoremap ; :
 
 inoremap kj <Esc>
@@ -156,7 +151,8 @@ nnoremap <Leader>rw :'{,'}s/\<<C-r>=expand("<cword>")<CR>\>/
 " Find and replace cursor word in buffer
 nnoremap <Leader>ra :%s/\<<C-r>=expand("<cword>")<CR>\>/
 " Grep w/ Rg
-nnoremap <Leader>rg :Grep<Space>
+nnoremap <Leader>/ :Grep<Space>
+nnoremap <Leader>* :Grep <C-R>=expand("<cword>")<CR><CR>
 
 " Plugin mappings
 nnoremap <silent> <Leader>ff :call FuzzFile()<CR>
@@ -175,13 +171,16 @@ augroup Groupie
   autocmd BufWritePre * call fun#trim()
   " Resize splits when the window is resized
   autocmd VimResized * :wincmd =
-  " Tone down cursorline while we're at it
-  autocmd BufEnter * highlight CursorLine guibg=#1d2021
 augroup END
 
 augroup Term
   autocmd!
   autocmd TermOpen * setlocal nonu nornu
+  if has('nvim')
+    " make leaving the term window less of PITA
+    tnoremap <Esc> <C-\><C-n>
+    tnoremap <M-[> <Esc>
+  endif
 augroup END
 
 "  Quickfix specifics, useful for grepping

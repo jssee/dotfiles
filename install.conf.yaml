@@ -14,9 +14,7 @@
         path: git/tigrc
         create: true
     ~/.config/nvim: nvim
-    ~/.vimrc:
-        path: vim/vimrc
-        create: true
+    ~/.vim: vim
     ~/.zshrc:
         path: shell/zshrc
         create: true

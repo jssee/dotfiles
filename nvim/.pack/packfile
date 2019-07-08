@@ -14,7 +14,7 @@
   name: SirVer/ultisnips
   opt: false
 - 
-  category: default
+  category: colors
   local: false
   name: "chriskempson/base16-vim"
   opt: false
