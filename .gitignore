@@ -11,6 +11,7 @@ Thumbs.db
 nvim/plugin/__pack.vim
 nvim/plugin/_pack.vim
 nvim/pack/*
+vim/pack/*
 !nvim/pack/.gitkeep
 doc/tags
 nvim/colorscheme.vim

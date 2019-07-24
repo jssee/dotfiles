@@ -1,1 +1,96 @@
-" (ﾉ◕ヮ◕)ﾉ*:・ﾟ✧  Moved to neovim
+set nocompatible
+filetype plugin indent on
+
+syntax on
+colorscheme bruin
+
+packadd cfilter
+packadd minpac
+
+if !exists('*minpac#init')
+  finish
+endif
+
+call minpac#init()
+call minpac#add('tpope/vim-commentary')
+call minpac#add('tpope/vim-eunuch')
+call minpac#add('tpope/vim-fugitive')
+call minpac#add('tpope/vim-repeat')
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-unimpaired')
+call minpac#add('wellle/targets.vim')
+call minpac#add('romainl/vim-qf')
+
+command! PackUpdate packadd minpac | source $MYVIMRC | redraw | call minpac#update()
+command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
+command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
+
+let &fillchars='vert: ,fold:·'
+let &listchars='tab:| ,eol:¬,trail:⣿,extends:→,precedes:←'
+let &softtabstop = &tabstop
+let mapleader = "\<Space>"
+set autoindent
+set backspace=indent,eol,start
+set clipboard=unnamed
+set complete+=d
+set directory^=$HOME/.vim/tmp//
+set foldmethod=indent
+set hidden
+set hlsearch
+set ignorecase
+set incsearch
+set infercase
+set mouse=a
+set nobackup
+set noswapfile
+set number
+set path& | let &path .= "**"
+set ruler
+set shiftround
+set shiftwidth=0
+set smartcase
+set tags=./tags;,tags;
+set termguicolors
+set wildcharm=<C-z>
+set wildmenu
+set wildmode=full
+
+if executable('rg')
+  set grepprg=rg\ --vimgrep
+endif
+
+function! Grep(args)
+  let args = split(a:args, ' ')
+  return system(join([&grepprg, shellescape(args[0], get(args, 1, ''))], ' '))
+endfunction
+command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr Grep(<q-args>)
+command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep(<q-args>)
+
+:nmap ; :
+xnoremap ; :
+inoremap kj <Esc>
+
+" Jumps
+nnoremap ' `
+
+" Window management
+nnoremap <silent> <Leader>wd :silent close<CR>
+nnoremap <silent> <Leader>w- :silent sp<CR>
+nnoremap <silent> <Leader>w/ :silent vsp<CR>
+nnoremap <silent> <Leader>wh :silent wincmd h<CR>
+nnoremap <silent> <Leader>wj :silent wincmd j<CR>
+nnoremap <silent> <Leader>wk :silent wincmd k<CR>
+nnoremap <silent> <Leader>wl :silent wincmd l<CR>
+
+" Easier line indenting
+nnoremap > >>
+nnoremap < <<
+xnoremap > >>
+xnoremap < <<
+
+" Tab through search results
+cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>/<C-r>/" : "<C-z>"
+cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>?<C-r>/" : "<S-Tab>"
+
+nnoremap <Leader>/ :Grep<Space>
+nnoremap <Leader>* :Grep <C-R>=expand("<cword>")<CR><CR>
