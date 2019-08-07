@@ -17,6 +17,9 @@ source $HOME/dotfiles/shell/plugins/zsh-syntax-highlighting/zsh-syntax-highlight
 # asdf
 autoload -Uz compinit && compinit
 
+export NNN_NO_AUTOSELECT=1
+
+
 # hub alias
 eval "$(hub alias -s)"
 

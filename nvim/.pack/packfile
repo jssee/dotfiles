@@ -16,11 +16,6 @@
 - 
   category: default
   local: false
-  name: "jiangmiao/auto-pairs"
-  opt: false
-- 
-  category: default
-  local: false
   name: "justinmk/vim-dirvish"
   opt: false
 - 
@@ -38,6 +33,11 @@
   category: lang
   local: false
   name: "sheerun/vim-polyglot"
+  opt: false
+- 
+  category: default
+  local: false
+  name: "tmsvg/pear-tree"
   opt: false
 - 
   category: default

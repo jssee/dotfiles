@@ -140,6 +140,9 @@ nnoremap <silent> <Leader>wj :silent wincmd j<CR>
 nnoremap <silent> <Leader>wk :silent wincmd k<CR>
 nnoremap <silent> <Leader>wl :silent wincmd l<CR>
 
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+
 " Use tab and shift tab to indent and de-indent code
 nnoremap <Tab>   >>
 nnoremap <S-Tab> <<
