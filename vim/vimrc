@@ -10,6 +10,8 @@ if !exists('*minpac#init')
 endif
 
 call minpac#init()
+call minpac#add('romainl/vim-qf')
+call minpac#add('sheerun/vim-polyglot')
 call minpac#add('tpope/vim-commentary')
 call minpac#add('tpope/vim-eunuch')
 call minpac#add('tpope/vim-fugitive')
@@ -17,8 +19,6 @@ call minpac#add('tpope/vim-repeat')
 call minpac#add('tpope/vim-surround')
 call minpac#add('tpope/vim-unimpaired')
 call minpac#add('wellle/targets.vim')
-call minpac#add('romainl/vim-qf')
-call minpac#add('sheerun/vim-polyglot')
 
 command! PackUpdate packadd minpac | source $MYVIMRC | redraw | call minpac#update()
 command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
@@ -28,6 +28,7 @@ syntax on
 colorscheme bruin
 filetype plugin indent on
 
+
 let &fillchars='vert: ,fold:·'
 let &listchars='tab:| ,eol:¬,trail:⣿,extends:→,precedes:←'
 let mapleader = "\<Space>"
@@ -35,26 +36,40 @@ set autoindent
 set backspace=indent,eol,start
 set clipboard=unnamed
 set complete+=d
+set copyindent
 set directory^=$HOME/.vim/tmp//
+set expandtab
+set foldlevel=99
+set foldlevelstart=999
 set foldmethod=indent
+set foldnestmax=10
 set hidden
 set hlsearch
 set ignorecase
 set incsearch
 set infercase
+set laststatus=2
+set lazyredraw
 set mouse=a
 set nobackup
+set noshowmode
 set noswapfile
 set number
 set path& | let &path .= "**"
 set ruler
+set shiftwidth=2
+set showcmd
 set smartcase
+set smartindent
+set softtabstop=2
+set splitbelow
+set splitright
+set tabstop=2
 set tags=./tags;,tags;
 set termguicolors
 set wildcharm=<C-z>
 set wildmenu
 set wildmode=full
-
 if executable('rg')
   set grepprg=rg\ --vimgrep
 endif
@@ -97,7 +112,7 @@ inoremap kj <Esc>
 " Jumps
 nnoremap ' `
 
-" Window management
+" window management
 nnoremap <silent> <Leader>wd :silent close<CR>
 nnoremap <silent> <Leader>w- :silent sp<CR>
 nnoremap <silent> <Leader>w/ :silent vsp<CR>
@@ -106,17 +121,17 @@ nnoremap <silent> <Leader>wj :silent wincmd j<CR>
 nnoremap <silent> <Leader>wk :silent wincmd k<CR>
 nnoremap <silent> <Leader>wl :silent wincmd l<CR>
 
-" Buffers
+" buffers
 nnoremap <silent> <Leader><Leader> :bp<CR>
 nnoremap <silent> <Tab> :bn<CR>
 
-" Easier line indenting
+" easier line indenting
 nmap > >>
 nmap < <<
 xnoremap > >>
 xnoremap < <<
 
-" Tab through search results
+" tab through search results
 cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>/<C-r>/" : "<C-z>"
 cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>?<C-r>/" : "<S-Tab>"
 
@@ -127,5 +142,3 @@ nnoremap <Leader>* :Grep <C-R>=expand("<cword>")<CR><CR>
 nmap <Leader>qf <Plug>(qf_qf_toggle)
 nmap <Leader>qs <Plug>(qf_qf_switch)
 let g:qf_mapping_ack_style = 1
-
-command! -range GB echo join(systemlist("git blame -L <line1>,<line2> " . expand('%')), "\n")
