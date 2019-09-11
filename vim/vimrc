@@ -10,6 +10,7 @@ if !exists('*minpac#init')
 endif
 
 call minpac#init()
+call minpac#add('k-takata/minpac', {'type': 'opt'})
 call minpac#add('romainl/vim-qf')
 call minpac#add('sheerun/vim-polyglot')
 call minpac#add('tpope/vim-commentary')
