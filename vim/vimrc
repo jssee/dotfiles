@@ -9,6 +9,7 @@ if !exists('*minpac#init')
   finish
 endif
 
+" plugins
 call minpac#init()
 call minpac#add('romainl/vim-qf')
 call minpac#add('sheerun/vim-polyglot')
@@ -20,6 +21,7 @@ call minpac#add('tpope/vim-surround')
 call minpac#add('tpope/vim-unimpaired')
 call minpac#add('wellle/targets.vim')
 
+" minpac helpers
 command! PackUpdate packadd minpac | source $MYVIMRC | redraw | call minpac#update()
 command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
 command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
@@ -28,37 +30,58 @@ syntax on
 colorscheme bruin
 filetype plugin indent on
 
-
+" nicer splits
 let &fillchars='vert: ,fold:·'
 let &listchars='tab:| ,eol:¬,trail:⣿,extends:→,precedes:←'
+
 let mapleader = "\<Space>"
+
+" change cursor shape based on mode
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+
 set autoindent
+set autoread
+set autowriteall
 set backspace=indent,eol,start
+set breakindent
 set clipboard=unnamed
 set complete+=d
 set copyindent
+set cursorline
 set directory^=$HOME/.vim/tmp//
 set expandtab
 set foldlevel=99
 set foldlevelstart=999
 set foldmethod=indent
 set foldnestmax=10
+set formatoptions+=t
 set hidden
 set hlsearch
 set ignorecase
+set ignorecase
 set incsearch
+set incsearch
+set infercase
 set infercase
 set laststatus=2
 set lazyredraw
+set magic
+set modelines=0
 set mouse=a
 set nobackup
+set noerrorbells
+set noshowmode
 set noshowmode
 set noswapfile
 set number
-set path& | let &path .= "**"
+set path=.,**
 set ruler
+set scrolloff=10
 set shiftwidth=2
 set showcmd
+set smartcase
 set smartcase
 set smartindent
 set softtabstop=2
@@ -67,49 +90,26 @@ set splitright
 set tabstop=2
 set tags=./tags;,tags;
 set termguicolors
+set timeoutlen=300 ttimeoutlen=100
+set title
+set tw=100
+set updatetime=300
+set visualbell
+set whichwrap=b,h,l,s,<,>,[,],~
 set wildcharm=<C-z>
+set wildignorecase
 set wildmenu
 set wildmode=full
+
 if executable('rg')
   set grepprg=rg\ --vimgrep
 endif
-
-function! Grep(args)
-  let args = split(a:args, ' ')
-  return system(join([&grepprg, shellescape(args[0], get(args, 1, ''))], ' '))
-endfunction
-command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr Grep(<q-args>)
-command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep(<q-args>)
-
-" gq wrapper that tries its best at keeping the cursor in place
-function! Format(type, ...)
-    normal! '[v']gq
-    call winrestview(b:gqview)
-    unlet b:gqview
-endfunction
-nmap <silent> GQ :let b:gqview = winsaveview()<CR>:set opfunc=Format<CR>g@
-
-command! Maximize :exe "normal! <C-w>\|<C-W>_"
-command! Minimize :exe "normal! <C-W>="
-function! ToggleMaximizeWindow()
-    if !exists('b:window_maximized')
-        let b:window_maximized = 0
-    endif
-    if b:window_maximized
-        Minimize
-        let b:window_maximized = 0
-    else
-        Maximize
-        let b:window_maximized = 1
-    endif
-endfunction
-nnoremap <leader>wm :call ToggleMaximizeWindow()<CR>
 
 :nmap ; :
 xnoremap ; :
 inoremap kj <Esc>
 
-" Jumps
+" jumps
 nnoremap ' `
 
 " window management
@@ -125,12 +125,6 @@ nnoremap <silent> <Leader>wl :silent wincmd l<CR>
 nnoremap <silent> <Leader><Leader> :bp<CR>
 nnoremap <silent> <Tab> :bn<CR>
 
-" easier line indenting
-nmap > >>
-nmap < <<
-xnoremap > >>
-xnoremap < <<
-
 " tab through search results
 cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>/<C-r>/" : "<C-z>"
 cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>?<C-r>/" : "<S-Tab>"
@@ -138,7 +132,31 @@ cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>?<C-
 nnoremap <Leader>/ :Grep<Space>
 nnoremap <Leader>* :Grep <C-R>=expand("<cword>")<CR><CR>
 
-" plugin mappings
-nmap <Leader>qf <Plug>(qf_qf_toggle)
-nmap <Leader>qs <Plug>(qf_qf_switch)
-let g:qf_mapping_ack_style = 1
+augroup groupie
+  autocmd!
+  " Return to last edit position when opening files
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+  " Trim empty whitespace on save
+  autocmd BufWritePre * call fun#trim()
+  " Resize splits when the window is resized
+  autocmd VimResized * :wincmd =
+augroup END
+
+augroup filetyping
+  " correct some filetypes
+  autocmd!
+  autocmd BufRead,BufNewFile jrnl*.txt,TODO,*.mdx setfiletype markdown
+  autocmd BufRead,BufNewFile .{babel,eslint,stylelint,jshint,prettier}rc,.tern-* setfiletype json
+  autocmd BufRead,BufNewFile .envrc setfiletype bash
+augroup END
+
+augroup qf
+  " Automatically open quickfix window
+	autocmd!
+	autocmd QuickFixCmdPost cgetexpr cwindow
+	autocmd QuickFixCmdPost lgetexpr lwindow
+augroup END
+" handy command for func#grep
+command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr fun#grep(<q-args>)
+command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr fun#grep(<q-args>)
+
