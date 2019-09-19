@@ -15,6 +15,7 @@ call minpac#add('k-takata/minpac', {'type': 'opt'})
 call minpac#add('romainl/vim-qf')
 call minpac#add('sheerun/vim-polyglot')
 call minpac#add('tpope/vim-commentary')
+call minpac#add('tpope/vim-dispatch')
 call minpac#add('tpope/vim-eunuch')
 call minpac#add('tpope/vim-fugitive')
 call minpac#add('tpope/vim-repeat')
@@ -31,11 +32,11 @@ syntax on
 colorscheme bruin
 filetype plugin indent on
 
+let mapleader = "\<Space>"
+
 " nicer splits
 let &fillchars='vert: ,fold:·'
 let &listchars='tab:| ,eol:¬,trail:⣿,extends:→,precedes:←'
-
-let mapleader = "\<Space>"
 
 " change cursor shape based on mode
 let &t_SI = "\<Esc>[6 q"
@@ -101,6 +102,10 @@ set wildcharm=<C-z>
 set wildignorecase
 set wildmenu
 set wildmode=full
+
+set diffopt&
+      \ diffopt+=vertical
+      \ diffopt+=hiddenoff
 
 if executable('rg')
   set grepprg=rg\ --vimgrep
