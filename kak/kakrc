@@ -60,12 +60,12 @@ set-option global ui_options ncurses_assistant=cat
 set-option global tabstop 2
 set-option global indentwidth 2
 set-option global scrolloff 10,10
-
 set-option global grepcmd 'rg --column -with-filename --smart-case'
 
 colorscheme gruvbox
 add-highlighter global/ show-matching
 add-highlighter global/ number-lines -hlcursor -separator ' '
+add-highlighter global/ wrap -word
 
 # commands
 define-command find -params 1 -shell-script-candidates 'fd --type file' 'edit %arg(1)'
@@ -79,14 +79,16 @@ map global normal ";" ":"
 map global normal ":" ";"
 map global normal "," "<space>"
 map global normal "<space>" ","
+map global normal { [p
+map global normal } ]p
 
-map global goto f '<esc>: find '                         -docstring 'find files'
-map global goto n '<esc>: buffer-next<ret>'              -docstring 'next buffer'
-map global goto p '<esc>: buffer-previous<ret>'          -docstring 'previous buffer'
+map global goto f '<esc>: find '                -docstring 'find files'
+map global goto n '<esc>: buffer-next<ret>'     -docstring 'next buffer'
+map global goto p '<esc>: buffer-previous<ret>' -docstring 'previous buffer'
 
-map global user p '!pbpaste<ret>'                        -docstring 'paste from system keyboard'
-map global user y '<a-|>pbcopy<ret>'                     -docstring 'yank to system keyboard'
-map global user / ': grepmenu '                          -docstring 'grepmenu <pattern> <target>'
+map global user p '!pbpaste<ret>'               -docstring 'paste from system keyboard'
+map global user y '<a-|>pbcopy<ret>'            -docstring 'yank to system keyboard'
+map global user / ': grepmenu '                 -docstring 'grepmenu <pattern> <target>'
 
 # hooks
 # <k><j> -> esc
