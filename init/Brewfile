@@ -22,6 +22,8 @@ brew 'fd'
 
 brew 'fzf'
 
+brew 'kakoune'
+
 brew 'coreutils'
 
 cask 'dropbox'
