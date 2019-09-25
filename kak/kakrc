@@ -1,0 +1,70 @@
+# plugins
+source "%val{config}/plugins/plug.kak/rc/plug.kak"
+
+plug "andreyorst/plug.kak" noload config %{
+    set-option global plug_always_ensure true
+    hook global WinSetOption filetype=plug %{
+        remove-highlighter buffer/numbers
+        remove-highlighter buffer/matching
+        remove-highlighter buffer/wrap
+        remove-highlighter buffer/show-whitespaces
+    }
+}
+
+# source extra
+evaluate-commands %sh{
+  for file in "$HOME"/.config/kak/extra/*.kak; do
+  	printf "%s\n" "try %{
+    	source '$file'
+    	echo -debug 'sourced $file'
+  	} catch %{
+    	echo -debug %val{error}
+  	} catch %{
+    	echo -debug '[error] could not source $file'
+  	}"
+	done
+}
+
+# options
+set-option global ui_options ncurses_assistant=cat
+set-option global tabstop 2
+set-option global indentwidth 2
+set-option global scrolloff 10,10
+
+set-option global grepcmd 'rg --column -with-filename --smart-case'
+
+colorscheme gruvbox
+add-highlighter global/ show-matching
+add-highlighter global/ number-lines -hlcursor -separator ' '
+
+# commands
+define-command find -params 1 -shell-script-candidates 'fd --type file' 'edit %arg(1)'
+define-command strip-whitespace -params 0 %{ execute-keys -draft \%s\h+$<ret>d }
+
+# mappings
+map global normal ";" ":"
+map global normal ":" ";"
+map global normal "," "<space>"
+map global normal "<space>" ","
+
+map global goto f '<esc>: find '                -docstring 'find files'
+map global goto n '<esc>: buffer-next<ret>'     -docstring 'next buffer'
+map global goto p '<esc>: buffer-previous<ret>' -docstring 'previous buffer'
+
+map global user "p" "!pbpaste<ret>"             -docstring 'paste from system keyboard'
+map global user "y" "<a-|>pbcopy<ret>"          -docstring 'yank to system keyboard'
+map global user "/" ": grepmenu "               -docstring 'grepmenu <pattern> <target>'
+
+# hooks
+# <k><j> -> esc
+hook global InsertChar j %{
+  try %{
+    exec -draft hH <a-k>kj<ret> d
+    exec <esc>
+}}
+
+# cycle completion candidates with <tab> / <s-tab>
+hook global InsertCompletionShow .* %{ map window insert <tab> <c-n>; map window insert <s-tab> <c-p> }
+hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap window insert <s-tab> <c-p> }
+
+hook global KakBegin .* idsession
