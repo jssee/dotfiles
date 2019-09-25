@@ -17,3 +17,4 @@ vim/pack/*
 doc/tags
 nvim/colorscheme.vim
 vim/colorscheme.vim
+kak/plugins/*
