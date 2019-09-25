@@ -11,12 +11,35 @@ plug "andreyorst/plug.kak" noload config %{
   }
 }
 
+plug "ul/kak-lsp" do %{
+    cargo build --release --locked
+    cargo install --force --path . # `--path .' is needed by recent versions of cargo
+} config %{
+    set-option global lsp_diagnostic_line_error_sign '║'
+    set-option global lsp_diagnostic_line_warning_sign '┊'
+
+    # set-option global lsp_completion_trigger "execute-keys 'h<a-h><a-k>\S[^\s,=;*(){}\[\]]\z<ret>'"
+    hook global WinSetOption filetype=(javascript|typescript) %{
+        set-option window lsp_auto_highlight_references true
+        set-option window lsp_hover_anchor true
+        lsp-enable-window
+        set-face window DiagnosticError default+u
+        set-face window DiagnosticWarning default+u
+    }
+
+    hook global KakEnd .* lsp-exit
+}
+
 plug "alexherbo2/auto-pairs.kak" %{
   map global user s ': auto-pairs-surround <lt> <gt><ret>' -docstring 'Surround'
   hook global WinCreate .* %{ auto-pairs-enable }
+  hook global WinSetOption filetype=(html|javascript|typescript) %{
+    set-option -add buffer auto_pairs < >
+  }
 }
 
 plug "alexherbo2/explore.kak"
+
 
 # source extra
 evaluate-commands %sh{
@@ -78,3 +101,18 @@ hook global InsertCompletionShow .* %{ map window insert <tab> <c-n>; map window
 hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap window insert <s-tab> <c-p> }
 
 hook global KakBegin .* idsession
+
+# filetype specifics
+hook global WinSetOption filetype=(javascript|typescript) %{
+  set-option buffer formatcmd 'prettier --parser=babylon'
+  set-option buffer lintcmd 'eslint --config .eslintrc.js --format=node_modules/eslint-formatter-kakoune'
+  lint-enable
+  lint
+  hook buffer BufWritePost .* %{ lint; format }
+}
+
+hook global WinSetOption filetype=(css|scss) %{
+	set-option buffer formatcmd 'prettier --parser=scss'
+	hook buffer BufWritePost .* %{ format }
+}
+
