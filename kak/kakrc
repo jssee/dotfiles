@@ -1,29 +1,16 @@
 # plugins
 source "%val{config}/plugins/plug.kak/rc/plug.kak"
 
-plug "andreyorst/plug.kak" noload config %{
-  set-option global plug_always_ensure true
-  hook global WinSetOption filetype=plug %{
-    remove-highlighter buffer/numbers
-    remove-highlighter buffer/matching
-    remove-highlighter buffer/wrap
-    remove-highlighter buffer/show-whitespaces
-  }
+plug "andreyorst/plug.kak" noload
+
+plug "occivink/kakoune-phantom-selection" %{
+    declare-user-mode phantom-selection
+    map global user h -docstring "Phantom selections" ": enter-user-mode phantom-selection<ret>"
+    map global phantom-selection n -docstring "Next" ": phantom-selection-iterate-next<ret>"
+    map global phantom-selection p -docstring "Previous" ": phantom-selection-iterate-prev<ret>"
+    map global phantom-selection c -docstring "Clear" ": phantom-selection-select-all; phantom-selection-clear<ret>"
+    map global phantom-selection a -docstring "Add" ": phantom-selection-add-selection<ret>"
 }
-
-plug "ul/kak-lsp" do %{
-  cargo build --release --locked
-  cargo install --force --path . # `--path .' is needed by recent versions of cargo
-} config %{
-    evaluate-commands %sh{kak-lsp --kakoune -s $kak_session}
-    set-option window lsp_auto_highlight_references true
-    set-option window lsp_hover_anchor true
-    set-face window DiagnosticError default+u
-    set-face window DiagnosticWarning default+u
-
-    hook global KakEnd .* lsp-exit
-}
-
 
 plug "alexherbo2/auto-pairs.kak" %{
   map global user s ': auto-pairs-surround <lt> <gt><ret>' -docstring 'Surround'
@@ -37,18 +24,27 @@ plug "occivink/kakoune-filetree" %{
   set-option global filetree_find_cmd 'fd --type file .'
 }
 
-# source extra
+plug "lenormf/kakoune-extra" config %{
+  set-option global syntastic_autoformat true
+  set-option global grepmenucmd 'rg --vimgrep'
+  
+  syntastic-declare-filetype "javascript" \
+    'eslint --config .eslintrc.js --format=node_modules/eslint-formatter-kakoune' \
+    'prettier --parser=babel'
+}
+
+# source local
 evaluate-commands %sh{
-  for file in "$HOME"/.config/kak/extra/*.kak; do
-  	printf "%s\n" "try %{
-    	source '$file'
-    	echo -debug 'sourced $file'
-  	} catch %{
-    	echo -debug %val{error}
-  	} catch %{
+  for file in "$HOME"/.config/kak/local/*.kak; do
+    printf "%s\n" "try %{
+        source '$file'
+        echo -debug 'sourced $file'
+    } catch %{
+        echo -debug %val{error}
+    } catch %{
     	echo -debug '[error] could not source $file'
-  	}"
-	done
+    }"
+    done
 }
 
 # options
@@ -57,6 +53,8 @@ set-option global tabstop 2
 set-option global indentwidth 2
 set-option global incsearch true
 set-option global scrolloff 10,10
+set-option global autowrap_column 80
+set-option global autoreload true
 set-option global grepcmd 'rg --column -with-filename --smart-case'
 
 colorscheme gruvbox
@@ -67,6 +65,7 @@ add-highlighter global/ wrap -word -marker "↳ "
 # commands
 define-command find -params 1 -shell-script-candidates 'fd --type file' 'edit %arg(1)'
 define-command strip-whitespace -params 0 %{ execute-keys -draft \%s\h+$<ret>d }
+define-command comment %{ try comment-block catch comment-line }
 
 # mappings
 map global normal ';' ':'
@@ -83,6 +82,7 @@ map global user f ': find '                     -docstring 'find files'
 map global user p '!pbpaste<ret>'               -docstring 'paste from system keyboard'
 map global user y '<a-|>pbcopy<ret>'            -docstring 'yank to system keyboard'
 map global user / ': grepmenu '                 -docstring 'grepmenu <pattern> <target>'
+map global user c ': comment<ret>'              -docstring 'comment selection'
 
 # hooks
 # <k><j> -> esc
@@ -96,32 +96,5 @@ hook global InsertChar j %{
 hook global InsertCompletionShow .* %{ map window insert <tab> <c-n>; map window insert <s-tab> <c-p> }
 hook global InsertCompletionHide .* %{ unmap window insert <tab> <c-n>; unmap window insert <s-tab> <c-p> }
 
+# initialize idsession
 hook global KakBegin .* idsession
-
-# filetype specifics
-hook global WinSetOption filetype=(javascript|typescript) %{
-  set-option buffer formatcmd 'prettier --parser=babylon'
-  set-option buffer lintcmd 'eslint --config .eslintrc.js --format=node_modules/eslint-formatter-kakoune'
-  lint-enable
-  lint
-  hook buffer BufWritePost .* %{ lint; format }
-}
-
-define-command -override -docstring "flygrep: run grep on every key" \
-flygrep %{
-    edit -scratch *grep*
-    prompt "flygrep: " -on-change %{
-        flygrep-call-grep %val{text}
-    } nop
-}
-
-define-command -override flygrep-call-grep -params 1 %{ evaluate-commands %sh{
-    length=$(printf "%s" "$1" | wc -m)
-    [ -z "${1##*&*}" ] && text=$(printf "%s\n" "$1" | sed "s/&/&&/g") || text="$1"
-    if [ ${length:-0} -gt 2 ]; then
-        printf "%s\n" "info"
-        printf "%s\n" "evaluate-commands %&grep '$text'&"
-    else
-        printf "%s\n" "info -title flygrep %{$((3-${length:-0})) more chars}"
-    fi
-}}
