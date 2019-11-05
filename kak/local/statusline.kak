@@ -7,6 +7,6 @@ evaluate-commands %sh{
   ft='as {magenta}%sh{ echo "${kak_opt_filetype:-noft}" }{default}'
   cursor='on {cyan}%val{cursor_line}{default}:{cyan}%val{cursor_char_column}{default}'
   readonly='{red+b}%sh{ [ -f "$kak_buffile" ] && [ ! -w "$kak_buffile" ] && echo "[] " }{default}'
-  session='{cyan}[%val{session}]{default}'
+  session='{blue}[%val{session}]{default}'
   echo set global modelinefmt "'{{mode_info}} ${keyboard} ${session} ${cwd} ${bufname} ${readonly}${modified}${ft} ${eol} ${cursor}'"
 }
