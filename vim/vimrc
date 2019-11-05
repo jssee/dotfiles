@@ -30,6 +30,7 @@ command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
 
 syntax on
 colorscheme bruin
+set termguicolors
 filetype plugin indent on
 
 let mapleader = "\<Space>"
@@ -109,6 +110,8 @@ set diffopt&
 
 if executable('rg')
   set grepprg=rg\ --vimgrep
+  command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr fun#grep(<q-args>)
+  command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr fun#grep(<q-args>)
 endif
 
 :nmap ; :
@@ -128,7 +131,7 @@ nnoremap <silent> <Leader>wk :silent wincmd k<CR>
 nnoremap <silent> <Leader>wl :silent wincmd l<CR>
 
 " buffers
-nnoremap <silent> <Leader><Leader> :bp<CR>
+nnoremap <silent> <Leader><Leader> <C-^>
 nnoremap <silent> <Tab> :bn<CR>
 
 " tab through search results
@@ -163,6 +166,3 @@ augroup qf
 	autocmd QuickFixCmdPost lgetexpr lwindow
 augroup END
 " handy command for func#grep
-command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr fun#grep(<q-args>)
-command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr fun#grep(<q-args>)
-
