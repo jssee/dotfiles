@@ -31,6 +31,11 @@
 - 
   category: default
   local: false
+  name: "neovim/nvim-lsp"
+  opt: false
+- 
+  category: default
+  local: false
   name: "romainl/vim-qf"
   opt: false
 - 
