@@ -4,7 +4,7 @@ export PATH=$PATH:~/.cargo/bin
 # brew doc recommended
 export PATH="$HOME/.bin:$PATH"
 
-export EDITOR="/usr/local/bin/kak"
+export EDITOR="/usr/local/bin/nvim"
 
 source $HOME/dotfiles/shell/alias.sh
 source $HOME/dotfiles/shell/utils.sh

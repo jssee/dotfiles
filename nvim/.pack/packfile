@@ -11,7 +11,17 @@
 - 
   category: colors
   local: false
-  name: "chriskempson/base16-vim"
+  name: "gruvbox-community/gruvbox"
+  opt: false
+- 
+  category: default
+  local: false
+  name: "jiangmiao/auto-pairs"
+  opt: false
+- 
+  category: default
+  local: false
+  name: "jssee/vim-delight"
   opt: false
 - 
   category: default
@@ -21,23 +31,12 @@
 - 
   category: default
   local: false
-  name: "justinmk/vim-sneak"
-  opt: false
-- 
-  build: "yarn install --frozen-lockfile"
-  category: default
-  local: false
-  name: neoclide/coc.nvim
+  name: "romainl/vim-qf"
   opt: false
 - 
   category: lang
   local: false
   name: "sheerun/vim-polyglot"
-  opt: false
-- 
-  category: default
-  local: false
-  name: "tmsvg/pear-tree"
   opt: false
 - 
   category: default

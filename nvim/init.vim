@@ -1,12 +1,16 @@
 " [1] SETTINGS
 " ============
-set nocompatible
-let mapleader = "\<Space>"
+if &compatible
+  set nocompatible
+endif
+
 filetype plugin indent on
 syntax on
-set encoding=utf-8 nobomb
+
+let mapleader = "\<Space>"
 
 " General Settings
+set encoding=utf-8 nobomb
 set autoread " read changes that happen elsewhere
 set autowriteall " Automatically write everything
 set backspace=indent,eol,start " Backspacebhavior
@@ -23,6 +27,7 @@ set splitright
 set timeoutlen=300 ttimeoutlen=100 " Shorten the time to complete map sequences
 set visualbell
 set whichwrap=b,h,l,s,<,>,[,],~       " allow <BS>/h/l/<Left>/<Right>/<Space>, ~ to cross line boundaries
+set completeopt=menuone,noselect,noinsert
 
 " Tabs and indent behavior
 set autoindent
@@ -36,11 +41,10 @@ set tabstop=2
 " Display
 set cursorline
 set modelines=0
-set noshowmode " Dont show current mode
+set noshowmode
 set showcmd
-set number
-set ruler
 set title
+set titlestring='•ᴗ•'
 set tw=100
 set updatetime=300
 
@@ -64,14 +68,19 @@ set magic " use regex special chars
 set ignorecase " ignore case
 set smartcase " ...if all chars are lowercase
 
-" Popup menu options
+" menu options
 set wildmenu
 set wildmode=full
+set wildcharm=<C-z>
 
 " No backup files, live on the edge
 set directory^=$HOME/.vim/tmp//
 set nobackup
 set noswapfile
+
+set diffopt&
+      \ diffopt+=vertical
+      \ diffopt+=hiddenoff
 
 " Nicer vertical splits
 let &fillchars='vert: ,fold:·'
@@ -79,9 +88,8 @@ let &listchars='tab:| ,eol:¬,trail:⣿,extends:→,precedes:←'
 
 " Colors
 set termguicolors
-if filereadable(expand("~/.config/nvim/colorscheme.vim"))
-  source ~/.config/nvim/colorscheme.vim
-endif
+let g:gruvbox_contrast_dark='hard'
+colorscheme gruvbox
 
 " Opt into some optional vim stuff
 packadd cfilter
@@ -90,7 +98,8 @@ runtime macros/matchit.vim
 " Setup specific settings
 if executable('rg')
   set grepprg=rg\ --vimgrep\ --smart-case
-  set grepformat=%f:%l:%c:%m
+  command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr fun#grep(<q-args>)
+  command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr fun#grep(<q-args>)
 endif
 
 if has('persistent_undo')
@@ -99,7 +108,7 @@ if has('persistent_undo')
 endif
 
 if exists('&inccommand')
-  set inccommand=nosplit " (neovim) specific, live substitutin preview
+  set inccommand=nosplit
 endif
 
 
@@ -109,27 +118,16 @@ endif
 xnoremap ; :
 
 inoremap kj <Esc>
+cnoremap kj <Esc>
+
 nnoremap <silent> j gj
 nnoremap <silent> k gk
-nnoremap <silent> <Leader>w :update<CR> :echo "write @ " . strftime("%X")<CR>
-nnoremap <silent> ZA :silent qa!<CR>
-
-" Vim Antipatterns
-inoremap <Esc> <nop>
-noremap <Up> <nop>
-noremap <Down> <nop>
-noremap <Left> <nop>
-noremap <Right> <nop>
-
-" faster viewport scrolling
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
+nnoremap <silent> <Leader>w :silent w<CR> :echo "✨ " . strftime("%X")<CR>
 
 " Buffers
-nnoremap <silent> <Leader>bn :bn<CR>
-nnoremap <silent> <Leader>bd :bd<CR>
-nnoremap <silent> <Leader>bp :bp<CR>
-nnoremap <silent> <Leader>bb :ls<CR>:b<Space>
+nnoremap <silent> <Leader>x :bd!<CR>
+nnoremap <silent> <Leader><Leader> <C-^>
+nnoremap <silent> <Tab> :bn<CR>
 
 " Windows
 nnoremap <silent> <Leader>wd :silent close<CR>
@@ -140,28 +138,39 @@ nnoremap <silent> <Leader>wj :silent wincmd j<CR>
 nnoremap <silent> <Leader>wk :silent wincmd k<CR>
 nnoremap <silent> <Leader>wl :silent wincmd l<CR>
 
-nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
-nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+" tab through search candidates
+cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>/<C-r>/" : "<C-z>"
+cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>?<C-r>/" : "<S-Tab>"
 
-" Use tab and shift tab to indent and de-indent code
-nnoremap <Tab>   >>
-nnoremap <S-Tab> <<
-xnoremap <Tab>   >><Esc>gV
-xnoremap <S-Tab> <<<Esc>gV
+" tab through completion options
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<C-l>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
 
 " Find and replace in 'paragraph'
 nnoremap <Leader>rw :'{,'}s/\<<C-r>=expand("<cword>")<CR>\>/
 " Find and replace cursor word in buffer
 nnoremap <Leader>ra :%s/\<<C-r>=expand("<cword>")<CR>\>/
+
 " Grep w/ Rg
 nnoremap <Leader>/ :Grep<Space>
 nnoremap <Leader>* :Grep <C-R>=expand("<cword>")<CR><CR>
+
+" increment / decrement
+nnoremap + <C-a>
+nnoremap _ <C-x>
+
+" natural changing
+nnoremap ,, *``cgn
+
+" resizing mad easy
+nnoremap <silent> <Leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
 
 " Plugin mappings
 nnoremap <silent> <Leader>ff :call FuzzFile()<CR>
 nnoremap <silent> <Leader>fb :call FuzzBuf()<CR>
 nnoremap <silent> <Leader>tt :call fun#toggle_term(10)<cr>
-nnoremap <silent> H :call CocActionAsync('doHover')<cr>
 
 
 " [3] AUTOCMDS
@@ -174,6 +183,8 @@ augroup Groupie
   autocmd BufWritePre * call fun#trim()
   " Resize splits when the window is resized
   autocmd VimResized * :wincmd =
+  " close popup on completion finish
+  autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 augroup END
 
 augroup Term
@@ -188,13 +199,11 @@ augroup END
 
 "  Quickfix specifics, useful for grepping
 " ========================================
-command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr fun#grep(<q-args>)
-command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr fun#grep(<q-args>)
 augroup Qf
   " Automatically open quickfix window
-	autocmd!
-	autocmd QuickFixCmdPost cgetexpr cwindow
-	autocmd QuickFixCmdPost lgetexpr lwindow
+  autocmd!
+  autocmd QuickFixCmdPost cgetexpr cwindow
+  autocmd QuickFixCmdPost lgetexpr lwindow
 augroup END
 
 " Correct syntax for incorrect filetypes
@@ -213,13 +222,3 @@ augroup MyRc
   autocmd BufWritePost *vimrc\|*init.vim source $MYVIMRC
   autocmd BufEnter .vimrc set ft=vim
 augroup END
-
-
-" [4] FUNCTIONS
-" =============
-function! SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunction
