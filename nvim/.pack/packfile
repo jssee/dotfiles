@@ -61,6 +61,11 @@
 - 
   category: default
   local: false
+  name: "tpope/vim-ragtag"
+  opt: false
+- 
+  category: default
+  local: false
   name: "tpope/vim-repeat"
   opt: false
 - 

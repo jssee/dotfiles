@@ -7,15 +7,26 @@ if executable('typescript-language-server')
     "             \ })
 endif
 
+if executable('css-languageserver')
+  call nvim_lsp#setup("cssls", {})
+endif
+
+function! Format(type, ...)
+  normal! '[v']gq
+  call winrestview(b:gqview)
+  unlet b:gqview
+endfunction
+
 function! LSPSetMappings()
   nnoremap <silent> <buffer> K :call lsp#text_document_hover()<CR>
   nnoremap <silent> <buffer> <leader>D :call lsp#text_document_definition()<CR>
   setlocal omnifunc=lsp#omnifunc
-  setlocal formatprg=prettier\ --parser=babel
+  nmap <silent> GQ :let b:gqview = winsaveview()<CR>:set opfunc=Format<CR>g@
 endfunction
 
 augroup lsp
   autocmd!
-  au FileType typescript,typescriptreact,javascript,javascriptreact,html,css :call LSPSetMappings()
+  autocmd FileType typescript,typescriptreact,javascript,javascriptreact,html,css :call LSPSetMappings()
+  autocmd BufWritePre typescript,typescriptreact,javascript,javascriptreact,html,css :call :norm ggGQG
 augroup END
 
