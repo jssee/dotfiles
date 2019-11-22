@@ -128,6 +128,7 @@ nnoremap <silent> <Leader>w :silent w<CR> :echo "✨ " . strftime("%X")<CR>
 nnoremap <silent> <Leader>x :bd!<CR>
 nnoremap <silent> <Leader><Leader> <C-^>
 nnoremap <silent> <Tab> :bn<CR>
+nnoremap <silent> <S-Tab> :bn<CR>
 
 " Windows
 nnoremap <silent> <Leader>wd :silent close<CR>
