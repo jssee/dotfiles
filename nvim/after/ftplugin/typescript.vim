@@ -1,3 +1,4 @@
+
 if !exists('b:did_typescript_setup')
     " node_modules
     let node_modules = finddir('node_modules', '.;', -1)

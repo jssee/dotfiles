@@ -9,11 +9,6 @@
   name: SirVer/ultisnips
   opt: false
 - 
-  category: colors
-  local: false
-  name: "gruvbox-community/gruvbox"
-  opt: false
-- 
   category: default
   local: false
   name: "jiangmiao/auto-pairs"
@@ -57,11 +52,6 @@
   category: default
   local: false
   name: "tpope/vim-fugitive"
-  opt: false
-- 
-  category: default
-  local: false
-  name: "tpope/vim-ragtag"
   opt: false
 - 
   category: default
