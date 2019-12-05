@@ -89,7 +89,7 @@ let &listchars='tab:| ,eol:¬,trail:⣿,extends:→,precedes:←'
 " Colors
 set termguicolors
 let g:gruvbox_contrast_dark='hard'
-colorscheme gruvbox
+colorscheme bruin
 
 " Opt into some optional vim stuff
 packadd cfilter
@@ -144,8 +144,8 @@ cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>/<C-
 cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>?<C-r>/" : "<S-Tab>"
 
 " tab through completion options
-inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<C-l>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 
 " Find and replace in 'paragraph'
