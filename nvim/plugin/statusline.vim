@@ -166,7 +166,9 @@ func! s:create_statusline(mode)
   exe 'setlocal statusline=' . join(parts, '')
 endfunc
 
+
 augroup mystatusline
+  hi StatusLineNC guibg=#f7f0ce
   autocmd WinEnter,BufWinEnter * call s:create_statusline('Active')
   autocmd WinLeave * call s:create_statusline('Inactive')
 augroup END

@@ -88,8 +88,8 @@ let &listchars='tab:| ,eol:¬,trail:⣿,extends:→,precedes:←'
 
 " Colors
 set termguicolors
-let g:gruvbox_contrast_dark='hard'
-colorscheme bruin
+let g:gruvbox_material__contrast_dark='hard'
+colorscheme gruvbox-material
 
 " Opt into some optional vim stuff
 packadd cfilter

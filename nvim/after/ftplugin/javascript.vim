@@ -8,8 +8,3 @@ if executable('eslint')
   augroup END
 endif
 
-if executable('prettier')
-  setlocal formatprg=prettier\ --parser\ babel
-  autocmd BufWritePre <buffer> silent :normal ggGQG
-endif
-

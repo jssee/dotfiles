@@ -24,9 +24,10 @@
   name: "justinmk/vim-dirvish"
   opt: false
 - 
+  build: git checkout release
   category: default
   local: false
-  name: "neovim/nvim-lsp"
+  name: neoclide/coc.nvim
   opt: false
 - 
   category: default
