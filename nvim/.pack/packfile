@@ -72,5 +72,10 @@
 - 
   category: default
   local: false
+  name: "unblevable/quick-scope"
+  opt: false
+- 
+  category: default
+  local: false
   name: wellle/targets.vim
   opt: false

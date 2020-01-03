@@ -88,8 +88,7 @@ let &listchars='tab:| ,eol:¬,trail:⣿,extends:→,precedes:←'
 
 " Colors
 set termguicolors
-let g:gruvbox_material__contrast_dark='hard'
-colorscheme gruvbox-material
+colorscheme bruin
 
 " Opt into some optional vim stuff
 packadd cfilter
@@ -114,7 +113,8 @@ endif
 
 " [2] MAPPINGS
 " ============
-:nmap ; :
+nnoremap ; :
+nnoremap : ;
 xnoremap ; :
 
 inoremap kj <Esc>

@@ -14,26 +14,18 @@ source $HOME/dotfiles/shell/prompt.sh # Pure by Sindre Sorhus
 source $HOME/dotfiles/shell/plugins/z.sh
 source $HOME/dotfiles/shell/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# asdf
-autoload -Uz compinit && compinit
-
-export NNN_NO_AUTOSELECT=1
-
-
 # hub alias
 eval "$(hub alias -s)"
 
 # Pack install directory
 export VIM_CONFIG_PATH="$HOME/dotfiles/nvim/"
 
-# Base16 Shell
-BASE16_SHELL="$HOME/.base16-manager/chriskempson/base16-shell/"
-[ -n "$PS1" ] && \
-    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
-        eval "$("$BASE16_SHELL/profile_helper.sh")"
-
 export NNN_USE_EDITOR=1
+export NNN_NO_AUTOSELECT=1
 
-. $HOME/.asdf/asdf.sh
+# asdf
+autoload -Uz compinit && compinit
 
-. $HOME/.asdf/completions/asdf.bash
+. /usr/local/opt/asdf/asdf.sh
+
+. /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
