@@ -8,7 +8,8 @@ alias ls="lsd -a --color=never --date=relative --icon=never"
 alias l="ls -la"
 
 alias c="clear"
-alias v="nvim"
+alias vv="nvim"
+alias v="\$EDITOR \$(fd --type f | fzy)"
 alias oo="open ."
 
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
