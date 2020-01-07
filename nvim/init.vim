@@ -143,13 +143,16 @@ nnoremap <silent> <Leader>wl :silent wincmd l<CR>
 cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>/<C-r>/" : "<C-z>"
 cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>?<C-r>/" : "<S-Tab>"
 
+" use space as incremental fuzzy search
+cnoremap <expr> <space> '/?' =~ getcmdtype() ? ".*" : "<space>"
+
 " tab through completion options
 inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-
 " Find and replace in 'paragraph'
 nnoremap <Leader>rw :'{,'}s/\<<C-r>=expand("<cword>")<CR>\>/
+
 " Find and replace cursor word in buffer
 nnoremap <Leader>ra :%s/\<<C-r>=expand("<cword>")<CR>\>/
 
