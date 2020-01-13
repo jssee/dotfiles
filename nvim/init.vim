@@ -126,6 +126,8 @@ nnoremap n nzvzz
 nnoremap N Nzvzz
 nnoremap * *zvzz
 nnoremap # #zvzz
+nnoremap 0 ^
+nnoremap ^ 0
 nnoremap <silent> <Leader>w :silent w<CR> :echo "✨ " . strftime("%X")<CR>
 
 " Buffers
