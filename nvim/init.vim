@@ -11,22 +11,22 @@ let mapleader = "\<Space>"
 
 " General Settings
 set encoding=utf-8 nobomb
-set autoread " read changes that happen elsewhere
-set autowriteall " Automatically write everything
-set backspace=indent,eol,start " Backspacebhavior
-set breakindent " Indents wrapped lines
+set autoread
+set autowriteall
+set backspace=indent,eol,start
+set breakindent
 set clipboard=unnamed
 set formatoptions+=t
 set hidden
-set lazyredraw " Dont redraw during macros
-set mouse=a " Use the mouse
+set lazyredraw
+set mouse=a
 set noerrorbells
-set scrolloff=10
+set scrolloff=999
 set splitbelow
 set splitright
-set timeoutlen=300 ttimeoutlen=100 " Shorten the time to complete map sequences
+set timeoutlen=300 ttimeoutlen=100
 set visualbell
-set whichwrap=b,h,l,s,<,>,[,],~       " allow <BS>/h/l/<Left>/<Right>/<Space>, ~ to cross line boundaries
+set whichwrap=b,h,l,s,<,>,[,],~
 set completeopt=menuone,noselect,noinsert
 
 " Tabs and indent behavior
@@ -62,11 +62,11 @@ set foldmethod=indent
 set foldlevelstart=999
 
 " Search
-set incsearch " typeahead
-set infercase " case sensitive completion
-set magic " use regex special chars
-set ignorecase " ignore case
-set smartcase " ...if all chars are lowercase
+set incsearch
+set infercase
+set magic
+set ignorecase
+set smartcase
 
 " menu options
 set wildmenu
@@ -122,6 +122,10 @@ cnoremap kj <Esc>
 
 nnoremap <silent> j gj
 nnoremap <silent> k gk
+nnoremap n nzvzz
+nnoremap N Nzvzz
+nnoremap * *zvzz
+nnoremap # #zvzz
 nnoremap <silent> <Leader>w :silent w<CR> :echo "✨ " . strftime("%X")<CR>
 
 " Buffers
@@ -189,6 +193,8 @@ augroup Groupie
   autocmd VimResized * :wincmd =
   " close popup on completion finish
   autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+  " open help as a vert split
+  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
 augroup END
 
 augroup Term
@@ -208,6 +214,7 @@ augroup Qf
   autocmd!
   autocmd QuickFixCmdPost cgetexpr cwindow
   autocmd QuickFixCmdPost lgetexpr lwindow
+  autocmd Filetype qf setlocal nonumber
 augroup END
 
 " Correct syntax for incorrect filetypes
