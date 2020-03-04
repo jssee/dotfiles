@@ -1,2 +1,2 @@
-highlight QuickScopePrimary guifg=#ffffff gui=underline,bold ctermfg=155 cterm=underline
-highlight QuickScopeSecondary guifg=NONE gui=underline ctermfg=81 cterm=underline
+highlight QuickScopePrimary  gui=underline,bold cterm=underline
+highlight QuickScopeSecondary gui=underline cterm=underline
