@@ -27,5 +27,3 @@ export NNN_NO_AUTOSELECT=1
 autoload -Uz compinit && compinit
 
 . /usr/local/opt/asdf/asdf.sh
-
-. /usr/local/opt/asdf/etc/bash_completion.d/asdf.bash
