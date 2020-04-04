@@ -33,9 +33,8 @@ function! fun#toggle_term(height)
   endif
 endfunction
 
-function! fun#grep(args)
-  let args = split(a:args, ' ')
-  return system(join([&grepprg, shellescape(args[0]), get(args, 1, '')], ' '))
+function! fun#grep(...)
+  return system(join(extend([&grepprg], a:000), ' '))
 endfunction
 
 " Fuzzy find project files and buffers

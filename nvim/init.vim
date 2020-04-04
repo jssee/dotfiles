@@ -98,6 +98,7 @@ runtime macros/matchit.vim
 if executable('rg')
   set grepprg=rg\ --vimgrep\ --smart-case
 endif
+
 command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr fun#grep(<q-args>)
 command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr fun#grep(<q-args>)
 
