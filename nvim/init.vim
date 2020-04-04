@@ -97,9 +97,9 @@ runtime macros/matchit.vim
 " Setup specific settings
 if executable('rg')
   set grepprg=rg\ --vimgrep\ --smart-case
-  command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr fun#grep(<q-args>)
-  command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr fun#grep(<q-args>)
 endif
+command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr fun#grep(<q-args>)
+command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr fun#grep(<q-args>)
 
 if has('persistent_undo')
   set undodir=~/.undodir/
@@ -134,7 +134,7 @@ nnoremap <silent> <Leader>w :silent w<CR> :echo "✨ " . strftime("%X")<CR>
 nnoremap <silent> <Leader>x :bd!<CR>
 nnoremap <silent> <Leader><Leader> <C-^>
 nnoremap <silent> <Tab> :bn<CR>
-nnoremap <silent> <S-Tab> :bn<CR>
+nnoremap <silent> <S-Tab> :bp<CR>
 
 " Windows
 nnoremap <silent> <Leader>wd :silent close<CR>
