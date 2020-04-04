@@ -114,7 +114,7 @@ endif
 " [2] MAPPINGS
 " ============
 nnoremap ; :
-nnoremap : ;
+nnoremap , ;
 xnoremap ; :
 
 inoremap kj <Esc>
