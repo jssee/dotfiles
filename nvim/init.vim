@@ -171,7 +171,7 @@ nnoremap + <C-a>
 nnoremap _ <C-x>
 
 " natural changing
-nnoremap ,, *``cgn
+nnoremap ** *``cgn
 
 " resizing mad easy
 nnoremap <silent> <Leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
