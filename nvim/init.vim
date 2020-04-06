@@ -124,7 +124,7 @@ nnoremap <silent> j gj
 nnoremap <silent> k gk
 nnoremap n nzvzz
 nnoremap N Nzvzz
-nnoremap * *zvzz
+nnoremap * *zvzzN
 nnoremap # #zvzz
 nnoremap 0 ^
 nnoremap ^ 0
@@ -137,13 +137,13 @@ nnoremap <silent> <Tab> :bn<CR>
 nnoremap <silent> <S-Tab> :bp<CR>
 
 " Windows
-nnoremap <silent> <Leader>wd :silent close<CR>
+nnoremap <silent> <Leader>wx :silent close<CR>
 nnoremap <silent> <Leader>w- :silent sp<CR>
 nnoremap <silent> <Leader>w/ :silent vsp<CR>
-nnoremap <silent> <Leader>wh :silent wincmd h<CR>
-nnoremap <silent> <Leader>wj :silent wincmd j<CR>
-nnoremap <silent> <Leader>wk :silent wincmd k<CR>
-nnoremap <silent> <Leader>wl :silent wincmd l<CR>
+nnoremap <silent> <C-h> :wincmd h<CR>
+nnoremap <silent> <C-j> :wincmd j<CR>
+nnoremap <silent> <C-k> :wincmd k<CR>
+nnoremap <silent> <C-l> :wincmd l<CR>
 
 " tab through search candidates
 cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>/<C-r>/" : "<C-z>"
