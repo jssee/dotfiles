@@ -1,10 +1,16 @@
-if executable('eslint')
-  setlocal errorformat=%f:\ line\ %l\\,\ col\ %c\\,\ %m,%-G%.%#
-  setlocal makeprg=eslint\ --format\ compact
+setlocal autoread
+setlocal errorformat+=%f:\ line\ %l\\,\ col\ %c\\,\ %m,%-G%.%#
 
-  augroup JS
-    autocmd!
-    autocmd BufWritePost <buffer> silent make! <afile> | silent redraw!
-  augroup END
+if executable('eslint')
+  setlocal makeprg=eslint\ --format\ compact
 endif
+
+if executable('prettier')
+  setlocal formatprg=prettier\ --\ --stdin-filepath\ %
+endif
+
+augroup JS
+  autocmd! * <buffer>
+  autocmd BufWritePost <buffer> silent make <afile> | checktime | silent redraw!
+augroup END
 
