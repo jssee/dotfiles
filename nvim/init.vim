@@ -114,7 +114,8 @@ endif
 
 " [2] MAPPINGS
 " ============
-nnoremap <CR> :
+nnoremap ; :
+nnoremap , ;
 xnoremap ; :
 
 inoremap kj <Esc>
@@ -216,7 +217,7 @@ augroup Qf
   autocmd!
   autocmd QuickFixCmdPost cgetexpr cwindow
   autocmd QuickFixCmdPost lgetexpr lwindow
-  autocmd Filetype qf setlocal nonumber | nnoremap <buffer> <CR> <CR>
+  autocmd Filetype qf setlocal nonumber
 augroup END
 
 " Correct syntax for incorrect filetypes
