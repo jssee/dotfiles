@@ -20,9 +20,6 @@ eval "$(hub alias -s)"
 # Pack install directory
 export VIM_CONFIG_PATH="$HOME/dotfiles/nvim/"
 
-export NNN_USE_EDITOR=1
-export NNN_NO_AUTOSELECT=1
-
 # asdf
 autoload -Uz compinit && compinit
 
