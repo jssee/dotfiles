@@ -36,3 +36,9 @@ Thumbs.db
 svn-commit.*
 tags
 TAGS
+
+# node things
+node_modules
+
+# asdf
+.tool_versions
