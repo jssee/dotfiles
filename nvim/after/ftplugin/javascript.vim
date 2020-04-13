@@ -6,10 +6,17 @@ if executable('eslint')
 endif
 
 if executable('prettier')
-  setlocal formatprg=prettier\ --\ --stdin-filepath\ %
+  setlocal formatprg=prettier\ --stdin-filepath\ %
 endif
 
-augroup JS
+let b:match_words = '\<function\>:\<return\>,'
+      \ . '\<do\>:\<while\>,'
+      \ . '\<switch\>:\<case\>:\<default\>,'
+      \ . '\<if\>:\<else\>,'
+      \ . '\<try\>:\<catch\>:\<finally\>'
+
+
+augroup javascript
   autocmd! * <buffer>
   autocmd BufWritePost <buffer> silent make <afile> | checktime | silent redraw!
 augroup END
