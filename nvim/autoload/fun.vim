@@ -34,7 +34,7 @@ function! fun#toggle_term(height)
 endfunction
 
 function! fun#grep(...)
-  return system(join(extend([&grepprg], a:000), ' '))
+  return system(join([&grepprg] + [a:1] + [expandcmd(join(a:000[1:-1], ' '))], ' '))
 endfunction
 
 " Fuzzy find project files and buffers

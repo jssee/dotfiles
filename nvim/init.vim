@@ -96,11 +96,14 @@ runtime macros/matchit.vim
 
 " Setup specific settings
 if executable('rg')
-  set grepprg=rg\ --vimgrep\ --smart-case
+  set grepprg=rg\ --vimgrep
 endif
 
-command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr fun#grep(<q-args>)
-command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr fun#grep(<q-args>)
+command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr fun#grep(<f-args>)
+command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr fun#grep(<f-args>)
+
+cnoreabbrev <expr> grep  (getcmdtype() ==# ':' && getcmdline() ==# 'grep')  ? 'Grep'  : 'grep'
+cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() ==# 'lgrep') ? 'LGrep' : 'lgrep'
 
 if has('persistent_undo')
   set undodir=~/.undodir/
