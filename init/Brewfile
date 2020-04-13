@@ -1,33 +1,26 @@
 cask_args appdir: '/Applications'
 
-tap 'homebrew/services'
 tap 'caskroom/cask'
 tap 'caskroom/versions'
 tap 'homebrew/bundle'
 tap 'homebrew/science'
+tap 'homebrew/services'
+tap 'thoughtbot/formulae'
 
-brew 'git'
-
-brew 'hub'
-
-brew 'tig'
-
-brew 'yarn'
-
-brew 'mas'
-
-brew 'neovim'
-
-brew 'fd'
-
-brew 'fzf'
-
-brew 'kakoune'
-
+brew 'asdf'
 brew 'coreutils'
-
+brew 'emacs'
+brew 'fd'
+brew 'fzf'
+brew 'git'
+brew 'github/gh/gh'
+brew 'hub'
+brew 'kakoune'
+brew 'mas'
+brew 'neovim'
+brew 'ripgrep'
+brew 'tig'
+brew 'yarn'
 cask 'dropbox'
-
-cask 'transmission'
-
 cask 'spectacle'
+cask 'transmission'
