@@ -183,7 +183,7 @@ nnoremap <silent> <Leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
 
 " Plugin mappings
-nnoremap <silent> <Leader>ff :call FuzzFile()<CR>
+nnoremap <silent> <Leader><space> :call FuzzFile()<CR>
 nnoremap <silent> <Leader>fb :call FuzzBuf()<CR>
 nnoremap <silent> <Leader>tt :call fun#toggle_term(10)<cr>
 

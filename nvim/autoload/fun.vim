@@ -60,10 +60,13 @@ function! fun#fuzzy_cmd(choice_command, vim_command) abort
     call delete(self.filename)
   endfunction
 
-  botright 10 new
+  botright 5 new
   let l:term_command = a:choice_command . ' | fzy > ' .  fnameescape(l:callback.filename)
   silent call termopen(l:term_command, l:callback)
-  setlocal nonumber norelativenumber
+  let b:stsline = 'Find file [command: ' . a:vim_command . ']'
+
+  setlocal nonumber norelativenumber statusline=%{b:stsline}
+  setfiletype fzy
   startinsert
 endfunction
 
