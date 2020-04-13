@@ -44,9 +44,10 @@ set modelines=0
 set noshowmode
 set showcmd
 set title
-set titlestring='•ᴗ•'
 set tw=100
 set updatetime=300
+set number
+set showbreak=↳\ \
 
 " Clean up messaging
 set shortmess+=o
@@ -84,7 +85,7 @@ set diffopt&
 
 " Nicer vertical splits
 let &fillchars='vert: ,fold:·'
-let &listchars='tab:| ,eol:¬,trail:⣿,extends:→,precedes:←'
+let &listchars='tab:→\,space:⋅,trail:⣿,extends:→,precedes:←'
 
 " Colors
 set termguicolors
