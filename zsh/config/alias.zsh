@@ -1,0 +1,13 @@
+alias ..='cd ..'
+alias ...='cd ../..'
+alias l="ls -la"
+alias c="clear"
+alias vv="nvim"
+alias v="\$EDITOR \$(fd --type f | fzy)"
+alias oo="open ."
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
+alias show='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+alias hide='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+alias lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'

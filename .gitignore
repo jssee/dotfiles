@@ -8,13 +8,13 @@
 ehthumbs.db
 Thumbs.db
 # PACK
-nvim/plugin/__pack.vim
-nvim/plugin/_pack.vim
-nvim/pack/*
+config/nvim/plugin/__pack.vim
+config/nvim/plugin/_pack.vim
+config/nvim/pack/*
 vim/pack/*
 !vim/pack/minpac/*
-!nvim/pack/.gitkeep
+!config/nvim/pack/.gitkeep
 doc/tags
-nvim/colorscheme.vim
+config/nvim/colorscheme.vim
 vim/colorscheme.vim
-kak/plugins/*
+config/kak/plugins/*

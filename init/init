@@ -1,6 +1,0 @@
-#!/bin/sh
-
-cd ~
-curl --remote-name https://raw.githubusercontent.com/jssee/dotfiles/master/init/bootstrap
-curl --remote-name https://raw.githubusercontent.com/jssee/dotfiles/master/init/Brewfile
-/usr/bin/env bash bootstrap 2>&1 | tee ~/bootstrap.log

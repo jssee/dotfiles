@@ -1,0 +1,2 @@
+SYMLINK_DIRS="pack plugins"
+EXCLUDES="README.md"
