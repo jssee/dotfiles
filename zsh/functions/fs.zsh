@@ -1,5 +1,5 @@
 # $ size dir1 file2.js
-function size() {
+function fs() {
   # du -sh "$@" 2>&1 | grep -v '^du:' | sort -nr
   du -shck "$@" | sort -rn | awk '
       function human(x) {
