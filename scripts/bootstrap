@@ -187,3 +187,5 @@ if [ ! -d "$HOME/.dotfiles/" ]; then
   cd ~/.dotfiles
   env RCRC=$HOME/.dotfiles/rcrc rcup -f -v
 fi
+
+fancy_echo "All done!"

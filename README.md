@@ -11,5 +11,5 @@ Simply kickoff the ol' init script, browse the `scripts` folder to see what it
 does. Innit nice?:
 
 ```
-curl --silent https://raw.githubusercontent.com/jssee/dotfiles/master/scripts/init | sh
+curl --remote-name https://raw.githubusercontent.com/jssee/dotfiles/master/scripts/init | sh
 ```
