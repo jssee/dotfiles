@@ -1,7 +1,5 @@
 cask_args appdir: '/Applications'
 
-tap 'homebrew/cask-cask'
-tap 'homebrew/cask-version'
 tap 'homebrew/bundle'
 tap 'homebrew/services'
 tap 'thoughtbot/formulae'
