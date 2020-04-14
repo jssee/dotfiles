@@ -11,15 +11,3 @@ function size() {
       {gsub(/^[0-9]+/, human($1)); print}'
 }
 
-# Make a directory and cd into it
-function mkd() {
-  mkdir -p "$@" && cd "$_";
-}
-
-function fb() {
-  local branches branch
-  branches=$(git branch -a) &&
-    branch=$(echo "$branches" | fzy ) &&
-    git checkout $(echo "$branch" | sed "s:.* remotes/origin/::" | sed "s:.* ::")
-}
-

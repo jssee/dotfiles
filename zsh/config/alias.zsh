@@ -11,3 +11,4 @@ alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
 alias show='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 alias hide='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
 alias lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
+alias sup='git push -u origin $(git symbolic-ref --short HEAD)'

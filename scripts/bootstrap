@@ -1,15 +1,25 @@
-#!/bin/bash
+#!/bin/sh
 
-info() {
+fancy_echo() {
   local fmt="$1"; shift
 
   # shellcheck disable=SC2059
-  printf "\n$fmt\n" "$@"
+  printf "\\n$fmt\\n" "$@"
 }
 
-change_shell_to_zsh() {
-  info "Please enter your password to continue."
-  chsh -s "$(which zsh)"
+append_to_zshenv() {
+  local text="$1" zshenv
+  local skip_new_line="${2:-0}"
+
+  zshenv="$HOME/.zshenv"
+
+  if ! grep -Fqs "$text" "$zshenv"; then
+    if [ "$skip_new_line" -eq 1 ]; then
+      printf "%s\\n" "$text" >> "$zshenv"
+    else
+      printf "\\n%s\\n" "$text" >> "$zshenv"
+    fi
+  fi
 }
 
 # shellcheck disable=SC2154
@@ -21,54 +31,140 @@ if [ ! -d "$HOME/.bin/" ]; then
   mkdir "$HOME/.bin"
 fi
 
+if [ ! -f "$HOME/.zshrc" ]; then
+  touch "$HOME/.zshrc"
+fi
+
+if [ ! -f "$HOME/.zshenv" ]; then
+  touch "$HOME/.zshenv"
+fi
+
+# shellcheck disable=SC2016
+append_to_zshenv 'export PATH="$HOME/.bin:$PATH"'
+
+HOMEBREW_PREFIX="/usr/local"
+
+if [ -d "$HOMEBREW_PREFIX" ]; then
+  if ! [ -r "$HOMEBREW_PREFIX" ]; then
+    sudo chown -R "$LOGNAME:admin" /usr/local
+  fi
+else
+  sudo mkdir "$HOMEBREW_PREFIX"
+  sudo chflags norestricted "$HOMEBREW_PREFIX"
+  sudo chown -R "$LOGNAME:admin" "$HOMEBREW_PREFIX"
+fi
+
+update_shell() {
+  local shell_path;
+  shell_path="$(command -v zsh)"
+
+  fancy_echo "Changing your shell to zsh ..."
+  if ! grep "$shell_path" /etc/shells > /dev/null 2>&1 ; then
+    fancy_echo "Adding '$shell_path' to /etc/shells"
+    sudo sh -c "echo $shell_path >> /etc/shells"
+  fi
+  sudo chsh -s "$shell_path" "$USER"
+}
+
+case "$SHELL" in
+  */zsh)
+    if [ "$(command -v zsh)" != '/usr/local/bin/zsh' ] ; then
+      update_shell
+    fi
+    ;;
+  *)
+    update_shell
+    ;;
+esac
+
 if ! command -v brew >/dev/null; then
-  info "Installing Homebrew ..."
+  fancy_echo "Installing Homebrew ..."
     curl -fsS \
       'https://raw.githubusercontent.com/Homebrew/install/master/install' | ruby
 
-else
-  info "Homebrew already installed. Skipping ..."
+    append_to_zshenv '# recommended by brew doctor'
+
+    # shellcheck disable=SC2016
+    append_to_zshenv 'export PATH="/usr/local/bin:$PATH"' 1
+
+    export PATH="/usr/local/bin:$PATH"
 fi
 
-info "Verifying the Homebrew installation..."
-if brew doctor; then
-  info "Your Homebrew installation is good to go."
-else
-  info "Your Homebrew installation reported some errors or warnings."
-  echo "Review the Homebrew messages to see if any action is needed."
+if brew list | grep -Fq brew-cask; then
+  fancy_echo "Uninstalling old Homebrew-Cask ..."
+  brew uninstall --force brew-cask
 fi
 
-info "Installing formulas and casks from the Brewfile ..."
-if brew bundle --file="$HOME/Brewfile"; then
-  info "All formulas and casks were installed successfully."
-else
-  info "Some formulas or casks failed to install."
-  echo "This is usually due to one of the Mac apps being already installed,"
-  echo "in which case, you can ignore these errors."
-fi
+fancy_echo "Updating Homebrew formulae ..."
+brew update --force # https://github.com/Homebrew/brew/issues/1151
+brew bundle --file=- <<EOF
+tap "homebrew/services"
+tap "thoughtbot/formulae"
+tap "maralla/pack"
 
-info "Configuring asdf version manager..."
-# install and setup asdf vm
-install_asdf_plugin() {
+# Unix
+brew "emacs"
+brew "fd"
+brew "fzy"
+brew "git"
+brew "kakoune"
+brew "neovim"
+brew "openssl"
+brew "pack"
+brew "rcm"
+brew "ripgrep"
+brew "vim"
+brew "zsh"
+
+# GitHub
+brew "hub"
+brew "tig"
+brew "github/gh/gh"
+
+# Image manipulation
+brew "imagemagick"
+
+# Programming language prerequisites and package managers
+brew "libyaml" # should come after openssl
+brew "coreutils"
+brew "yarn"
+brew "asdf"
+brew "zplug"
+
+cask "dropbox"
+cask "spectacle"
+cask "dash"
+
+EOF
+
+fancy_echo "Getting ready for vim plugins later on..."
+brew unlink pack
+brew link --force pack
+
+fancy_echo "Configuring asdf version manager ..."
+alias install_asdf_plugin=add_or_update_asdf_plugin
+add_or_update_asdf_plugin() {
   local name="$1"
   local url="$2"
 
   if ! asdf plugin-list | grep -Fq "$name"; then
     asdf plugin-add "$name" "$url"
+  else
+    asdf plugin-update "$name"
   fi
 }
 
 # shellcheck disable=SC1090
-install_asdf_plugin "ruby" "https://github.com/asdf-vm/asdf-ruby.git"
-install_asdf_plugin "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"
-install_asdf_plugin "elixir" "https://github.com/asdf-vm/asdf-elixir.git"
-install_asdf_plugin "elm" "https://github.com/asdf-community/asdf-elm.git"
-install_asdf_plugin "golang" "https://github.com/kennyp/asdf-golang.git"
+add_or_update_asdf_plugin "elixir" "https://github.com/asdf-vm/asdf-elixir.git"
+add_or_update_asdf_plugin "elm" "https://github.com/asdf-community/asdf-elm.git"
+add_or_update_asdf_plugin "golang" "https://github.com/kennyp/asdf-golang.git"
+add_or_update_asdf_plugin "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"
+add_or_update_asdf_plugin "ruby" "https://github.com/asdf-vm/asdf-ruby.git"
 
 install_asdf_language() {
   local language="$1"
   local version
-  version="$(asdf list-all "$language" | tail -1)"
+  version="$(asdf list-all "$language" | grep -v "[a-z]" | tail -1)"
 
   if ! asdf list "$language" | grep -Fq "$version"; then
     asdf install "$language" "$version"
@@ -76,17 +172,18 @@ install_asdf_language() {
   fi
 }
 
-# set up vim plugins
-info "Configuring vim plugins"
-if pack; then
-  pack install
+fancy_echo "Installing latest Node ..."
+bash "$HOME/.asdf/plugins/nodejs/bin/import-release-team-keyring"
+install_asdf_language "nodejs"
+
+if [ -f "$HOME/.laptop.local" ]; then
+  fancy_echo "Running your customizations from ~/.laptop.local ..."
+  # shellcheck disable=SC1090
+  . "$HOME/.laptop.local"
 fi
 
-info "Almost done..."
-if [ ! -d "$HOME/.dotfiles" ]; then
-  git clone https://github.com/jssee/dotfiles.git ~/.dotfiles
-  cd .dotfiles
-  RCRC=rcrc rcup -v
+if [ ! -d "$HOME/.dotfiles/" ]; then
+  git clone git@github.com:jssee/dotfiles.git ~/.dotfiles
+  cd ~/.dotfiles
+  env RCRC=$HOME/.dotfiles/rcrc rcup -f -v
 fi
-
-info 'All done!'

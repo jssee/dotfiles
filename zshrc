@@ -16,8 +16,12 @@ fi
 
 zplug load
 
-for zsh_source in $HOME/.zsh/config/*.zsh; do
-  source $zsh_source
+for function in $HOME/.zsh/functions/*.zsh; do
+  source $function
+done
+
+for config in $HOME/.zsh/config/*.zsh; do
+  source $config
 done
 
 # hub alias
