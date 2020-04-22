@@ -131,9 +131,11 @@ brew "yarn"
 brew "asdf"
 brew "zplug"
 
-cask "dropbox"
-cask "spectacle"
 cask "dash"
+cask "dropbox"
+cask "kap"
+cask "spectacle"
+cask "vimr"
 
 EOF
 
