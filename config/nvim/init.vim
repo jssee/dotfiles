@@ -137,7 +137,7 @@ nnoremap <silent> <Leader>w :silent w<CR> :echo "✨ " . strftime("%X")<CR>
 
 " Buffers
 nnoremap <silent> <Leader>x :bd!<CR>
-nnoremap <silent> <Leader><Leader> <C-^>
+nnoremap <silent> <BS> <C-^>
 nnoremap <silent> <Tab> :bn<CR>
 nnoremap <silent> <S-Tab> :bp<CR>
 
