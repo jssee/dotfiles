@@ -9,3 +9,4 @@ export EDITOR="/usr/local/bin/nvim"
 
 export ZPLUG_HOME=/usr/local/opt/zplug
 
+export REVIEW_BASE=master
