@@ -1,5 +1,6 @@
 source $ZPLUG_HOME/init.zsh
 
+zplug zplug/zplug, hook-build:'zplug --self-manage'
 zplug rupa/z, use:z.sh
 zplug mafredri/zsh-async, use:async.zsh
 zplug sindresorhus/pure, use:pure.zsh, as:theme

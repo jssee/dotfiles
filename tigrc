@@ -1,3 +1,4 @@
 set tab-size = 2
 bind main R !git rebase -i %(commit)^
 bind diff R !git rebase -i %(commit)^
+bind stage <Enter> :/^@@
