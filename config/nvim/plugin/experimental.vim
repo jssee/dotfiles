@@ -15,7 +15,7 @@ nmap <silent> GQ :let w:gqview = winsaveview()<CR>:set opfunc=Format<CR>g@
 
 " Quickfix alternative to :g/foo/#
 set errorformat^=%f:%l:%c\ %m
-command! -nargs=1 Global cexpr! filter(map(getline(1,'$'), 'expand("%") . ":" . v:key . ":1 " . v:val'), { idx, val -> val =~ <q-args> })
+command! -nargs=1 Global lgetexpr filter(map(getline(1,'$'), {key, val -> expand("%") . ":" . (key + 1) . ":1 " . val }), { idx, val -> val =~ <q-args> })
 
 function! Substitute(type, ...)
 	let cur = getpos("''")
@@ -24,13 +24,12 @@ function! Substitute(type, ...)
 	execute "'[,']s/" . cword . "/" . input(cword . '/')
 	call cursor(cur[1], cur[2])
 endfunction
-" nmap <silent> <key> m':set opfunc=Substitute<CR>g@
+nmap <silent> su m':set opfunc=Substitute<CR>g@
 
 function! Sort(type, ...)
     '[,']sort
 endfunction
-" nmap <silent> <key> :set opfunc=Sort<CR>g@
-
+nmap <silent> so :set opfunc=Sort<CR>g@
 
 
 function! CCR()
