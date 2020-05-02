@@ -133,6 +133,10 @@ nnoremap * *zvzzN
 nnoremap # #zvzz
 nnoremap 0 ^
 nnoremap ^ 0
+nnoremap gg mpgg
+nnoremap G mpG
+nnoremap / mp/
+
 nnoremap <silent> <Leader>w :silent w<CR> :echo "✨ " . strftime("%X")<CR>
 
 " Buffers
