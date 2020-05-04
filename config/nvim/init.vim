@@ -1,5 +1,3 @@
-" [1] SETTINGS
-" ============
 if &compatible
   set nocompatible
 endif
@@ -7,104 +5,68 @@ endif
 filetype plugin indent on
 syntax on
 
-let mapleader = "\<Space>"
+set termguicolors
+colorscheme substrata
 
-" General Settings
-set encoding=utf-8 nobomb
 set autoread
 set autowriteall
 set backspace=indent,eol,start
 set breakindent
 set clipboard=unnamed
-set formatoptions+=t
-set hidden
-set lazyredraw
-set mouse=a
-set noerrorbells
-set scrolloff=999
-set splitbelow
-set splitright
-set timeoutlen=300 ttimeoutlen=100
-set visualbell
-set whichwrap=b,h,l,s,<,>,[,],~
 set completeopt=menuone,noselect,noinsert
-
-" Tabs and indent behavior
-set autoindent
 set copyindent
-set expandtab
-set shiftwidth=2
-set smartindent
-set softtabstop=2
-set tabstop=2
-
-" Display
 set cursorline
-set modelines=0
-set noshowmode
-set showcmd
-set title
-set tw=100
-set updatetime=300
-set number
-set showbreak=↳\ \
-
-" Clean up messaging
-set shortmess+=o
-set shortmess+=s
-set shortmess+=c
-set shortmess+=q
-set shortmess+=F
-
-" Folds
-set foldlevel=99
-set foldnestmax=10
-set foldmethod=indent
+set encoding=utf-8 nobomb
+set expandtab
 set foldlevelstart=999
-
-" Search
+set foldmethod=indent
+set foldnestmax=10
+set formatoptions+=t,c,b
+set hidden
+set ignorecase
 set incsearch
 set infercase
+set lazyredraw
 set magic
-set ignorecase
+set modelines=0
+set mouse=a
+set nobackup
+set noshowmode
+set noswapfile
+set scrolloff=999
+set shiftwidth=0
+set shiftround
+set shortmess+=Fcos
+set showbreak=↳\ \
+set showcmd
 set smartcase
-
-" menu options
+set smartindent
+set splitbelow
+set splitright
+set tabstop=2
+set textwidth=80
+set timeoutlen=500 ttimeoutlen=100
+set title
+set updatetime=300
+set visualbell
+set whichwrap=b,h,l,s,<,>,[,],~
+set wildcharm=<C-z>
 set wildmenu
 set wildmode=full
-set wildcharm=<C-z>
-
-" No backup files, live on the edge
-set directory^=$HOME/.vim/tmp//
-set nobackup
-set noswapfile
-
 set diffopt&
       \ diffopt+=vertical
       \ diffopt+=hiddenoff
 
-" Nicer vertical splits
+let mapleader = "\<Space>"
+let &softtabstop = &tabstop
 let &fillchars='vert: ,fold:·'
 let &listchars='tab:→\,space:⋅,trail:⣿,extends:→,precedes:←'
 
-" Colors
-set termguicolors
-colorscheme bruin
-
-" Opt into some optional vim stuff
-packadd cfilter
-runtime macros/matchit.vim
-
-" Setup specific settings
 if executable('rg')
   set grepprg=rg\ --vimgrep
 endif
-
 command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr fun#grep(<f-args>)
 command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr fun#grep(<f-args>)
-
-cnoreabbrev <expr> grep  (getcmdtype() ==# ':' && getcmdline() ==# 'grep')  ? 'Grep'  : 'grep'
-cnoreabbrev <expr> lgrep (getcmdtype() ==# ':' && getcmdline() ==# 'lgrep') ? 'LGrep' : 'lgrep'
 
 if has('persistent_undo')
   set undodir=~/.undodir/
@@ -115,18 +77,18 @@ if exists('&inccommand')
   set inccommand=nosplit
 endif
 
+packadd cfilter
+runtime macros/matchit.vim
 
-" [2] MAPPINGS
-" ============
 nnoremap ; :
-nnoremap , ;
 xnoremap ; :
+nnoremap , ;
 
 inoremap kj <Esc>
 cnoremap kj <Esc>
 
-nnoremap <silent> j gj
-nnoremap <silent> k gk
+nnoremap j gj
+nnoremap k gk
 nnoremap n nzvzz
 nnoremap N Nzvzz
 nnoremap * *zvzzN
@@ -136,16 +98,13 @@ nnoremap ^ 0
 nnoremap gg mpgg
 nnoremap G mpG
 nnoremap / mp/
+nnoremap ** *``cgn
 
 nnoremap <silent> <Leader>w :silent w<CR> :echo "✨ " . strftime("%X")<CR>
-
-" Buffers
 nnoremap <silent> <Leader>x :bd!<CR>
 nnoremap <silent> <BS> <C-^>
 nnoremap <silent> <Tab> :bn<CR>
 nnoremap <silent> <S-Tab> :bp<CR>
-
-" Windows
 nnoremap <silent> <Leader>wx :silent close<CR>
 nnoremap <silent> <Leader>w- :silent sp<CR>
 nnoremap <silent> <Leader>w/ :silent vsp<CR>
@@ -153,94 +112,51 @@ nnoremap <silent> <C-h> :wincmd h<CR>
 nnoremap <silent> <C-j> :wincmd j<CR>
 nnoremap <silent> <C-k> :wincmd k<CR>
 nnoremap <silent> <C-l> :wincmd l<CR>
-
-" tab through search candidates
-cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>/<C-r>/" : "<C-z>"
-cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ? "<CR>?<C-r>/" : "<S-Tab>"
-
-" use space as incremental fuzzy search
-cnoremap <expr> <space> '/?' =~ getcmdtype() ? ".*" : "<space>"
-
-" tab through completion options
-inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Find and replace in 'paragraph'
-nnoremap <Leader>rw :'{,'}s/\<<C-r>=expand("<cword>")<CR>\>/
-
-" Find and replace cursor word in buffer
-nnoremap <Leader>ra :%s/\<<C-r>=expand("<cword>")<CR>\>/
-
-" Grep w/ Rg
 nnoremap <Leader>/ :Grep<Space>
 nnoremap <Leader>* :Grep <C-R>=expand("<cword>")<CR><CR>
 
-" increment / decrement
-nnoremap + <C-a>
-nnoremap _ <C-x>
+cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?" ?
+      \ "<CR>/<C-r>/" : "<C-z>"
+cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?" ?
+      \ "<CR>?<C-r>/" : "<S-Tab>"
 
-" natural changing
-nnoremap ** *``cgn
+cnoremap <expr> <space> '/?' =~ getcmdtype() ? ".*" : "<space>"
 
-" resizing mad easy
-nnoremap <silent> <Leader>= :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
-nnoremap <silent> <Leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-" Plugin mappings
 nnoremap <silent> <Leader><space> :call FuzzFile()<CR>
 nnoremap <silent> <Leader>fb :call FuzzBuf()<CR>
-nnoremap <silent> <Leader>tt :call fun#toggle_term(10)<cr>
 
+if has('nvim')
+  " make leaving the term window less of PITA
+  tnoremap <Esc> <C-\><C-n>
+  tnoremap <M-[> <Esc>
+endif
 
-" [3] AUTOCMDS
-" ============
 augroup Groupie
   autocmd!
-  " Return to last edit position when opening files
-  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-  " Trim empty whitespace on save
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$")
+        \| exe "normal! g'\""
+        \| endif
   autocmd BufWritePre * call fun#trim()
-  " Resize splits when the window is resized
   autocmd VimResized * :wincmd =
-  " close popup on completion finish
   autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-  " open help as a vert split
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
-augroup END
-
-augroup Term
-  autocmd!
   autocmd TermOpen * setlocal nonu nornu
-  if has('nvim')
-    " make leaving the term window less of PITA
-    tnoremap <Esc> <C-\><C-n>
-    tnoremap <M-[> <Esc>
-  endif
+  autocmd BufWritePost *vimrc\|*init.vim source $MYVIMRC
 augroup END
 
-"  Quickfix specifics, useful for grepping
-" ========================================
 augroup Qf
-  " Automatically open quickfix window
   autocmd!
   autocmd QuickFixCmdPost cgetexpr cwindow
   autocmd QuickFixCmdPost lgetexpr lwindow
-  autocmd Filetype qf setlocal nonumber
+  autocmd Filetype qf setlocal nonumber scrolloff=2
 augroup END
 
-" Correct syntax for incorrect filetypes
-" ======================================
 augroup FileTyping
   autocmd!
   autocmd BufRead,BufNewFile jrnl*.txt,TODO,*.mdx setfiletype markdown
-  autocmd BufRead,BufNewFile .{babel,eslint,stylelint,jshint,prettier}rc,.tern-* setfiletype json
+  autocmd BufRead,BufNewFile .{babel,eslint,,prettier}rc setfiletype json
   autocmd BufRead,BufNewFile .envrc setfiletype bash
-augroup END
-
-" Vimrc ergonomics
-" ================
-augroup MyRc
-  autocmd!
-  autocmd BufWritePost *vimrc\|*init.vim source $MYVIMRC
-  autocmd BufEnter .vimrc set ft=vim
 augroup END

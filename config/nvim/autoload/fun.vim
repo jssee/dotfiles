@@ -10,29 +10,6 @@ function! fun#trim()
   call setreg('/', old_query)
 endfunction
 
-" Toggles a terminal window
-" =========================
-function! fun#toggle_term(height)
-  let l:term_win = 0
-  let l:term_buf = 0
-
-  if win_gotoid(l:term_win)
-    hide
-  else
-    botright new
-    exec "resize " . a:height
-    try
-      exec "buffer " . l:term_buf
-    catch
-      call termopen($SHELL, {"detach": 0})
-      let l:term_buf = bufnr("")
-      setlocal nonumber norelativenumber
-    endtry
-    startinsert!
-    let l:term_win = win_getid()
-  endif
-endfunction
-
 function! fun#grep(...)
   return system(join([&grepprg] + [expandcmd(join(a:000, ' '))], ' '))
 endfunction
