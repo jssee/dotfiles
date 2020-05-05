@@ -6,11 +6,6 @@
 - 
   category: default
   local: false
-  name: doums/coBra
-  opt: false
-- 
-  category: default
-  local: false
   name: "jssee/vim-delight"
   opt: false
 - 
@@ -33,6 +28,11 @@
   category: lang
   local: false
   name: "sheerun/vim-polyglot"
+  opt: false
+- 
+  category: default
+  local: false
+  name: "tmsvg/pear-tree"
   opt: false
 - 
   category: default
