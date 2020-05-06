@@ -9,15 +9,13 @@ set termguicolors
 colorscheme bruin
 
 set backspace=indent,eol,start
-set autowriteall
 set breakindent
 set clipboard=unnamed
 set completeopt=menuone,noselect,noinsert
 set copyindent
-set cursorline
-set encoding=utf-8 nobomb
+set encoding=utf-8
 set expandtab
-set foldlevelstart=999
+set foldlevelstart=99
 set foldmethod=indent
 set foldnestmax=10
 set hidden
@@ -25,30 +23,26 @@ set ignorecase
 set inccommand=nosplit
 set infercase
 set lazyredraw
-set mouse=a
+set noshowcmd
 set noshowmode
 set noswapfile
 set scrolloff=999
-set shiftwidth=0
 set shiftround
+set shiftwidth=0
 set shortmess+=Fcos
 set showbreak=↳\ \
-set noshowcmd
 set smartcase
 set smartindent
 set splitbelow
 set splitright
 set tabstop=2
 set textwidth=80
-set timeoutlen=500 ttimeoutlen=100
-set updatetime=300
+set timeoutlen=300 ttimeoutlen=100
 set undodir=~/.undodir/
 set undofile
-set visualbell
+set updatetime=300
 set whichwrap=b,h,l,s,<,>,[,],~
 set wildcharm=<C-z>
-set wildmenu
-set wildmode=full
 set diffopt&
       \ diffopt+=vertical
       \ diffopt+=hiddenoff
@@ -70,7 +64,6 @@ runtime macros/matchit.vim
 nnoremap ; :
 xnoremap ; :
 nnoremap , ;
-
 inoremap kj <Esc>
 cnoremap kj <Esc>
 
@@ -97,8 +90,8 @@ nnoremap <silent> <C-h> :wincmd h<CR>
 nnoremap <silent> <C-j> :wincmd j<CR>
 nnoremap <silent> <C-k> :wincmd k<CR>
 nnoremap <silent> <C-l> :wincmd l<CR>
-nnoremap <silent> <C-s> :split<CR>
-nnoremap <silent> <C-v> :vsplit<CR>
+nnoremap <silent> <C-_> :split<CR>
+nnoremap <silent> <C-s> :vsplit<CR>
 nnoremap <silent> <C-x> :close<CR>
 
 tnoremap <Esc> <C-\><C-n>
@@ -106,27 +99,30 @@ tnoremap <M-[> <Esc>
 
 nnoremap <Leader>/ :Grep<Space>
 nnoremap <Leader>* :Grep <C-R>=expand("<cword>")<CR><CR>
+
+inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?"
       \ ? "<CR>/<C-r>/" : "<C-z>"
 cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?"
       \ ? "<CR>?<C-r>/" : "<S-Tab>"
 
-inoremap <silent><expr> <TAB> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <silent><expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-nnoremap <silent> <Leader><space> :call FuzzFile()<CR>
+nmap <Leader><space> <Plug>(fuzz_e)
+nmap <Leader>v       <Plug>(fuzz_vsp)
 
 augroup general
   autocmd!
+  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
   autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$")
         \| exe "normal! g'\""
         \| endif
   autocmd BufWritePre * call fun#trim()
+  autocmd BufWritePost *vimrc\|*init.vim source $MYVIMRC
+
   autocmd VimResized * :wincmd =
   autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
-  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
   autocmd TermOpen * setlocal nonu nornu
-  autocmd BufWritePost *vimrc\|*init.vim source $MYVIMRC
 augroup END
 
 augroup quickfix
@@ -138,6 +134,7 @@ augroup END
 
 augroup filetyping
   autocmd!
-  autocmd BufRead,BufNewFile jrnl*.txt,TODO,*.mdx setfiletype markdown autocmd BufRead,BufNewFile .{babel,eslint,,prettier}rc setfiletype json
   autocmd BufRead,BufNewFile .envrc setfiletype bash
+  autocmd BufRead,BufNewFile .{babel,eslint,,prettier}rc setfiletype json
+  autocmd BufRead,BufNewFile jrnl*.txt,TODO,*.mdx setfiletype markdown
 augroup END

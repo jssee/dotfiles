@@ -14,6 +14,14 @@ function! FuzzBuf() abort
   call fun#fuzzy_cmd(s:buffer_cmd . fnameescape(l:tmp), ':b ')
 endfunction
 
-function! FuzzFile() abort
+function! FuzzEdit() abort
   call fun#fuzzy_cmd(s:files_cmd, ':e ')
 endfunction
+
+function! FuzzVsplit() abort
+  call fun#fuzzy_cmd(s:files_cmd, ':vsp ')
+endfunction
+
+nnoremap <silent> <Plug>(fuzz_buff) :call FuzzBuf()<CR>
+nnoremap <silent> <Plug>(fuzz_e)    :call FuzzEdit()<CR>
+nnoremap <silent> <Plug>(fuzz_vsp)  :call FuzzVsplit()<CR>
