@@ -127,7 +127,6 @@ brew "imagemagick"
 # Programming language prerequisites and package managers
 brew "libyaml" # should come after openssl
 brew "coreutils"
-brew "yarn"
 brew "asdf"
 brew "zplug"
 
@@ -162,6 +161,7 @@ add_or_update_asdf_plugin "elm" "https://github.com/asdf-community/asdf-elm.git"
 add_or_update_asdf_plugin "golang" "https://github.com/kennyp/asdf-golang.git"
 add_or_update_asdf_plugin "nodejs" "https://github.com/asdf-vm/asdf-nodejs.git"
 add_or_update_asdf_plugin "ruby" "https://github.com/asdf-vm/asdf-ruby.git"
+add_or_update_asdf_plugin "yarn" " "
 
 install_asdf_language() {
   local language="$1"

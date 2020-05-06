@@ -13,7 +13,9 @@ set breakindent
 set clipboard=unnamed
 set completeopt=menuone,noselect,noinsert
 set copyindent
-set encoding=utf-8
+set diffopt&
+      \ diffopt+=vertical
+      \ diffopt+=hiddenoff
 set expandtab
 set foldlevelstart=99
 set foldmethod=indent
@@ -26,6 +28,7 @@ set lazyredraw
 set noshowcmd
 set noshowmode
 set noswapfile
+set path+=src/**,static/,public/,components/
 set scrolloff=999
 set shiftround
 set shiftwidth=0
@@ -43,9 +46,6 @@ set undofile
 set updatetime=300
 set whichwrap=b,h,l,s,<,>,[,],~
 set wildcharm=<C-z>
-set diffopt&
-      \ diffopt+=vertical
-      \ diffopt+=hiddenoff
 
 let mapleader = "\<Space>"
 let &softtabstop = &tabstop
