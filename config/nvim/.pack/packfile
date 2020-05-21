@@ -4,6 +4,11 @@
 
 ---
 - 
+  category: colors
+  local: false
+  name: "jssee/vim-cortado"
+  opt: false
+- 
   category: default
   local: false
   name: "jssee/vim-delight"

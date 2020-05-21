@@ -6,7 +6,7 @@ filetype plugin indent on
 syntax on
 
 set termguicolors
-colorscheme bruin
+colorscheme cortado
 
 set backspace=indent,eol,start
 set breakindent
