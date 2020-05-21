@@ -19,10 +19,7 @@ if !exists('b:did_typescript_setup')
   setlocal errorformat+=%f:\ line\ %l\\,\ col\ %c\\,\ %m,%-G%.%#
   if executable('eslint')
     setlocal makeprg=eslint\ --format\ compact\ --parser\ typescript
-
-
-
-    augroup LintTS
+    augroup lint_ts
       autocmd! * <buffer>
       autocmd BufWritePost <buffer> silent make <afile> | checktime | silent redraw!
     augroup END
