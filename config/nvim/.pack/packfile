@@ -15,6 +15,16 @@
   opt: false
 - 
   category: default
+  for: 
+    - javascript
+    - typescript
+    - javascriptreact
+    - typescriptreact
+  local: false
+  name: "jssee/vim-infest"
+  opt: true
+- 
+  category: default
   local: false
   name: "justinmk/vim-dirvish"
   opt: false
