@@ -8,7 +8,6 @@ syntax on
 set termguicolors
 colorscheme cortado
 
-set backspace=indent,eol,start
 set breakindent
 set clipboard=unnamed
 set completeopt=menuone,noselect,noinsert
@@ -21,10 +20,8 @@ set foldlevelstart=99
 set foldmethod=indent
 set foldnestmax=10
 set hidden
-set ignorecase
 set inccommand=nosplit
-set infercase
-set lazyredraw
+set ignorecase infercase smartcase
 set noshowcmd
 set noshowmode
 set noswapfile
@@ -32,17 +29,14 @@ set path+=src/**,static/,public/,components/
 set scrolloff=999
 set shiftround
 set shiftwidth=0
-set shortmess+=Fcos
+set shortmess+=c
 set showbreak=↳\ \
-set smartcase
 set smartindent
-set splitbelow
-set splitright
+set splitbelow splitright
 set tabstop=2
 set textwidth=80
 set timeoutlen=300 ttimeoutlen=100
-set undodir=~/.undodir/
-set undofile
+set undofile undodir=~/.undodir/
 set updatetime=300
 set whichwrap=b,h,l,s,<,>,[,],~
 set wildcharm=<C-z>
@@ -61,9 +55,7 @@ command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr fun#grep(<f-args>)
 packadd cfilter
 runtime macros/matchit.vim
 
-nnoremap ; :
-xnoremap ; :
-nnoremap , ;
+nnoremap <CR> :
 inoremap kj <Esc>
 cnoremap kj <Esc>
 
@@ -91,7 +83,7 @@ nnoremap <silent> <C-j> :wincmd j<CR>
 nnoremap <silent> <C-k> :wincmd k<CR>
 nnoremap <silent> <C-l> :wincmd l<CR>
 nnoremap <silent> <C-_> :split<CR>
-nnoremap <silent> <C-s> :vsplit<CR>
+nnoremap <silent> <C-\> :vsplit<CR>
 nnoremap <silent> <C-x> :close<CR>
 
 tnoremap <Esc> <C-\><C-n>
@@ -107,7 +99,6 @@ cnoremap <expr> <Tab>   getcmdtype() == "/" \|\| getcmdtype() == "?"
 cnoremap <expr> <S-Tab> getcmdtype() == "/" \|\| getcmdtype() == "?"
       \ ? "<CR>?<C-r>/" : "<S-Tab>"
 
-
 nmap <Leader><space> <Plug>(fuzz_e)
 nmap <Leader>v       <Plug>(fuzz_vsp)
 
@@ -119,7 +110,6 @@ augroup general
         \| endif
   autocmd BufWritePre * call fun#trim()
   autocmd BufWritePost *vimrc\|*init.vim source $MYVIMRC
-
   autocmd VimResized * :wincmd =
   autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
   autocmd TermOpen * setlocal nonu nornu
@@ -129,7 +119,6 @@ augroup quickfix
   autocmd!
   autocmd QuickFixCmdPost cgetexpr cwindow
   autocmd QuickFixCmdPost lgetexpr lwindow
-  autocmd Filetype qf setlocal nonumber scrolloff=2
 augroup END
 
 augroup filetyping
