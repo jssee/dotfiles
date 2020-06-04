@@ -3,3 +3,4 @@ bind main R !git rebase -i %(commit)^
 bind diff R !git rebase -i %(commit)^
 bind stage <Enter> :/^@@
 bind generic 9 !@sh -c "printf %(commit) | pbcopy && echo $(commit)"
+bind generic T !git notes edit %(commit)
