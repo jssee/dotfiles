@@ -55,7 +55,9 @@ command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr fun#grep(<f-args>)
 packadd cfilter
 runtime macros/matchit.vim
 
-nnoremap <CR> :
+nnoremap ; :
+xnoremap ; :
+nnoremap : ;
 inoremap kj <Esc>
 cnoremap kj <Esc>
 
