@@ -11,7 +11,7 @@ function! Format(type, ...)
     call winrestview(w:gqview)
     unlet w:gqview
 endfunction
-nmap <silent> GQ :let w:gqview = winsaveview()<CR>:set opfunc=Format<CR>g@
+nnoremap <silent> GQ :let w:gqview = winsaveview()<CR>:set opfunc=Format<CR>g@
 
 " Quickfix alternative to :g/foo/#
 set errorformat^=%f:%l:%c\ %m
@@ -24,12 +24,12 @@ function! Substitute(type, ...)
 	execute "'[,']s/" . cword . "/" . input(cword . '/')
 	call cursor(cur[1], cur[2])
 endfunction
-nmap <silent> su m':set opfunc=Substitute<CR>g@
+nnoremap <silent> su m':set opfunc=Substitute<CR>g@
 
 function! Sort(type, ...)
     '[,']sort
 endfunction
-nmap <silent> so :set opfunc=Sort<CR>g@
+nnoremap <silent> so :set opfunc=Sort<CR>g@
 
 
 function! CCR()
