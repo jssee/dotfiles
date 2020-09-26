@@ -6,6 +6,7 @@ export DOTFILE_PATH="$HOME/.dotfiles"
 
 export VIM_CONFIG_PATH="$DOTFILE_PATH/config/nvim/" # pack
 export EDITOR="/usr/local/bin/nvim"
+export MANPAGER="$HOME/.asdf/shims/nvim +Man!"
 
 export ZPLUG_HOME=/usr/local/opt/zplug
 
