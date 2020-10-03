@@ -84,9 +84,6 @@ nnoremap <silent> <C-h> :wincmd h<CR>
 nnoremap <silent> <C-j> :wincmd j<CR>
 nnoremap <silent> <C-k> :wincmd k<CR>
 nnoremap <silent> <C-l> :wincmd l<CR>
-nnoremap <silent> <C-_> :split<CR>
-nnoremap <silent> <C-\> :vsplit<CR>
-nnoremap <silent> <C-w> :close<CR>
 
 tnoremap <Esc> <C-\><C-n>
 tnoremap <M-[> <Esc>
