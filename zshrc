@@ -6,6 +6,7 @@ zplug mafredri/zsh-async, use:async.zsh
 zplug sindresorhus/pure, use:pure.zsh, as:theme
 zplug zsh-users/zsh-syntax-highlighting, defer:2
 zplug zsh-users/zsh-completions, defer:3
+zplug g-plane/zsh-yarn-autocompletions, hook-build:'./zplug.zsh', defer:2
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then

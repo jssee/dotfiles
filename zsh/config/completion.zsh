@@ -1,6 +1,6 @@
 fpath=(~/.zsh/completion $fpath)
 
-autoload -U compinit
+autoload -Uz compinit
 compinit
 
 ## case-insensitive (all), partial-word and then substring completion
