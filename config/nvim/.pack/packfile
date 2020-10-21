@@ -35,14 +35,14 @@
   name: neoclide/coc.nvim
   opt: false
 - 
+  category: lua
+  local: false
+  name: "nvim-treesitter/nvim-treesitter"
+  opt: false
+- 
   category: default
   local: false
   name: "romainl/vim-qf"
-  opt: false
-- 
-  category: lang
-  local: false
-  name: "sheerun/vim-polyglot"
   opt: false
 - 
   category: default

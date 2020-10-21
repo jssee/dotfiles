@@ -16,10 +16,10 @@ set diffopt&
       \ diffopt+=vertical
       \ diffopt+=hiddenoff
 set expandtab
-set foldlevelstart=99
-set foldmethod=indent
-set foldnestmax=10
 set hidden
+set foldmethod=expr
+set foldnestmax=10
+set foldexpr=nvim_treesitter#foldexpr()
 set inccommand=nosplit
 set ignorecase infercase smartcase
 set noshowcmd
