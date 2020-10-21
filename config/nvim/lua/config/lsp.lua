@@ -1,5 +1,8 @@
-vim.cmd('packadd nvim-lsp')
-local nvim_lsp = require'nvim_lsp'
+local has_lsp, lsp = pcall(require, 'nvim_lsp')
+
+if not has_lsp then
+  return
+end
 
 local on_attach = function(client, bufnr)
   -- set the omnifunction to use the lsp
