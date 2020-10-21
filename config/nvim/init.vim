@@ -104,14 +104,11 @@ nmap <Leader>v       <Plug>(fuzz_vsp)
 augroup general
   autocmd!
   autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
-  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$")
-        \| exe "normal! g'\""
-        \| endif
-  autocmd BufWritePre * call fun#trim()
   autocmd BufWritePost *vimrc\|*init.vim source $MYVIMRC
-  autocmd VimResized * :wincmd =
+  autocmd BufWritePre * call fun#trim()
   autocmd CompleteDone * if pumvisible() == 0 | pclose | endif
   autocmd TermOpen * setlocal nonu nornu
+  autocmd VimResized * :wincmd =
 augroup END
 
 augroup quickfix
