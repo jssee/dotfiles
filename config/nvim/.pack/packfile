@@ -29,20 +29,24 @@
   name: "justinmk/vim-dirvish"
   opt: false
 - 
-  build: git checkout release
-  category: default
+  category: lua
   local: false
-  name: neoclide/coc.nvim
+  name: "neovim/nvim-lspconfig"
+  opt: false
+- 
+  category: lua
+  local: false
+  name: "nvim-lua/completion-nvim"
+  opt: false
+- 
+  category: lua
+  local: false
+  name: "nvim-treesitter/nvim-treesitter"
   opt: false
 - 
   category: default
   local: false
   name: "romainl/vim-qf"
-  opt: false
-- 
-  category: lang
-  local: false
-  name: "sheerun/vim-polyglot"
   opt: false
 - 
   category: default

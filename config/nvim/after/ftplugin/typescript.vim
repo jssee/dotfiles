@@ -17,18 +17,18 @@ if !exists('b:did_typescript_setup')
   " lint file on write
   setlocal autoread
   setlocal errorformat+=%f:\ line\ %l\\,\ col\ %c\\,\ %m,%-G%.%#
-  if executable('eslint')
-    setlocal makeprg=eslint\ --format\ compact\ --parser\ typescript
-    augroup lint_ts
-      autocmd! * <buffer>
-      autocmd BufWritePost <buffer> silent make <afile> | checktime | silent redraw!
-    augroup END
-  endif
+  " if executable('eslint')
+  "   setlocal makeprg=eslint\ --format\ compact\ --parser\ typescript
+  "   augroup lint_ts
+  "     autocmd! * <buffer>
+  "     autocmd BufWritePost <buffer> silent make <afile> | checktime | silent redraw!
+  "   augroup END
+  " endif
 
   " set prettier as formatprg
-  if executable('prettier')
-    setlocal formatprg=prettier\ --stdin-filepath\ %
-  endif
+  " if executable('prettier')
+    " setlocal formatprg=prettier\ --stdin-filepath\ %
+  " endif
 
   " matchit
   let b:match_words = '\<function\>:\<return\>,'

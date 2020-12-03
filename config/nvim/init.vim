@@ -16,8 +16,9 @@ set diffopt&
       \ diffopt+=vertical
       \ diffopt+=hiddenoff
 set expandtab
-set foldlevelstart=99
-set foldmethod=indent
+set foldlevelstart=1
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
 set foldnestmax=10
 set hidden
 set inccommand=nosplit
@@ -31,11 +32,11 @@ set shiftround
 set shiftwidth=0
 set shortmess+=c
 set showbreak=↳\ \
+set signcolumn=yes:1
 set smartindent
 set splitbelow splitright
 set tabstop=2
 set textwidth=80
-set timeoutlen=300 ttimeoutlen=100
 set undofile undodir=~/.undodir/
 set updatetime=300
 set whichwrap=b,h,l,s,<,>,[,],~
@@ -53,7 +54,6 @@ command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr fun#grep(<f-args>)
 command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr fun#grep(<f-args>)
 
 packadd cfilter
-runtime macros/matchit.vim
 
 nnoremap ; :
 xnoremap ; :
@@ -69,9 +69,6 @@ nnoremap * *zvzzN
 nnoremap # #zvzz
 nnoremap 0 ^
 nnoremap ^ 0
-nnoremap gg mpgg
-nnoremap G mpG
-nnoremap / mp/
 nnoremap ** *``cgn
 
 nnoremap <silent> <Leader>w :w<CR>
@@ -84,9 +81,6 @@ nnoremap <silent> <C-h> :wincmd h<CR>
 nnoremap <silent> <C-j> :wincmd j<CR>
 nnoremap <silent> <C-k> :wincmd k<CR>
 nnoremap <silent> <C-l> :wincmd l<CR>
-nnoremap <silent> <C-_> :split<CR>
-nnoremap <silent> <C-\> :vsplit<CR>
-nnoremap <silent> <C-w> :close<CR>
 
 tnoremap <Esc> <C-\><C-n>
 tnoremap <M-[> <Esc>

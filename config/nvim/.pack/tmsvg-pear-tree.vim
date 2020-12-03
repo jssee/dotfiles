@@ -8,7 +8,9 @@ augroup tagsclose
         \         'not_if': ['br', 'hr', 'img', 'input', 'link', 'meta',
         \                    'area', 'base', 'col', 'command', 'embed',
         \                    'keygen', 'param', 'source', 'track', 'wbr'],
-        \         'not_like': '/$',
+        \         'not_like': '{[^}]*$\|/$',
+        \         'not_at': ['[^> ]<[^>]*'],
+        \         'not_in': ['String'],
         \         'until': '[^a-zA-Z0-9-._]'
         \        }
         \ }, 'keep')
